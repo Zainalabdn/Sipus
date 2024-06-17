@@ -62,7 +62,7 @@
             </li>
             <li><a href="laporan"><i class="fa fa-book"></i> <span>Laporan Perpustakaan</span></a></li>
             <li class="header">LAIN LAIN</li>
-            <li><a href="identitas-app"><i class="fa fa-info"></i> <span>Identitas Applikasi</span></a></li>
+            <li><a href="identitas-app"><i class="fa fa-info"></i> <span>Identitas Aplikasi</span></a></li>
             <li><a href="pesan"><i class="fa fa-envelope"></i> <span>Pesan</span>
                     <span class="pull-right-container" id="jumlahPesan">
                         <?php
@@ -87,7 +87,8 @@
                     </span>
                 </a></li>
             <li class="header">LANJUTAN</li>
-            <li><a href="#Logout" data-toggle="modal" data-target="#modalLogoutConfirm"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
+            <li><a href="#Logout" data-toggle="modal" data-target="#modalLogoutConfirm"><i class="fa fa-sign-out"></i>
+                    <span>Keluar</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->
@@ -102,8 +103,8 @@
                 <h4 class="modal-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">Peringatan</h4>
             </div>
             <div class="modal-body">
-                <span>Apa anda yakin ingin keluar dari Applikasi ? <br>
-                    Anda harus login kembali jika ingin masuk Applikasi Perpustakaan</span>
+                <span>Apa anda yakin ingin keluar dari Aplikasi ? <br>
+                    Anda harus login kembali jika ingin masuk Aplikasi Perpustakaan</span>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-danger">Batal</button>
@@ -113,7 +114,7 @@
     </div>
 </div>
 <script>
-    var refreshId = setInterval(function() {
-        $('#jumlahPesan').load('./pages/function/Pesan.php?aksi=jumlahPesan');
-    }, 500);
+var refreshId = setInterval(function() {
+    $('#jumlahPesan').load('./pages/function/Pesan.php?aksi=jumlahPesan');
+}, 500);
 </script>

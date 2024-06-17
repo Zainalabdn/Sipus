@@ -6,27 +6,26 @@ if ($_GET['aksi'] == "tambah") {
     $kode_anggota = $_POST['kodeAnggota'];
     $nis = $_POST['nis'];
     $fullname = $_POST['namaLengkap'];
-    $username = addslashes(strtolower($_POST['username']));
+    $username = strtolower(addslashes($_POST['username']));
     $password = $_POST['password'];
     $kls = $_POST['kelas'];
-    $jrs = $_POST['jurusan'];
+    $jrs = isset($_POST['jurusan']) ? $_POST['jurusan'] : ''; // Check if 'jurusan' is set
     $kelas = $kls . $jrs;
     $alamat = $_POST['alamat'];
     $verif = "Tidak";
     $role = "Anggota";
     $join_date = date('d-m-Y');
 
-    $sql = "INSERT INTO user(kode_user,nis,fullname,username,password,kelas,alamat,verif,role,join_date)
-        VALUES('" . $kode_anggota . "','" . $nis . "','" . $fullname . "','" . $username . "','" . $password . "','" . $kelas . "','" . $alamat . "','" . $verif . "','" . $role . "','" . $join_date . "')";
-    $sql .= mysqli_query($koneksi, $sql);
-
-    if ($sql) {
-        $_SESSION['berhasil'] = "Anggota berhasil ditambahkan !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+    $stmt = $koneksi->prepare("INSERT INTO user (kode_user, nis, fullname, username, password, kelas, alamat, verif, role, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssss", $kode_anggota, $nis, $fullname, $username, $password, $kelas, $alamat, $verif, $role, $join_date);
+    
+    if ($stmt->execute()) {
+        $_SESSION['berhasil'] = "Anggota berhasil ditambahkan!";
     } else {
-        $_SESSION['gagal'] = "Anggota gagal ditambahkan !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+        $_SESSION['gagal'] = "Anggota gagal ditambahkan!";
     }
+    $stmt->close();
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 } else if ($_GET['aksi'] == "edit") {
 
     $id_user = $_POST['idUser'];
@@ -37,30 +36,28 @@ if ($_GET['aksi'] == "tambah") {
     $kelas = htmlspecialchars(addslashes($_POST['kElas']));
     $alamat = htmlspecialchars(addslashes($_POST['aLamat']));
 
-    $query = "UPDATE user SET nis = '$nis', fullname = '$nama_lengkap', username = '$username', 
-          password = '$password', kelas = '$kelas', alamat = '$alamat'";
+    $stmt = $koneksi->prepare("UPDATE user SET nis = ?, fullname = ?, username = ?, password = ?, kelas = ?, alamat = ? WHERE id_user = ?");
+    $stmt->bind_param("ssssssi", $nis, $nama_lengkap, $username, $password, $kelas, $alamat, $id_user);
 
-    $query .= "WHERE id_user = '$id_user'";
-
-    $sql = mysqli_query($koneksi, $query);
-
-    if ($sql) {
-        $_SESSION['berhasil'] = "Data anggota berhasil dirubah !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+    if ($stmt->execute()) {
+        $_SESSION['berhasil'] = "Data anggota berhasil dirubah!";
     } else {
-        $_SESSION['gagal'] = "Data anggota gagal dirubah !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+        $_SESSION['gagal'] = "Data anggota gagal dirubah!";
     }
+    $stmt->close();
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 } else if ($_GET['aksi'] == "hapus") {
     $id_user = $_GET['id'];
 
-    $sql = mysqli_query($koneksi, "DELETE FROM user WHERE id_user = $id_user");
+    $stmt = $koneksi->prepare("DELETE FROM user WHERE id_user = ?");
+    $stmt->bind_param("i", $id_user);
 
-    if ($sql) {
-        $_SESSION['berhasil'] = "Anggota berhasil di hapus !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+    if ($stmt->execute()) {
+        $_SESSION['berhasil'] = "Anggota berhasil di hapus!";
     } else {
-        $_SESSION['gagal'] = "Anggota gagal di hapus !";
-        header("location: " . $_SERVER['HTTP_REFERER']);
+        $_SESSION['gagal'] = "Anggota gagal di hapus!";
     }
+    $stmt->close();
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
+?>

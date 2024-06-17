@@ -1,8 +1,8 @@
 <?php
-session_start();
-//------------------------------::::::::::::::::::::------------------------------\\
-// Dibuat oleh FA Team di PT. Pacifica Raya Technology \\
-//------------------------------::::::::::::::::::::------------------------------\\
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 function InsertPemberitahuanPeminjaman()
 {
     include "../../../../config/koneksi.php";
@@ -12,9 +12,9 @@ function InsertPemberitahuanPeminjaman()
     $level = "Admin";
     $status = "Belum dibaca";
 
-    $sql = "INSERT INTO pemberitahuan(isi_pemberitahuan,level_user,status) 
-                VALUES('" . $notif . "','" . $level . "','" . $status . "')";
-    $sql .= mysqli_query($koneksi, $sql);
+    $sql = "INSERT INTO pemberitahuan(isi_pemberitahuan, level_user, status) 
+                VALUES('$notif', '$level', '$status')";
+    mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
 }
 
 function InsertPemberitahuanPengembalian()
@@ -26,7 +26,8 @@ function InsertPemberitahuanPengembalian()
     $level = "Admin";
     $status = "Belum dibaca";
 
-    $sql = "INSERT INTO pemberitahuan(isi_pemberitahuan,level_user,status) 
-                VALUES('" . $notif . "','" . $level . "','" . $status . "')";
-    $sql .= mysqli_query($koneksi, $sql);
+    $sql = "INSERT INTO pemberitahuan(isi_pemberitahuan, level_user, status) 
+                VALUES('$notif', '$level', '$status')";
+    mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
 }
+?>

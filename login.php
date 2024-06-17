@@ -32,6 +32,9 @@ session_start();
     <link rel="stylesheet" href="assets/dist/css/custom.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="assets/dist/css/toastr.min.css">
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="assets/dist/css/sweetalert.css">
 </head>
 
 <body class="hold-transition login-page" style="font-family: 'Quicksand', sans-serif;">
@@ -56,7 +59,7 @@ session_start();
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+                        <button type="submit" name="btnLogin" class="btn btn-primary btn-block btn-flat">Masuk</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -93,11 +96,11 @@ session_start();
         window.location.href = "pendaftaran";
     }
     </script>
-    <!-- Fungsi mengarahkan kehalaman lupa password -->
+    <!-- Fungsi mengarahkan kehalaman lupa password
     <script>
     function ForgotPassword() {
         window.location.href = "lupa-password";
-    }
+    } -->
     </script>
     <!-- Sweet Alert -->
     <script src="assets/dist/js/sweetalert.min.js"></script>
@@ -111,7 +114,7 @@ session_start();
                 text: '$_SESSION[masuk_dulu]',
                 buttons: false,
                 timer: 3000
-              })";
+            })";
         }
         $_SESSION['masuk_dulu'] = '';
         ?>
@@ -126,7 +129,7 @@ session_start();
                 text: '$_SESSION[berhasil]',
                 buttons: false,
                 timer: 3000
-              })";
+            })";
         }
         $_SESSION['berhasil'] = '';
         ?>
@@ -211,6 +214,7 @@ session_start();
         }
     }
     </script>
+
 </body>
 
 </html>

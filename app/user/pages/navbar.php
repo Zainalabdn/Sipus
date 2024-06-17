@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="dashboard" class="logo" style="font-family: 'Quicksand', sans-serif">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>P</b>CS</span>
+        <span class="logo-mini"><i class="fa fa-book"></i></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Perpustakaan </b>LTE CS</span>
+        <span class="logo-lg"><b>E-LIBRARY</b> <i class="fa fa-book"></i></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -64,14 +64,15 @@
                                 $query_pesan1 = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
                                 while ($row_pesan1 = mysqli_fetch_assoc($query_pesan1)) {
                                 ?>
-                                    <li>
-                                        <!-- start message -->
-                                        <a href="lihat-pesan?id_pesan=<?= $row_pesan1['id_pesan']; ?>">
-                                            <div class="pull-left">
-                                                <img src="../../assets/dist/img/avatar02.png" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                <?php
+                                <li>
+                                    <!-- start message -->
+                                    <a href="lihat-pesan?id_pesan=<?= $row_pesan1['id_pesan']; ?>">
+                                        <div class="pull-left">
+                                            <img src="../../assets/dist/img/avatar02.png" class="img-circle"
+                                                alt="User Image">
+                                        </div>
+                                        <h4>
+                                            <?php
                                                 include "../../config/koneksi.php";
 
                                                 $nama = $row_pesan1['pengirim'];
@@ -81,17 +82,17 @@
                                                 $row_cek = mysqli_fetch_array($query_cek_verif);
                                                 ?>
 
-                                                <?php
+                                            <?php
                                                 if ($row_cek['verif'] == "Tidak") {
                                                     echo "$row_pesan1[pengirim]";
                                                 } else {
                                                     echo "$row_pesan1[pengirim] " . "<i class='fa fa-check-circle text-info' title='User Terverifikasi' data-toggle='tooltip' data-placement='bottom'></i>";
                                                 }
                                                 ?>
-                                            </h4>
-                                            <p><?= $row_pesan1['isi_pesan']; ?></p>
-                                        </a>
-                                    </li>
+                                        </h4>
+                                        <p><?= $row_pesan1['isi_pesan']; ?></p>
+                                    </a>
+                                </li>
 
                                 <?php
                                 }
@@ -135,8 +136,8 @@
                                 $query = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id'");
                                 while ($row = mysqli_fetch_array($query)) {
                                 ?>
-                                    <small>Tanggal Bergabung : <?= $row['join_date']; ?></small>
-                                    <small>Terakhir Login : <?= $row['terakhir_login']; ?></small>
+                                <small>Tanggal Bergabung : <?= $row['join_date']; ?></small>
+                                <small>Terakhir Login : <?= $row['terakhir_login']; ?></small>
                                 <?php
                                 }
                                 ?>
@@ -144,7 +145,8 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href="#Logout" data-toggle="modal" data-target="#modalLogoutConfirm" class="btn btn-default btn-flat">Keluar</a>
+                            <a href="#Logout" data-toggle="modal" data-target="#modalLogoutConfirm"
+                                class="btn btn-default btn-flat">Keluar</a>
                         </li>
                     </ul>
                 </li>
@@ -153,12 +155,12 @@
     </nav>
 </header>
 <script>
-    var refreshId = setInterval(function() {
-        $('#badgePesan').load('./pages/function/Pesan.php?aksi=badgePesan');
-    }, 500);
+var refreshId = setInterval(function() {
+    $('#badgePesan').load('./pages/function/Pesan.php?aksi=badgePesan');
+}, 500);
 </script>
 <script>
-    var refreshId = setInterval(function() {
-        $('#Pesan').load('./pages/function/Pesan.php?aksi=Pesan');
-    }, 500);
+var refreshId = setInterval(function() {
+    $('#Pesan').load('./pages/function/Pesan.php?aksi=Pesan');
+}, 500);
 </script>

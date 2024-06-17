@@ -40,7 +40,7 @@ if ($_SESSION['level'] != "Anggota") {
     <!-- -->
     <link rel="stylesheet" href="../../assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Icon -->
-    <link rel="icon" type="icon" href="../../assets/dist/img/icon-app.png">
+    <link rel="icon" type="icon" href="../../assets/dist/img/logo.png">
     <!-- Custom -->
     <link rel="stylesheet" href="../../assets/dist/css/custom.css">
     <!-- Toastr -->
@@ -69,7 +69,7 @@ if ($_SESSION['level'] != "Anggota") {
     <script src="../../assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button);
+    $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.7 -->
     <script src="../../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -87,31 +87,31 @@ if ($_SESSION['level'] != "Anggota") {
     <script src="../../assets/json/lottie-player.js"></script>
     <!-- -->
     <script>
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('.theme-loader').fadeOut('slow', function() {
-                    $(this).remove();
-                });
-            }, 1500);
-        });
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.theme-loader').fadeOut('slow', function() {
+                $(this).remove();
+            });
+        }, 1500);
+    });
     </script>
     <!-- -->
     <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
-            $('#example2').DataTable();
-        });
+    $(document).ready(function() {
+        $('#example1').DataTable();
+        $('#example2').DataTable();
+    });
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            var url = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
-            $('.treeview-menu li').removeClass('active');
-            $('[href$="' + url + '"]').parent().addClass("active");
-            $('.treeview').removeClass('menu-open active');
-            $('[href$="' + url + '"]').closest('li.treeview').addClass("menu-open active");
-        });
+    $(document).ready(function() {
+        var url = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+        $('.treeview-menu li').removeClass('active');
+        $('[href$="' + url + '"]').parent().addClass("active");
+        $('.treeview').removeClass('menu-open active');
+        $('[href$="' + url + '"]').closest('li.treeview').addClass("menu-open active");
+    });
     </script>
 </body>
 
