@@ -45,6 +45,7 @@
                     <li><a href="penerbit"><i class="fa fa-circle-o"></i> Data Penerbit</a></li>
                     <li><a href="administrator"><i class="fa fa-circle-o"></i> Administrator</a></li>
                     <li><a href="data-peminjaman"><i class="fa fa-circle-o"></i> Data Peminjaman</a></li>
+                    <li><a href="data-pengunjung"><i class="fa fa-circle-o"></i> Data Pengunjung</a></li>
                 </ul>
             </li>
             <li class="treeview">
