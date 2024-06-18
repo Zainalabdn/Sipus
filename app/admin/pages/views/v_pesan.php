@@ -182,6 +182,21 @@
                         <label>Isi Pesan <small style="color: red;">* Wajib diisi</small></label>
                         <textarea name="isiPesan" class="form-control" style="height: 100px; resize: none;" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label>Kirim Email? <small>(Centang jika ingin kirim via email)</small></label>
+                        <input type="checkbox" name="sendEmail" value="1">
+                    </div>
+                    <div id="emailFields" style="display: none;">
+                        <div class="form-group">
+                            <label>Subject Email <small style="color: red;">* Wajib diisi</small></label>
+                            <input type="text" name="emailSubject" class="form-control" placeholder="Masukan Judul Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Isi Email <small style="color: red;">* Wajib diisi</small></label>
+                            <textarea name="emailContent" class="form-control" style="height: 100px; resize: none;" placeholder="Masukkan Isi Email"></textarea>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-block">Kirim</button>
