@@ -36,7 +36,26 @@ if ($_GET['aksi'] == "masuk") {
             $sql = mysqli_query($koneksi, $query);
 
             header("location: ../admin");
-        } else if ($row['role'] == "Anggota") {
+        } elseif ($row['role'] == "Petugas") {
+            // Jika level user yang login adalah petugas maka arahkan user ke halaman petugas
+            $_SESSION['id_user'] = $row['id_user'];
+            $_SESSION['username'] = $username;
+            $_SESSION['fullname'] = $row['fullname'];
+            $_SESSION['level'] = "Petugas";
+            $_SESSION['status'] = "Login";
+
+            date_default_timezone_set('Asia/Jakarta');
+
+            $id_user = $_SESSION['id_user'];
+            $tanggal = date('d-m-Y');
+            $jam = date('H:i:s');
+
+            $query = "UPDATE user SET terakhir_login = '$tanggal ( $jam )' WHERE id_user = $id_user";
+            $sql = mysqli_query($koneksi, $query);
+
+            header("location: ../petugas");
+        }
+        else if ($row['role'] == "Anggota") {
             // Jika level user yang login adalah user maka arahkan user kehalaman user
             $_SESSION['id_user'] = $row['id_user'];
             $_SESSION['username'] = $username;

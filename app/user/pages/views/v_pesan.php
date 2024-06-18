@@ -41,54 +41,39 @@
                     <div class="tab-content">
                         <!-- Font Awesome Icons -->
                         <div class="tab-pane active" id="pesan-masuk">
-                            <section id="new">
-                                <div class="table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Pengirim</th>
-                                                <th>Judul Pesan</th>
-                                                <th>Isi Pesan</th>
-                                                <th>Status Pesan</th>
-                                                <th>Tanggal Kirim</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        include "../../config/koneksi.php";
+                        <section id="new">
+  <?php
+    include "../../config/koneksi.php";
 
-                                        $no = 1;
-                                        $penerima = $_SESSION['fullname'];
-                                        $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$penerima'");
-                                        while ($row = mysqli_fetch_assoc($query)) {
-                                        ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $row['pengirim']; ?></td>
-                                                    <td><?= $row['judul_pesan']; ?></td>
-                                                    <td><?= $row['isi_pesan']; ?></td>
-                                                    <td><?= $row['status']; ?></td>
-                                                    <td><?= $row['tanggal_kirim']; ?></td>
-                                                    <td>
-                                                        <?php
-                                                        if ($row['status'] == "Sudah dibaca") {
-                                                            //
-                                                            echo "<a href='pages/function/Pesan.php?aksi=hapus&id_pesan=" . $row['id_pesan'] . "' class='btn btn-danger btn-sm btn-del' onclick='hapusAnggota()'><i class='fa fa-trash'></i></a>";
-                                                        } else {
-                                                            echo "<a href='pages/function/Pesan.php?aksi=update&id_pesan=" . $row['id_pesan'] . "' class='btn btn-info btn-sm'><i class='fa fa-check'></i></a>";
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        <?php
-                                        }
-                                        ?>
-                                    </table>
-                                </div>
-                            </section>
+    $no = 1;
+    $penerima = $_SESSION['fullname'];
+    $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$penerima'");
+    while ($row = mysqli_fetch_assoc($query)) {
+  ?>
+    <div class="message-item card mb-3">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><?= $row['pengirim']; ?></h5>
+        <small class="text-muted"><?= $row['tanggal_kirim']; ?></small>
+      </div>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted"><?= $row['judul_pesan']; ?></h6>
+        <p class="card-text"><?= $row['isi_pesan']; ?></p>
+      </div>
+      <div class="card-footer text-muted d-flex justify-content-end">
+        <?php
+          if ($row['status'] == "Sudah dibaca") {
+            echo "<a href='pages/function/Pesan.php?aksi=hapus&id_pesan=" . $row['id_pesan'] . "' class='btn btn-danger btn-sm btn-del' onclick='hapusAnggota()'><i class='fa fa-trash'></i></a>";
+          } else {
+            echo "<a href='pages/function/Pesan.php?aksi=update&id_pesan=" . $row['id_pesan'] . "' class='btn btn-info btn-sm'><i class='fa fa-check'></i></a>";
+          }
+        ?>
+      </div>
+    </div>
+  <?php
+    }
+  ?>
+</section>
+
                         </div>
 
                         <!-- Pesan Terkirim -->

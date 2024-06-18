@@ -12,12 +12,14 @@ if ($_GET['aksi'] == "tambah") {
     $jrs = isset($_POST['jurusan']) ? $_POST['jurusan'] : ''; // Check if 'jurusan' is set
     $kelas = $kls . $jrs;
     $alamat = $_POST['alamat'];
+    $email = $_POST['email']; // Tambah ini untuk menangkap nilai Email
+    $notelp = $_POST['notelp']; // Tambah ini untuk menangkap nilai Nomor Telepon
     $verif = "Tidak";
     $role = "Anggota";
-    $join_date = date('d-m-Y');
+    $join_date = date('Y-m-d'); // Ubah format tanggal
 
-    $stmt = $koneksi->prepare("INSERT INTO user (kode_user, nis, fullname, username, password, kelas, alamat, verif, role, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssss", $kode_anggota, $nis, $fullname, $username, $password, $kelas, $alamat, $verif, $role, $join_date);
+    $stmt = $koneksi->prepare("INSERT INTO user (kode_user, nis, fullname, username, password, kelas, alamat, email, notelp, verif, role, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssssss", $kode_anggota, $nis, $fullname, $username, $password, $kelas, $alamat, $email, $notelp, $verif, $role, $join_date);
     
     if ($stmt->execute()) {
         $_SESSION['berhasil'] = "Anggota berhasil ditambahkan!";
@@ -26,8 +28,8 @@ if ($_GET['aksi'] == "tambah") {
     }
     $stmt->close();
     header("Location: " . $_SERVER['HTTP_REFERER']);
-} else if ($_GET['aksi'] == "edit") {
 
+}  else if ($_GET['aksi'] == "edit") {
     $id_user = $_POST['idUser'];
     $nis = htmlspecialchars($_POST['nis']);
     $nama_lengkap = htmlspecialchars(addslashes($_POST['namaLengkap']));
@@ -35,9 +37,11 @@ if ($_GET['aksi'] == "tambah") {
     $password = htmlspecialchars(trim($_POST['pAssword']));
     $kelas = htmlspecialchars(addslashes($_POST['kElas']));
     $alamat = htmlspecialchars(addslashes($_POST['aLamat']));
+    $email = $_POST['email']; // Tambah ini untuk menangkap nilai Email
+    $notelp = $_POST['notelp']; // Tambah ini untuk menangkap nilai Nomor Telepon
 
-    $stmt = $koneksi->prepare("UPDATE user SET nis = ?, fullname = ?, username = ?, password = ?, kelas = ?, alamat = ? WHERE id_user = ?");
-    $stmt->bind_param("ssssssi", $nis, $nama_lengkap, $username, $password, $kelas, $alamat, $id_user);
+    $stmt = $koneksi->prepare("UPDATE user SET nis = ?, fullname = ?, username = ?, password = ?, kelas = ?, alamat = ?, email = ?, notelp = ? WHERE id_user = ?");
+    $stmt->bind_param("ssssssssi", $nis, $nama_lengkap, $username, $password, $kelas, $alamat, $email, $notelp, $id_user);
 
     if ($stmt->execute()) {
         $_SESSION['berhasil'] = "Data anggota berhasil dirubah!";
@@ -46,7 +50,8 @@ if ($_GET['aksi'] == "tambah") {
     }
     $stmt->close();
     header("Location: " . $_SERVER['HTTP_REFERER']);
-} else if ($_GET['aksi'] == "hapus") {
+}
+ else if ($_GET['aksi'] == "hapus") {
     $id_user = $_GET['id'];
 
     $stmt = $koneksi->prepare("DELETE FROM user WHERE id_user = ?");
