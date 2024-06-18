@@ -146,7 +146,7 @@
                             <?php
                             include "../../config/koneksi.php";
 
-                            $sql = mysqli_query($koneksi, "SELECT * FROM user");
+                            $sql = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota';");
                             while ($data = mysqli_fetch_array($sql)) {
                             ?>
                                 <option value="<?= $data['id_user']; ?>"><?= $data['fullname']; ?></option>

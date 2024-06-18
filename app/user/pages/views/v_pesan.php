@@ -41,38 +41,65 @@
                     <div class="tab-content">
                         <!-- Font Awesome Icons -->
                         <div class="tab-pane active" id="pesan-masuk">
-                        <section id="new">
-  <?php
-    include "../../config/koneksi.php";
+                            <section id="new">
+                                <?php
+                                include "../../config/koneksi.php";
 
-    $no = 1;
-    $penerima = $_SESSION['fullname'];
-    $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$penerima'");
-    while ($row = mysqli_fetch_assoc($query)) {
-  ?>
-    <div class="message-item card mb-3">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="card-title mb-0"><?= $row['pengirim']; ?></h5>
-        <small class="text-muted"><?= $row['tanggal_kirim']; ?></small>
-      </div>
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted"><?= $row['judul_pesan']; ?></h6>
-        <p class="card-text"><?= $row['isi_pesan']; ?></p>
-      </div>
-      <div class="card-footer text-muted d-flex justify-content-end">
-        <?php
-          if ($row['status'] == "Sudah dibaca") {
-            echo "<a href='pages/function/Pesan.php?aksi=hapus&id_pesan=" . $row['id_pesan'] . "' class='btn btn-danger btn-sm btn-del' onclick='hapusAnggota()'><i class='fa fa-trash'></i></a>";
-          } else {
-            echo "<a href='pages/function/Pesan.php?aksi=update&id_pesan=" . $row['id_pesan'] . "' class='btn btn-info btn-sm'><i class='fa fa-check'></i></a>";
-          }
-        ?>
-      </div>
-    </div>
-  <?php
-    }
-  ?>
-</section>
+                                $no = 1;
+                                $penerima = $_SESSION['fullname'];
+                                $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$penerima'");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
+                                    <section id="new">
+                                        <?php
+                                        include "../../config/koneksi.php";
+
+                                        $no = 1;
+                                        $penerima = $_SESSION['fullname'];
+                                        $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$penerima'");
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                        ?>
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                                    <h5 class="card-title mb-0"><?= $row['pengirim']; ?></h5>
+                                                    <small class="text-muted"><?= $row['tanggal_kirim']; ?></small>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="message-item">
+                                                        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;"><?= $row['judul_pesan']; ?></h6>
+                                                        <p class="card-text" style="font-size: 1.3rem;"><?= $row['isi_pesan']; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer bg-light d-flex justify-content-end">
+                                                    <?php
+                                                    $status = $row['status'];
+                                                    $id_pesan = $row['id_pesan'];
+                                                    if ($status == "Sudah dibaca") {
+                                                        echo "<button type='button' class='btn btn-danger btn-sm btn-del' onclick='hapusPesan($id_pesan)'><i class='fa fa-trash'></i> Hapus</button>";
+                                                    } else {
+                                                        echo "<button type='button' class='btn btn-info btn-sm' onclick='tandaiDibaca($id_pesan)'><i class='fa fa-check'></i> Tandai Sudah Dibaca</button>";
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+                                        <?php
+                                        }
+                                        ?>
+                                    </section>
+
+                                <?php
+                                }
+                                ?>
+                            </section>
 
                         </div>
 
@@ -239,3 +266,6 @@
             });
     })
 </script>
+<style>
+
+</style>

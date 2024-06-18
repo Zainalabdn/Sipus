@@ -64,7 +64,7 @@
                                     <td><?= $row['fullname']; ?></td>
                                     <td><?= $row['username']; ?></td>
                                     <td>
-                                        <?php
+                                    <?php
                                         $pass = $_SESSION['password'];
                                         if ($row['password'] == $pass) {
                                             echo $row['password'];
