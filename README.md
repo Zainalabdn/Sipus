@@ -21,7 +21,7 @@ Password : admin
 
 ## ⚙Instalasi
 
-1. Clone repositori dari GitHub ke htdocs dengan cmd : git clone https://github.com/4zan4/E-Library.git
+1. Clone repositori dari GitHub ke htdocs dengan cmd : git clone https://github.com/aziziega/E-Library.git
 2. Jalankan Xampp Apache dan Mysql
 3. Buka Mysql admin dan buat database baru dengan nama db_perpustakaan lalu import dari folder database
 4. Akses Web di browser dengan menjalankan Apache admin lalu arahkan ke folder yg dituju
