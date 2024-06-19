@@ -133,7 +133,7 @@
 
             <img src="../../assets/dist/img/logo.png" width="120px" height="120px"
                 style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; margin-bottom: -20px;">
-
+                <br> <br>
             <h2 class="text-center" style="font-family: Quicksand, sans-serif;">E-Library</h2>
             <p class="text-center">Alamat : Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman,
                 Daerah Istimewa Yogyakarta 55281</p>

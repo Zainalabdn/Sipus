@@ -42,7 +42,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -58,7 +58,6 @@
                             </thead>
                             <?php
                             include "../../config/koneksi.php";
-
                             $no = 1;
                             $query = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota'");
                             while ($row = mysqli_fetch_assoc($query)) {
