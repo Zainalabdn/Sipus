@@ -42,7 +42,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id="" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -56,13 +56,13 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <?php
-                            include "../../config/koneksi.php";
-                            $no = 1;
-                            $query = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota'");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
-                                <tbody>
+                            <tbody>
+                                <?php
+                                include "../../config/koneksi.php";
+                                $no = 1;
+                                $query = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota'");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['kode_user']; ?></td>
@@ -198,10 +198,10 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <!-- /. Modal Edit Anggota-->
-                                </tbody>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

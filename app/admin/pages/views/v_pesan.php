@@ -106,15 +106,16 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                                    include "../../config/koneksi.php";
 
-                                    $no = 1;
-                                    $pengirim = $_SESSION['fullname'];
-                                    $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE pengirim = '$pengirim'");
-                                    while ($row = mysqli_fetch_assoc($query)) {
-                                    ?>
-                                        <tbody>
+                                    <tbody>
+                                        <?php
+                                        include "../../config/koneksi.php";
+
+                                        $no = 1;
+                                        $pengirim = $_SESSION['fullname'];
+                                        $query = mysqli_query($koneksi, "SELECT * FROM pesan WHERE pengirim = '$pengirim'");
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                        ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
                                                 <td><?= $row['penerima']; ?></td>
@@ -126,10 +127,11 @@
                                                     <a href="pages/function/Pesan.php?aksi=hapus&id_pesan=<?= $row['id_pesan']; ?>" class="btn btn-danger btn-sm btn-del" onclick="hapusPesan()"><i class="fa fa-trash"></i> Hapus</a>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    <?php
-                                    }
-                                    ?>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+
                                 </table>
                             </div>
                         </div>

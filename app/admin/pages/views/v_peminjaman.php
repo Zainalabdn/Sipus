@@ -49,14 +49,14 @@
                                     <th>Denda</th>
                                 </tr>
                             </thead>
-                            <?php
-                            include "../../config/koneksi.php";
+                            <tbody>
+                                <?php
+                                include "../../config/koneksi.php";
 
-                            $no = 1;
-                            $query = mysqli_query($koneksi, "SELECT * FROM peminjaman");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
-                                <tbody>
+                                $no = 1;
+                                $query = mysqli_query($koneksi, "SELECT * FROM peminjaman");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['nama_anggota']; ?></td>
@@ -67,10 +67,11 @@
                                         <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
                                         <td><?= $row['denda']; ?></td>
                                     </tr>
-                                </tbody>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+
                         </table>
                     </div>
                     <!-- /.box-body -->

@@ -49,14 +49,15 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <?php
-                            include "../../config/koneksi.php";
 
-                            $no = 1;
-                            $query = mysqli_query($koneksi, "SELECT * FROM penerbit");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
-                                <tbody>
+                            <tbody>
+                                <?php
+                                include "../../config/koneksi.php";
+
+                                $no = 1;
+                                $query = mysqli_query($koneksi, "SELECT * FROM penerbit");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['kode_penerbit']; ?></td>
@@ -128,10 +129,11 @@
                                         </div>
                                         <!-- /.modal-dialog -->
                                     </div>
-                                </tbody>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+
                         </table>
                     </div>
                     <!-- /.box-body -->

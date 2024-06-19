@@ -50,14 +50,15 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <?php
-                            include "../../config/koneksi.php";
 
-                            $no = 1;
-                            $query = mysqli_query($koneksi, "SELECT pengunjung.*, user.fullname FROM pengunjung INNER JOIN user ON pengunjung.id_user = user.id_user");
-                            while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
-                                <tbody>
+                            <tbody>
+                                <?php
+                                include "../../config/koneksi.php";
+
+                                $no = 1;
+                                $query = mysqli_query($koneksi, "SELECT pengunjung.*, user.fullname FROM pengunjung INNER JOIN user ON pengunjung.id_user = user.id_user");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['fullname']; ?></td>
@@ -113,10 +114,11 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <!-- /. Modal Edit -->
-                                </tbody>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+
                         </table>
                     </div>
                     <!-- /.box-body -->
