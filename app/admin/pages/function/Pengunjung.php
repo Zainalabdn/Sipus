@@ -28,7 +28,7 @@ if ($act == "tambah") {
 }
 
 if ($act == 'edit') {
-    $id_pengunjung = $_POST['id_pengunjung'];
+    $id_user = $_POST['id_user'];
     $tanggalKunjungan = $_POST['tanggalKunjungan']; // Assuming tanggalKunjungan is sent as YYYY-MM-DD
     $waktuMasuk = $_POST['waktuMasuk'];
     $waktuKeluar = $_POST['waktuKeluar'];
@@ -37,7 +37,7 @@ if ($act == 'edit') {
     // Ensure tanggalKunjungan is properly formatted as YYYY-MM-DD
     $tanggalKunjungan = date('Y-m-d', strtotime($tanggalKunjungan));
 
-    $query = "UPDATE pengunjung SET tanggal_kunjungan='$tanggalKunjungan', waktu_masuk='$waktuMasuk', waktu_keluar='$waktuKeluar', keperluan='$keperluan' WHERE id_pengunjung='$id_pengunjung'";
+    $query = "UPDATE pengunjung SET tanggal_kunjungan='$tanggalKunjungan', waktu_masuk='$waktuMasuk', waktu_keluar='$waktuKeluar', keperluan='$keperluan' WHERE id_user='$id_user'";
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {

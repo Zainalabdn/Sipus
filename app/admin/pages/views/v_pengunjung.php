@@ -54,7 +54,6 @@
                             <tbody>
                                 <?php
                                 include "../../config/koneksi.php";
-
                                 $no = 1;
                                 $query = mysqli_query($koneksi, "SELECT pengunjung.*, user.fullname FROM pengunjung INNER JOIN user ON pengunjung.id_user = user.id_user");
                                 while ($row = mysqli_fetch_assoc($query)) {
@@ -67,12 +66,12 @@
                                         <td><?= $row['waktu_keluar']; ?></td>
                                         <td><?= $row['keperluan']; ?></td>
                                         <td>
-                                            <a href="#" data-target="#modalEditPengunjung<?= $row['id_pengunjung']; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                            <a href="pages/function/Pengunjung.php?act=hapus&id=<?= $row['id_pengunjung']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
+                                            <a href="#" data-target="#modalEditPengunjung<?= $row['id_user']; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                            <a href="pages/function/Pengunjung.php?act=hapus&id=<?= $row['id_user']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     <!-- Modal Edit -->
-                                    <div class="modal fade" id="modalEditPengunjung<?= $row['id_pengunjung']; ?>">
+                                    <div class="modal fade" id="modalEditPengunjung<?= $row['id_user']; ?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content" style="border-radius: 5px;">
                                                 <div class="modal-header">
@@ -82,7 +81,7 @@
                                                 </div>
                                                 <form action="pages/function/Pengunjung.php?act=edit" method="POST">
                                                     <div class="modal-body">
-                                                        <input type="hidden" name="id_pengunjung" value="<?= $row['id_pengunjung']; ?>">
+                                                        <input type="hidden" name="id_user" value="<?= $row['id_user']; ?>">
                                                         <div class="form-group">
                                                             <label>Nama Pengunjung <small style="color: red;">* Wajib diisi</small></label>
                                                             <input type="text" class="form-control" value="<?= $row['fullname']; ?>" name="namaPengunjung" readonly>

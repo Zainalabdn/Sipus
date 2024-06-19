@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2024 pada 09.38
+-- Waktu pembuatan: 19 Jun 2024 pada 17.22
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -187,7 +187,8 @@ CREATE TABLE `pengunjung` (
 --
 
 INSERT INTO `pengunjung` (`id_pengunjung`, `id_user`, `tanggal_kunjungan`, `waktu_masuk`, `waktu_keluar`, `keperluan`) VALUES
-(0, 3, '2024-06-18', '12:36:00', '00:00:00', 'baca');
+(0, 3, '2024-06-18', '12:36:00', '00:00:00', 'baca'),
+(0, 2, '2024-06-19', '19:16:00', '19:16:00', 'baca');
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,8 @@ CREATE TABLE `pesan` (
 --
 
 INSERT INTO `pesan` (`id_pesan`, `penerima`, `pengirim`, `judul_pesan`, `isi_pesan`, `status`, `tanggal_kirim`) VALUES
-(2, 'Fauzan Aditya Putra', 'Petugas', 'Pengembalian', 'terlambat', 'Sudah dibaca', '18-06-2024');
+(2, 'Fauzan Aditya Putra', 'Petugas', 'Pengembalian', 'terlambat', 'Sudah dibaca', '18-06-2024'),
+(3, 'Reza  Saputra', 'Administrator', 'Pengembalian', 'kembali gak', 'Belum dibaca', '18-06-2024');
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ CREATE TABLE `user` (
   `nis` char(20) NOT NULL,
   `fullname` varchar(125) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `notelp` int(15) NOT NULL,
+  `notelp` int(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   `kelas` varchar(50) NOT NULL,
@@ -240,12 +242,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `kode_user`, `nis`, `fullname`, `username`, `notelp`, `email`, `password`, `kelas`, `alamat`, `verif`, `role`, `join_date`, `terakhir_login`) VALUES
-(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '18-06-2024 ( 14:28:51 )'),
-(2, 'AP001', '100011', 'Reza  Saputra', 'reza', 0, '', 'Reza', 'XI - Administrasi Perkantoran', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '08-08-2022 ( 13:55:52 )'),
-(3, 'AP002', '100012', 'Fauzan Aditya Putra', 'zan', 0, '', 'secret', 'XI - Farmasi', 'klaten', 'Tidak', 'Anggota', '18-06-2024', '18-06-2024 ( 13:48:35 )'),
-(4, 'AP003', '0940329858', 'fauzan adad', 'fa', 2147483647, 'asdads@gdasd', 'secret', 'XII - Administrasi Perkantoran', 'klaten', 'Tidak', 'Anggota', '18-06-2024', ''),
-(5, '-', '-', 'Petugas', 'petugas', 0, '', 'petugas', '-', '-', 'Iya', 'Petugas', '18-06-2024', ''),
-(6, 'AP004', '2314', 'za', 'zadsad', 34253, 'user@example.com', 'secret', 'XII - Administrasi Perkantoran', 'klaten', 'Tidak', 'Anggota', '2024-06-18', '');
+(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '19-06-2024 ( 19:45:16 )'),
+(2, '-', '-', 'Petugas', 'petugas', 0, '', 'petugas', '-', '-', 'Iya', 'Petugas', '18-06-2024', ''),
+(3, 'AP001', '100011', 'Reza  Saputra', 'reza', 831232132, 'reza@gmail.com', 'Reza', 'X - Farmasi', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '18-06-2024 ( 15:11:42 )'),
+(4, 'AP002', '54353', 'Fauzan Aditya Putra', 'zan', 85321341, 'user@example.com', 'secret', 'Alumni', 'klaten', 'Tidak', 'Anggota', '2024-06-19', '');
 
 --
 -- Indexes for dumped tables
@@ -343,13 +343,13 @@ ALTER TABLE `penerbit`
 -- AUTO_INCREMENT untuk tabel `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

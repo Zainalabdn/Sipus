@@ -59,6 +59,15 @@
                             <tbody>
                                 <?php
                                 include "../../config/koneksi.php";
+                                include "../../config/Update_kls.php";
+
+                                // Cek tanggal hari ini
+                                $currentDate = date('Y-m-d');
+                                $updateDate = date('Y') . "-06-19"; // 30 Juni setiap tahun
+
+                                if ($currentDate == $updateDate) {
+                                    updateClasses($koneksi);
+                                }
                                 $no = 1;
                                 $query = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota'");
                                 while ($row = mysqli_fetch_assoc($query)) {
@@ -77,6 +86,7 @@
                                             <a href="pages/function/Anggota.php?aksi=hapus&id=<?= $row['id_user']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
+
                                     <!-- Modal Edit Anggota -->
                                     <div class="modal fade" id="modalEditAnggota<?php echo $row['id_user']; ?>">
                                         <div class="modal-dialog">
@@ -115,9 +125,8 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nomor Telepon </label>
-                                                            <input type="number" class="form-control" value="<?= $row['notelp']; ?>" name="notelp">
+                                                            <input type="number" class="form-control" value="<?= $row['notelp']; ?>" name="notelp" required>
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Kata Sandi </label>
                                                             <input type="text" class="form-control" value="<?= $row['password']; ?>" name="pAssword">
@@ -181,6 +190,10 @@
                                                                     Teknik Komputer dan Jaringan</option>
                                                                 <option value="XII - Teknik Sepeda Motor">XII - Teknik
                                                                     Sepeda Motor</option>
+                                                                <!-- Lulus -->
+                                                                <option disabled>------------------------------------------
+                                                                </option>
+                                                                <option value="Lulus">Lulus</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -198,6 +211,7 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <!-- /. Modal Edit Anggota-->
+
                                 <?php
                                 }
                                 ?>
@@ -242,9 +256,6 @@
                         $urutan++;
 
                         // membentuk kode barang baru
-                        // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
-                        // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
-                        // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
                         $huruf = "AP";
                         $Anggota = $huruf . sprintf("%03s", $urutan);
                         ?>
@@ -268,7 +279,7 @@
                     </div>
                     <div class="form-group">
                         <label>Nomor Telepon <small style="color: red;">* Wajib diisi</small></label>
-                        <input type="number" class="form-control" placeholder="Masukkan Nomor Telepon" name="noTelp" required>
+                        <input type="number" class="form-control" placeholder="Masukkan Nomor Telepon" name="notelp" required>
                     </div>
 
                     <div class="form-group">
@@ -320,6 +331,7 @@
                     <button type="submit" class="btn btn-primary btn-block">Simpan</button>
                 </div>
             </form>
+
         </div>
         <!-- /.modal-content -->
     </div>
