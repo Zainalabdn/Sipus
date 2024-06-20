@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2024 pada 18.10
+-- Waktu pembuatan: 20 Jun 2024 pada 18.23
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -46,17 +46,12 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `judul_buku`, `kategori_buku`, `deskripsi`, `penerbit_buku`, `pengarang`, `tahun_terbit`, `isbn`, `j_buku_baik`, `j_buku_rusak`, `img`) VALUES
-(4, 'u', 'Novel ', 'saedw', 'Gramedia Pustaka Utama', 'sqe', '2031', 767576, '10', '0', 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-3058381/buka-buku_buka-buku-rentang-waktu-buku-novel_full02.jpg'),
-(5, 'Pride and Prejudice', 'Novel', 'A romantic novel by Jane Austen.', 'T. Egerton, Whitehall', 'Jane Austen', '1813', 2147483647, '20', '0', 'https://i.pinimg.com/originals/82/eb/cf/82ebcf8435a2d403014064eee495d8f2.jpg'),
-(6, '1984', 'Novel', 'A dystopian novel by George Orwell.', 'Secker & Warburg', 'George Orwell', '1949', 2147483647, '15', '1', 'https://example.com/1984.jpg'),
-(7, 'The Catcher in the Rye', 'Novel', 'A novel by J.D. Salinger.', 'Little, Brown and Company', 'J.D. Salinger', '1951', 2147483647, '18', '2', 'https://example.com/the_catcher_in_the_rye.jpg'),
-(8, 'The Hobbit', 'Novel', 'A children\'s fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1937', 2147483647, '25', '0', 'https://example.com/the_hobbit.jpg'),
-(9, 'Brave New World', 'Novel', 'A dystopian novel by Aldous Huxley.', 'Chatto & Windus', 'Aldous Huxley', '1932', 2147483647, '12', '1', 'https://example.com/brave_new_world.jpg'),
-(10, 'The Lord of the Rings', 'Novel', 'An epic high-fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1954', 2147483647, '30', '3', 'https://example.com/the_lord_of_the_rings.jpg'),
-(11, 'Crime and Punishment', 'Novel', 'A novel by Fyodor Dostoevsky.', 'The Russian Messenger', 'Fyodor Dostoevsky', '1866', 2147483647, '10', '0', 'https://example.com/crime_and_punishment.jpg'),
-(12, 'Moby-Dick', 'Novel', 'A novel by Herman Melville.', 'Richard Bentley', 'Herman Melville', '1851', 2147483647, '20', '2', 'https://example.com/moby_dick.jpg'),
-(13, 'Frankenstein', 'Novel', 'A novel by Mary Shelley.', 'Lackington, Hughes, Harding, Mavor & Jones', 'Mary Shelley', '1818', 2147483647, '15', '1', 'https://example.com/frankenstein.jpg'),
-(14, 'The Picture of Dorian Gray', 'Novel', 'A novel by Oscar Wilde.', 'Ward, Lock and Company', 'Oscar Wilde', '1890', 2147483647, '18', '0', 'https://example.com/the_picture_of_dorian_gray.jpg');
+(8, 'The Hobbit', 'Novel', 'A children\'s fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1937', 2147483647, '25', '0', 'https://cdn.gramedia.com/uploads/items/9789792286335_The-Hobbit.jpg'),
+(9, 'Brave New World', 'Novel', 'A dystopian novel by Aldous Huxley.', 'Chatto & Windus', 'Aldous Huxley', '1932', 2147483647, '12', '1', 'https://cdn.gramedia.com/uploads/images/1/28946/big_covers/ID_HCO2015MTH11BNWO.jpeg'),
+(10, 'The Lord of the Rings', 'Novel', 'An epic high-fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1954', 2147483647, '30', '3', 'https://cdn.gramedia.com/uploads/items/9786020332277_Lord-Of-The-Rings_Dua-Menara-The-Two-Towers-Cover-Baru.jpg'),
+(12, 'Moby-Dick', 'Novel', 'A novel by Herman Melville.', 'Richard Bentley', 'Herman Melville', '1851', 2147483647, '20', '2', 'https://cdn.gramedia.com/uploads/picture_meta/2023/5/17/84g7aqupmucegtgegdyz5q.jpg'),
+(13, 'Frankenstein', 'Novel', 'A novel by Mary Shelley.', 'Lackington, Hughes, Harding, Mavor & Jones', 'Mary Shelley', '1818', 2147483647, '15', '1', 'https://cdn.gramedia.com/uploads/picture_meta/2024/2/19/57jgmeb2nfbopzuagetb2z.jpg'),
+(14, 'The Picture of Dorian Gray', 'Novel', 'A novel by Oscar Wilde.', 'Ward, Lock and Company', 'Oscar Wilde', '1890', 2147483647, '18', '0', 'https://cdn.gramedia.com/uploads/items/9786020634371_The_Picture_of_Dorian_Gray_cov.jpg');
 
 -- --------------------------------------------------------
 
