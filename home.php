@@ -1,14 +1,44 @@
 <?php
 session_start();
+include "config/koneksi.php";
+
+// Query to fetch all books
+$sql = "SELECT * FROM buku";
+$result = mysqli_query($koneksi, $sql);
+
+$books = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $books[] = $row;
+    }
+}
+
+mysqli_close($koneksi);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpustakaan</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+    img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
+</style>
 </head>
+
 <body class="bg-gray-100 h-screen">
     <header class="bg-gray-900 py-4 px-4 md:px-16">
         <div class="container mx-auto flex justify-between items-center">
@@ -16,16 +46,29 @@ session_start();
             <div class="flex items-center space-x-4">
                 <input type="search" id="search" placeholder="Cari buku" class="bg-gray-800 rounded-md px-3 py-2 w-full md:w-96 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <button id="searchButton" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">Cari</button>
+                <a href="login.php" id="loginButton" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Login</a>
             </div>
         </div>
     </header>
 
     <main class="container mx-auto mt-16">
-        <h2 class="text-3xl font-bold text-center mb-8">Buku Populer</h2>
-        <div id="book-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <!-- Book covers will be displayed here -->
-        </div>
-    </main>
+    <h2 class="text-3xl font-bold text-center mb-8">Buku Populer</h2>
+    <div id="book-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <?php foreach ($books as $book) : ?>
+            <div class="bg-white rounded-md overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <div class="book-image-container">
+                    <img src="<?= $book['img']; ?>" alt="<?= $book['judul_buku']; ?>" class="book-image">
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 p-2"><?= $book['judul_buku']; ?></h3>
+                <p class="text-sm text-gray-600 p-2"><?= $book['pengarang']; ?></p>
+                <a href="detail.php?id=<?= $book['id_buku']; ?>" class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Detail
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</main>
+
 
     <script>
         const searchInput = document.getElementById('search');
@@ -39,8 +82,8 @@ session_start();
                 return;
             }
             fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=12`)
-            .then(response => response.json())
-            .then(data => {
+                .then(response => response.json())
+                .then(data => {
                     const books = data.items;
                     bookGrid.innerHTML = '';
                     books.forEach(book => {
@@ -62,15 +105,16 @@ session_start();
                         detailButton.className = 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500';
                         detailButton.textContent = 'Detail';
                         detailButton.addEventListener('click', () => {
-    const bookId = book.id;
-    window.location.href = `detail.php?id=${bookId}`;
-});
+                            const bookId = book.id;
+                            window.location.href = `detail.php?id=${bookId}`;
+                        });
                         bookCard.appendChild(detailButton);
                         bookGrid.appendChild(bookCard);
                     });
                 })
-              .catch(error => console.error(error));
+                .catch(error => console.error(error));
         });
     </script>
 </body>
+
 </html>

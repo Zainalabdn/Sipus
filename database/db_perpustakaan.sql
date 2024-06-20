@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2024 pada 17.22
+-- Waktu pembuatan: 20 Jun 2024 pada 18.10
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -31,23 +31,32 @@ CREATE TABLE `buku` (
   `id_buku` int(11) NOT NULL,
   `judul_buku` varchar(125) NOT NULL,
   `kategori_buku` varchar(125) NOT NULL,
+  `deskripsi` text NOT NULL,
   `penerbit_buku` varchar(125) NOT NULL,
   `pengarang` varchar(125) NOT NULL,
   `tahun_terbit` varchar(125) NOT NULL,
   `isbn` int(50) NOT NULL,
   `j_buku_baik` varchar(125) NOT NULL,
-  `j_buku_rusak` varchar(125) NOT NULL
+  `j_buku_rusak` varchar(125) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
-INSERT INTO `buku` (`id_buku`, `judul_buku`, `kategori_buku`, `penerbit_buku`, `pengarang`, `tahun_terbit`, `isbn`, `j_buku_baik`, `j_buku_rusak`) VALUES
-(1, 'Cantik Itu Luka', 'Novel ', 'Gramedia Pustaka Utama', 'Eka Kurniawan', '2002', 2147483647, '38', '2'),
-(2, 'Home Sweet Loan', 'Novel ', 'Gramedia Pustaka Utama', 'Almira Bastari', '2022', 2147483647, '40', '0'),
-(3, 'Heartbreak Motel', 'Novel ', 'Gramedia Pustaka Utama', 'Ika Natassa', '2022', 2147483647, '40', '0'),
-(4, 'u', 'Novel ', 'Gramedia Pustaka Utama', 'sqe', '2031', 767576, '10', '0');
+INSERT INTO `buku` (`id_buku`, `judul_buku`, `kategori_buku`, `deskripsi`, `penerbit_buku`, `pengarang`, `tahun_terbit`, `isbn`, `j_buku_baik`, `j_buku_rusak`, `img`) VALUES
+(4, 'u', 'Novel ', 'saedw', 'Gramedia Pustaka Utama', 'sqe', '2031', 767576, '10', '0', 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-3058381/buka-buku_buka-buku-rentang-waktu-buku-novel_full02.jpg'),
+(5, 'Pride and Prejudice', 'Novel', 'A romantic novel by Jane Austen.', 'T. Egerton, Whitehall', 'Jane Austen', '1813', 2147483647, '20', '0', 'https://i.pinimg.com/originals/82/eb/cf/82ebcf8435a2d403014064eee495d8f2.jpg'),
+(6, '1984', 'Novel', 'A dystopian novel by George Orwell.', 'Secker & Warburg', 'George Orwell', '1949', 2147483647, '15', '1', 'https://example.com/1984.jpg'),
+(7, 'The Catcher in the Rye', 'Novel', 'A novel by J.D. Salinger.', 'Little, Brown and Company', 'J.D. Salinger', '1951', 2147483647, '18', '2', 'https://example.com/the_catcher_in_the_rye.jpg'),
+(8, 'The Hobbit', 'Novel', 'A children\'s fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1937', 2147483647, '25', '0', 'https://example.com/the_hobbit.jpg'),
+(9, 'Brave New World', 'Novel', 'A dystopian novel by Aldous Huxley.', 'Chatto & Windus', 'Aldous Huxley', '1932', 2147483647, '12', '1', 'https://example.com/brave_new_world.jpg'),
+(10, 'The Lord of the Rings', 'Novel', 'An epic high-fantasy novel by J.R.R. Tolkien.', 'Allen & Unwin', 'J.R.R. Tolkien', '1954', 2147483647, '30', '3', 'https://example.com/the_lord_of_the_rings.jpg'),
+(11, 'Crime and Punishment', 'Novel', 'A novel by Fyodor Dostoevsky.', 'The Russian Messenger', 'Fyodor Dostoevsky', '1866', 2147483647, '10', '0', 'https://example.com/crime_and_punishment.jpg'),
+(12, 'Moby-Dick', 'Novel', 'A novel by Herman Melville.', 'Richard Bentley', 'Herman Melville', '1851', 2147483647, '20', '2', 'https://example.com/moby_dick.jpg'),
+(13, 'Frankenstein', 'Novel', 'A novel by Mary Shelley.', 'Lackington, Hughes, Harding, Mavor & Jones', 'Mary Shelley', '1818', 2147483647, '15', '1', 'https://example.com/frankenstein.jpg'),
+(14, 'The Picture of Dorian Gray', 'Novel', 'A novel by Oscar Wilde.', 'Ward, Lock and Company', 'Oscar Wilde', '1890', 2147483647, '18', '0', 'https://example.com/the_picture_of_dorian_gray.jpg');
 
 -- --------------------------------------------------------
 
@@ -174,7 +183,6 @@ INSERT INTO `penerbit` (`id_penerbit`, `kode_penerbit`, `nama_penerbit`, `verif_
 --
 
 CREATE TABLE `pengunjung` (
-  `id_pengunjung` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tanggal_kunjungan` date NOT NULL,
   `waktu_masuk` time NOT NULL,
@@ -186,9 +194,11 @@ CREATE TABLE `pengunjung` (
 -- Dumping data untuk tabel `pengunjung`
 --
 
-INSERT INTO `pengunjung` (`id_pengunjung`, `id_user`, `tanggal_kunjungan`, `waktu_masuk`, `waktu_keluar`, `keperluan`) VALUES
-(0, 3, '2024-06-18', '12:36:00', '00:00:00', 'baca'),
-(0, 2, '2024-06-19', '19:16:00', '19:16:00', 'baca');
+INSERT INTO `pengunjung` (`id_user`, `tanggal_kunjungan`, `waktu_masuk`, `waktu_keluar`, `keperluan`) VALUES
+(3, '2024-06-19', '23:02:00', '02:02:00', 'baca'),
+(7, '2024-06-19', '03:03:00', '08:03:00', 'nh'),
+(12, '2024-06-19', '23:38:00', '07:00:00', 'baca'),
+(3, '2024-06-20', '23:41:00', '00:41:00', 'nh');
 
 -- --------------------------------------------------------
 
@@ -242,10 +252,25 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `kode_user`, `nis`, `fullname`, `username`, `notelp`, `email`, `password`, `kelas`, `alamat`, `verif`, `role`, `join_date`, `terakhir_login`) VALUES
-(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '19-06-2024 ( 19:45:16 )'),
+(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '20-06-2024 ( 22:46:15 )'),
 (2, '-', '-', 'Petugas', 'petugas', 0, '', 'petugas', '-', '-', 'Iya', 'Petugas', '18-06-2024', ''),
-(3, 'AP001', '100011', 'Reza  Saputra', 'reza', 831232132, 'reza@gmail.com', 'Reza', 'X - Farmasi', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '18-06-2024 ( 15:11:42 )'),
-(4, 'AP002', '54353', 'Fauzan Aditya Putra', 'zan', 85321341, 'user@example.com', 'secret', 'Alumni', 'klaten', 'Tidak', 'Anggota', '2024-06-19', '');
+(3, 'AP001', '100011', 'Reza  Saputra', 'reza', 831232132, 'reza@gmail.com', 'Reza', 'Lulus', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '18-06-2024 ( 15:11:42 )'),
+(4, 'AP002', '54353', 'Fauzan Aditya Putra', 'zan', 85321341, 'user@example.com', 'secret', 'Lulus', 'klaten', 'Tidak', 'Anggota', '2024-06-19', ''),
+(5, 'AP003', '200022', 'Dewi Lestari', 'dewi', 812345678, 'dewi@example.com', 'dewi123', 'Lulus', 'Jl. Mawar No. 10, Bandung', 'Tidak', 'Anggota', '2023-03-15', ''),
+(6, 'AP004', '300033', 'Ahmad Syahid', 'ahmad', 856789012, 'ahmad@example.com', 'rahasia', 'Lulus', 'Surabaya', 'Tidak', 'Anggota', '2022-11-20', '2024-06-17 09:30:21'),
+(7, 'AP005', '400044', 'Siti Nurjanah', 'siti', 899001122, 'siti@example.com', 'siti123', 'Lulus', 'Yogyakarta', 'Tidak', 'Anggota', '2023-01-10', ''),
+(8, 'AP006', '500055', 'Rudi Setiawan', 'rudi', 877665544, 'rudi@example.com', 'rudi123', 'Lulus', 'Jakarta', 'Tidak', 'Anggota', '2022-09-25', '2024-06-18 11:45:36'),
+(9, 'AP007', '600066', 'Lina Wijaya', 'lina', 878787878, 'lina@example.com', 'lina123', 'Lulus', 'Bandung', 'Tidak', 'Anggota', '2022-12-05', ''),
+(10, 'AP008', '700077', 'Fitri Indah', 'fitri', 889900112, 'fitri@example.com', 'fitri123', 'Lulus', 'Semarang', 'Tidak', 'Anggota', '2023-02-18', ''),
+(11, 'AP009', '800088', 'Hendri Kurniawan', 'hendri', 877788899, 'hendri@example.com', 'hendri123', 'Lulus', 'Solo', 'Tidak', 'Anggota', '2022-10-30', '2024-06-19 08:20:15'),
+(12, 'AP010', '900099', 'Nina Rahman', 'nina', 812345678, 'nina@example.com', 'nina123', 'Lulus', 'Malang', 'Tidak', 'Anggota', '2022-11-05', ''),
+(13, 'AP011', '1000010', 'Budi Santoso', 'budi', 823456789, 'budi@example.com', 'budi123', 'Lulus', 'Surakarta', 'Tidak', 'Anggota', '2023-04-22', '2024-06-18 14:55:10'),
+(14, 'AP012', '1100011', 'Sari Wijaya', 'sari', 834567890, 'sari@example.com', 'sari123', 'Lulus', 'Jakarta Selatan', 'Tidak', 'Anggota', '2022-09-15', ''),
+(15, 'AP013', '1200012', 'Rizki Pratama', 'rizki', 845678901, 'rizki@example.com', 'rizki123', 'Lulus', 'Bandung Barat', 'Tidak', 'Anggota', '2023-01-08', '2024-06-17 16:45:30'),
+(16, 'AP014', '1300013', 'Wulan Sari', 'wulan', 856789012, 'wulan@example.com', 'wulan123', 'Lulus', 'Bekasi', 'Tidak', 'Anggota', '2022-12-10', ''),
+(17, 'AP015', '1400014', 'Dedi Firmansyah', 'dedi', 867890123, 'dedi@example.com', 'dedi123', 'Lulus', 'Depok', 'Tidak', 'Anggota', '2023-03-28', '2024-06-18 09:10:25'),
+(18, 'AP016', '1500015', 'Rini Cahyani', 'rini', 878901234, 'rini@example.com', 'rini123', 'Lulus', 'Tangerang', 'Tidak', 'Anggota', '2022-11-25', ''),
+(19, 'AP017', '1600016', 'Aldi Nugroho', 'aldi', 889012345, 'aldi@example.com', 'aldi123', 'Lulus', 'Bogor', 'Tidak', 'Anggota', '2023-02-05', '2024-06-19 10:30:18');
 
 --
 -- Indexes for dumped tables
@@ -288,6 +313,12 @@ ALTER TABLE `penerbit`
   ADD PRIMARY KEY (`id_penerbit`);
 
 --
+-- Indeks untuk tabel `pengunjung`
+--
+ALTER TABLE `pengunjung`
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indeks untuk tabel `pesan`
 --
 ALTER TABLE `pesan`
@@ -307,7 +338,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `identitas`
@@ -350,6 +381,16 @@ ALTER TABLE `pesan`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `pengunjung`
+--
+ALTER TABLE `pengunjung`
+  ADD CONSTRAINT `pengunjung_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

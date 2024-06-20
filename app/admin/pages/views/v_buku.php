@@ -51,9 +51,11 @@
                                     <th>ISBN</th>
                                     <th>Pengarang</th>
                                     <th>Penerbit</th>
+                                    <th>Deskripsi</th>
                                     <th>Buku Baik</th>
                                     <th>Buku Rusak</th>
                                     <th>Jumlah Buku</th>
+                                    <th>Img</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -71,6 +73,7 @@
                                         <td><?= $row['isbn']; ?></td>
                                         <td><?= $row['pengarang']; ?></td>
                                         <td><?= $row['penerbit_buku']; ?></td>
+                                        <td><?= $row['deskripsi']; ?></td>
                                         <td><?= $row['j_buku_baik']; ?></td>
                                         <td><?= $row['j_buku_rusak']; ?></td>
                                         <td><?php
@@ -78,7 +81,9 @@
                                             $j_buku_baik = $row['j_buku_baik'];
 
                                             echo $j_buku_rusak + $j_buku_baik;
-                                            ?></td>
+                                            ?>
+                                        </td>
+                                        <td><?= $row['img']; ?></td>
                                         <td>
                                             <a href="#" data-target="#modalEditBuku<?= $row['id_buku']; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                             <a href="pages/function/Buku.php?act=hapus&id=<?= $row['id_buku']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
@@ -160,6 +165,10 @@
                                                             <input type="number" class="form-control" value="<?= $row['isbn']; ?>" name="iSbn" required>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label>Deskripsi</label>
+                                                            <textarea class="form-control" name="deskripsi" rows="3"><?= $row['deskripsi']; ?></textarea>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label>Jumlah Buku Baik <small style="color: red;">* Wajib
                                                                     diisi</small></label>
                                                             <input type="number" class="form-control" value="<?= $row['j_buku_baik']; ?>" name="jumlahBukuBaik" required>
@@ -169,6 +178,22 @@
                                                                     diisi</small></label>
                                                             <input type="number" class="form-control" value="<?= $row['j_buku_rusak']; ?>" name="jumlahBukuRusak" required>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label>Gambar Buku <small style="color: red;">* Wajib diisi</small></label>
+                                                            <!-- Current image display -->
+                                                            <img src="<?= $row['img']; ?>" alt="Gambar Buku" width="100">
+                                                            <br><br>
+                                                            <!-- File upload input -->
+                                                            <label for="imgUpload">Upload Gambar Baru:</label>
+                                                            <input type="file" class="form-control" name="img" id="imgUpload">
+                                                            <!-- Hidden input to store current image -->
+                                                            <input type="hidden" name="img_lama" value="<?= $row['img']; ?>">
+                                                            <br>
+                                                            <!-- Input for image link -->
+                                                            <label for="imgLink">Atau Masukkan Link Gambar:</label>
+                                                            <input type="text" class="form-control" id="imgLink" name="img_link" placeholder="Link gambar (opsional)">
+                                                        </div>
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary btn-block">Simpan</button>
@@ -257,12 +282,25 @@
                         <input type="number" class="form-control" placeholder="Masukan ISBN" name="iSbn" required>
                     </div>
                     <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea class="form-control" name="deskripsi" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label>Jumlah Buku Baik <small style="color: red;">* Wajib diisi</small></label>
                         <input type="number" class="form-control" placeholder="Masukan Jumlah Buku Baik" name="jumlahBukuBaik" required>
                     </div>
                     <div class="form-group">
                         <label>Jumlah Buku Rusak <small style="color: red;">* Wajib diisi</small></label>
                         <input type="number" class="form-control" placeholder="Masukan Jumlah Buku Rusak" name="jumlahBukuRusak" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar Buku</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imgUpload" name="img" accept=".jpg, .jpeg, .png">
+                            <label class="custom-file-label" for="imgUpload">Pilih file gambar...</label>
+                        </div>
+                        <small class="form-text text-muted">Atau</small>
+                        <input type="text" class="form-control" id="imgLink" name="img_link" placeholder="Masukkan link gambar (opsional)">
                     </div>
                 </div>
                 <div class="modal-footer">

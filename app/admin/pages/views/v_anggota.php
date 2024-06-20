@@ -63,7 +63,7 @@
 
                                 // Cek tanggal hari ini
                                 $currentDate = date('Y-m-d');
-                                $updateDate = date('Y') . "-06-19"; // 30 Juni setiap tahun
+                                $updateDate = date('Y') . "-06-30"; // 30 Juni setiap tahun
 
                                 if ($currentDate == $updateDate) {
                                     updateClasses($koneksi);
