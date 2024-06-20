@@ -63,7 +63,7 @@
 
         // Function to display book details based on selected book ID
         function displayBookDetails(bookId) {
-            fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}?key=AIzaSyBlMHZTsYUnzlxgpG8faz3_Db8iMN6eZKA`)
+            fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}?key=YOUR_API_KEY`)
                 .then(response => response.json())
                 .then(data => {
                     const book = data.volumeInfo;
@@ -98,7 +98,7 @@
         });
 
         // Fetch book titles from Google Books API initially (default query: programming)
-        fetch('https://www.googleapis.com/books/v1/volumes?q=programming&key=AIzaSyBlMHZTsYUnzlxgpG8faz3_Db8iMN6eZKA')
+        fetch('https://www.googleapis.com/books/v1/volumes?q=programming&key=YOUR_API_KEY')
             .then(response => response.json())
             .then(data => populateSelect(data))
             .catch(error => console.error(error));
