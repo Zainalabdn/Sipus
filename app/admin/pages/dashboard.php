@@ -115,7 +115,7 @@
                     <div class="icon">
                         <i class="fa fa-sign-in"></i>
                     </div>
-                    <a href="data-pengembalian" class="small-box-footer">More info <i
+                    <a href="data-peminjaman" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>

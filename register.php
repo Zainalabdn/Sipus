@@ -31,18 +31,31 @@ session_start();?>
     <link rel="stylesheet" href="assets/dist/css/custom.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="assets/dist/css/toastr.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="hold-transition login-page" style="font-family: 'Quicksand', sans-serif;">
+    <a href="home.php"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-4 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-8">
+        <svg class="rtl:rotate-180 w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 5H1m0 0L5 1M1 5l4 4" />
+        </svg>
+        <b class="mx-2">Back To Home</b>
+    </a>
     <div class="login-box">
         <div class="login-logo">
-            <a href="masuk"><b>PERPUSTAKAAN</b></a>
+            <a href="masuk"><b>E-LIBRARY</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body" style="border-radius: 10px;">
-            <img src="assets/dist/img/icon-app.png" height="80px" width="80px" style="display: block; margin-left: auto; margin-right: auto; margin-top: -12px; margin-bottom: 5px;">
+            <img src="assets/dist/img/logo.png" height="80px" width="80px"
+                style="display: block; margin-left: auto; margin-right: auto; margin-top: -12px; margin-bottom: 5px;">
 
-            <form name="formLogin" action="function/Process.php?aksi=daftar" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <form name="formLogin" action="function/Process.php?aksi=daftar" method="POST" enctype="multipart/form-data"
+                onsubmit="return validateForm()">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" name="funame" placeholder="Nama Lengkap" id="funame">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -68,7 +81,8 @@ session_start();?>
                 <p style="font-size: 11px;">- ATAU -</p>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="button" onclick="Masuk()" class="btn btn-block btn-success btn-flat"><i class="fa fa-sign-in"></i> Sudah mempunyai akun ? Masuk</button>
+                        <button type="button" onclick="Masuk()" class="btn btn-block btn-success btn-flat"><i
+                                class="fa fa-sign-in"></i> Sudah mempunyai akun ? Masuk</button>
                     </div>
                 </div>
             </div>

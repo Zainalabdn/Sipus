@@ -35,9 +35,20 @@ session_start();
 
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="assets/dist/css/sweetalert.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+
 <body class="hold-transition login-page" style="font-family: 'Quicksand', sans-serif;">
+
+<a href="home.php" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-4 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-8">
+    <svg class="rtl:rotate-180 w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0L5 1M1 5l4 4" />
+    </svg>
+    <b class="mx-2">Back To Home</b>
+</a>
+
+
     <div class="login-box">
         <div class="login-logo">
             <a href="masuk"><b>E - LIBRARY</b></a>
@@ -84,6 +95,7 @@ session_start();
     </div>
     <!-- /.login-box -->
 
+
     <!-- jQuery 3 -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
@@ -92,9 +104,9 @@ session_start();
     <script src="assets/json/lottie-player.js"></script>
     <!-- Fungsi mengarahkan kehalaman pendaftaran -->
     <script>
-    function Register() {
-        window.location.href = "pendaftaran";
-    }
+        function Register() {
+            window.location.href = "pendaftaran";
+        }
     </script>
     <!-- Fungsi mengarahkan kehalaman lupa password
     <script>
@@ -106,113 +118,118 @@ session_start();
     <script src="assets/dist/js/sweetalert.min.js"></script>
     <!-- Pesan Masuk Dulu -->
     <script>
-    <?php
-        if (isset($_SESSION['masuk_dulu']) && $_SESSION['masuk_dulu'] <> '') {
+        < ? php
+        if (isset($_SESSION['masuk_dulu']) && $_SESSION['masuk_dulu'] < > '') {
             echo "swal({
-                icon: 'error',
+            icon: 'error',
                 title: 'Peringatan',
                 text: '$_SESSION[masuk_dulu]',
                 buttons: false,
                 timer: 3000
-            })";
+        })
+        ";
         }
-        $_SESSION['masuk_dulu'] = '';
-        ?>
+        $_SESSION['masuk_dulu'] = ''; ?
+        >
     </script>
     <!-- Pesan Pendaftaran -->
     <script>
-    <?php
-        if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] <> '') {
+        < ? php
+        if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] < > '') {
             echo "swal({
-                icon: 'success',
+            icon: 'success',
                 title: 'Berhasil',
                 text: '$_SESSION[berhasil]',
                 buttons: false,
                 timer: 3000
-            })";
+        })
+        ";
         }
-        $_SESSION['berhasil'] = '';
-        ?>
+        $_SESSION['berhasil'] = ''; ?
+        >
     </script>
     <script>
-    <?php
-        if (isset($_SESSION['gagal']) && $_SESSION['gagal'] <> '') {
+        < ? php
+        if (isset($_SESSION['gagal']) && $_SESSION['gagal'] < > '') {
             echo "swal({
-                icon: 'error',
+            icon: 'error',
                 title: 'Peringatan',
                 text: '$_SESSION[gagal]',
                 buttons: false,
                 timer: 3000
-              })";
+        })
+        ";
         }
-        $_SESSION['gagal'] = '';
-        ?>
+        $_SESSION['gagal'] = ''; ?
+        >
     </script>
     <!-- -->
     <script>
-    <?php
-        if (isset($_SESSION['gagal_login']) && $_SESSION['gagal_login'] <> '') {
+        < ? php
+        if (isset($_SESSION['gagal_login']) && $_SESSION['gagal_login'] < > '') {
             echo "swal({
-                icon: 'error',
+            icon: 'error',
                 title: 'Peringatan',
                 text: '$_SESSION[gagal_login]',
                 buttons: false,
                 timer: 3000
-              })";
+        })
+        ";
         }
-        $_SESSION['gagal_login'] = '';
-        ?>
+        $_SESSION['gagal_login'] = ''; ?
+        >
     </script>
     <script>
-    <?php
-        if (isset($_SESSION['berhasil_keluar']) && $_SESSION['berhasil_keluar'] <> '') {
+        < ? php
+        if (isset($_SESSION['berhasil_keluar']) && $_SESSION['berhasil_keluar'] < > '') {
             echo "swal({
             icon: 'success',
-            title: 'Berhasil',
-            text: '$_SESSION[berhasil_keluar]',
-            buttons: false,
-            timer: 3000
-        })";
+                title: 'Berhasil',
+                text: '$_SESSION[berhasil_keluar]',
+                buttons: false,
+                timer: 3000
+        })
+        ";
         }
-        $_SESSION['berhasil_keluar'] = '';
-        ?>
+        $_SESSION['berhasil_keluar'] = ''; ?
+        >
     </script>
     <!-- Toastr -->
     <script src="assets/dist/js/toastr.min.js"></script>
     <!-- -->
     <script>
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": true,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
     </script>
     <!-- -->
     <script>
-    function validateForm() {
-        if (document.forms["formLogin"]["username"].value == "") {
-            toastr.error("Nama Pengguna harus diisi !!");
-            document.forms["formLogin"]["username"].focus();
-            return false;
+        function validateForm() {
+            if (document.forms["formLogin"]["username"].value == "") {
+                toastr.error("Nama Pengguna harus diisi !!");
+                document.forms["formLogin"]["username"].focus();
+                return false;
+            }
+            if (document.forms["formLogin"]["password"].value == "") {
+                toastr.error("Kata Sandi harus diisi !!");
+                document.forms["formLogin"]["password"].focus();
+                return false;
+            }
         }
-        if (document.forms["formLogin"]["password"].value == "") {
-            toastr.error("Kata Sandi harus diisi !!");
-            document.forms["formLogin"]["password"].focus();
-            return false;
-        }
-    }
     </script>
 
 </body>
