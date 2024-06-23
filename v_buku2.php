@@ -15,8 +15,7 @@
             <a href="#" class="text-3xl font-bold text-white">Perpustakaan</a>
             <div class="flex items-center space-x-4">
                 <a href="home.php" class="text-gray-600 hover:text-gray-900 transition duration-300 ease-in-out">Kembali
-                    ke
-                    daftar buku</a>
+                    ke daftar buku</a>
             </div>
         </div>
     </header>

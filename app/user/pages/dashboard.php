@@ -68,8 +68,9 @@
         <img src="../../assets/dist/img/logo.png" width="120px" height="120px"
             style="display: block; margin-left: auto; margin-right: auto; margin-top: 100px;">
 
-        <h1 class="text-center"><?= $row['nama_app']; ?></h1>
-        <p class="text-center">Alamat : <?= $row['alamat_app']; ?></p>
+            <h2 class="text-center" style="font-family: Quicksand, sans-serif;">E-Library</h2>
+            <p class="text-center">Alamat : Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman,
+                Daerah Istimewa Yogyakarta 55281</p>
     </section>
     <!-- /.content -->
 </div>

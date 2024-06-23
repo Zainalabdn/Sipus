@@ -253,7 +253,8 @@
         <div class="modal-content" style="border-radius: 5px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">Tambah Admin
                 </h4>
             </div>
@@ -331,6 +332,16 @@
 <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../assets/dist/js/sweetalert.min.js"></script>
 
+
+<script>
+    function tambahAdmin(){
+        $('#modalTambahAdmin').modal('show');
+    }
+
+    function tambahPetugas() {
+        $('#modalTambahPetugas').modal('show');
+    }
+</script>
 <!-- SweetAlert for Edit Success -->
 <script>
 <?php

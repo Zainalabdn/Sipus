@@ -30,6 +30,7 @@ mysqli_close($koneksi);
     <title>Home | <?= $row1['nama_app']; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="icon" href="assets/dist/img/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         img {
             overflow-clip-margin: content-box;
