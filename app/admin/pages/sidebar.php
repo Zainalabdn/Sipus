@@ -108,8 +108,8 @@
                     Anda harus login kembali jika ingin masuk Aplikasi Perpustakaan</span>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-danger">Batal</button>
-                <a href="keluar" class="btn btn-primary">Iya, Logout</a>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">Batal</button>
+                <a href="keluar" class="btn btn-danger">Iya, Logout</a>
             </div>
         </div>
     </div>

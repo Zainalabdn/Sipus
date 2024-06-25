@@ -22,8 +22,6 @@ if ($_GET['act'] == 'tambah') {
         die('Prepare failed: ' . htmlspecialchars($koneksi->error));
     }
 
-    
-
     $stmt->bind_param('ssssssissss', $judul, $categories, $description, $publisher, $author, $published_date, $isbn, $jumlah_buku, $average, $gambar, $language);
 
     if ($stmt->execute()) {
@@ -37,8 +35,7 @@ if ($_GET['act'] == 'tambah') {
     $koneksi->close();
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
-}
-elseif($_GET['act'] == "edit") {
+} elseif($_GET['act'] == "edit") {
     $id_buku = $_POST['id_buku'];
     $judul_buku = $_POST['judulBuku'];
     $kategori_buku = $_POST['kategoriBuku'];
@@ -47,9 +44,8 @@ elseif($_GET['act'] == "edit") {
     $tahun_terbit = $_POST['tahunTerbit'];
     $isbn = $_POST['iSbn'];
     $deskripsi = $_POST['deskripsi']; 
-    $j_buku_baik = $_POST['jumlahBukuBaik'];
-    $j_buku_rusak = $_POST['jumlahBukuRusak'];
-    $img = $_POST['img_lama']; // Default to the existing image if not updated
+    $jumlah_buku = $_POST['jumlahBuku'];
+    $img = $_POST['img_lama']; 
 
     // Check if a new image file is uploaded
     if ($_FILES['img']['name'] != '') {
@@ -72,12 +68,12 @@ elseif($_GET['act'] == "edit") {
     // Prepare the SQL query to update the book details
     if (!empty($img)) {
         // If a new image is uploaded or link is provided
-        $stmt = $koneksi->prepare("UPDATE buku SET judul_buku=?, kategori_buku=?, penerbit_buku=?, pengarang=?, tahun_terbit=?, isbn=?, deskripsi=?, j_buku_baik=?, j_buku_rusak=?, img=? WHERE id_buku=?");
-        $stmt->bind_param("ssssssssssi", $judul_buku, $kategori_buku, $penerbit_buku, $pengarang, $tahun_terbit, $isbn, $deskripsi, $j_buku_baik, $j_buku_rusak, $img, $id_buku);
+        $stmt = $koneksi->prepare("UPDATE buku SET judul_buku=?, kategori_buku=?, penerbit_buku=?, pengarang=?, tahun_terbit=?, isbn=?, deskripsi=?, jumlah_buku=?, img=? WHERE id_buku=?");
+        $stmt->bind_param("sssssssssi", $judul_buku, $kategori_buku, $penerbit_buku, $pengarang, $tahun_terbit, $isbn, $deskripsi, $jumlah_buku, $img, $id_buku);
     } else {
         // If no new image is uploaded or link is provided, exclude the image field
-        $stmt = $koneksi->prepare("UPDATE buku SET judul_buku=?, kategori_buku=?, penerbit_buku=?, pengarang=?, tahun_terbit=?, isbn=?, deskripsi=?, j_buku_baik=?, j_buku_rusak=? WHERE id_buku=?");
-        $stmt->bind_param("sssssssssi", $judul_buku, $kategori_buku, $penerbit_buku, $pengarang, $tahun_terbit, $isbn, $deskripsi, $j_buku_baik, $j_buku_rusak, $id_buku);
+        $stmt = $koneksi->prepare("UPDATE buku SET judul_buku=?, kategori_buku=?, penerbit_buku=?, pengarang=?, tahun_terbit=?, isbn=?, deskripsi=?, jumlah_buku=? WHERE id_buku=?");
+        $stmt->bind_param("ssssssssi", $judul_buku, $kategori_buku, $penerbit_buku, $pengarang, $tahun_terbit, $isbn, $deskripsi, $jumlah_buku, $id_buku);
     }
 
     // Execute the statement and check the result
@@ -92,7 +88,8 @@ elseif($_GET['act'] == "edit") {
     // Redirect back to the previous page
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
-} elseif ($_GET['act'] == "hapus") {
+}
+elseif ($_GET['act'] == "hapus") {
     $id_buku = $_GET['id'];
 
     // Prepare and bind parameters for delete

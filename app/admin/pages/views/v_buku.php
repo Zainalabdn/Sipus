@@ -318,15 +318,29 @@ while ($row = mysqli_fetch_assoc($query)) {
                     <input type="text" id="book-published-date" name="bookPublishedDate"
                         class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
                         placeholder="Tahun Terbit">
-                    <input type="text" id="book-categories" name="bookCategories"
+                    <select type="text" id="book-categories" name="bookCategories"
                         class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
                         placeholder="Kategori">
+                        <?php
+                            include "../../config/koneksi.php";
+
+                            $sql = mysqli_query($koneksi, "SELECT * FROM kategori");
+                            while ($data = mysqli_fetch_array($sql)) {
+                            ?>
+                        <option value="<?= $data['nama_kategori']; ?>">
+                            <?= $data['nama_kategori']; ?> (
+                            <?= $data['nama_kategori']; ?> )</option>
+                        <?php
+                            }
+                            ?>
+
+                        </select>
                     <input type="text" id="book-averageRating" name="bookAverageRating"
                         class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
-                        placeholder="Kategori">
+                        placeholder="Rating">
                     <input type="text" id="book-language" name="bookLanguage"
                         class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
-                        placeholder="Kategori">
+                        placeholder="Bahasa">
                     <button type="submit" name="submit"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Simpan</button>
                 </div>
