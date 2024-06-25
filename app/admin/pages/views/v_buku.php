@@ -69,7 +69,6 @@ function displayStars($rating) {
     $maxStars = 5;
     $fullStar = '<i class="fa-solid fa-star text-yellow-400"></i>';
     $halfStar = '<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>';
-    $emptyStar = '<i class="fa-regular fa-star"></i>';
 
     // Calculate the number of full stars
     $fullStars = floor($rating);
@@ -85,11 +84,6 @@ function displayStars($rating) {
     if ($hasHalfStar) {
         $stars .= $halfStar;
         $fullStars++; // Adjust for the half star
-    }
-
-    // Add empty stars to fill up to maxStars
-    for ($i = $fullStars; $i < $maxStars; $i++) {
-        $stars .= $emptyStar;
     }
 
     return $stars;
@@ -333,7 +327,6 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <?php
                             }
                             ?>
-
                         </select>
                     <input type="text" id="book-averageRating" name="bookAverageRating"
                         class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
@@ -353,6 +346,24 @@ while ($row = mysqli_fetch_assoc($query)) {
 </div>
 <!-- /.modal -->
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+            // Fetch categories from Google API
+            fetch('https://www.googleapis.com/books/v1/volumes?q=subject')
+                .then(response => response.json())
+                .then(data => {
+                    const categories = data.items.map(item => item.volumeInfo.categories).flat();
+                    const uniqueCategories = [...new Set(categories)]; // Remove duplicates
+                    const selectElement = document.getElementById('book-categories');
+
+                    uniqueCategories.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = `${category} (${category})`;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching categories:', error));
+        });
     // Function to populate form fields with book data
     function populateFormFields(book) {
         document.getElementById('book-id').value = book.id;
