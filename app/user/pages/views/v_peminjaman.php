@@ -76,45 +76,31 @@
                                     <div class="form-group">
                                         <label>Judul Buku</label>
                                         <select class="form-control" name="judulBuku">
-                                            <option selected disabled> -- Silahkan pilih buku yang akan dipinjam --
-                                            </option>
+                                            <option selected disabled> -- Silahkan pilih buku yang akan dipinjam -- </option>
                                             <?php
                                             include "../../config/koneksi.php";
 
                                             $sql = mysqli_query($koneksi, "SELECT * FROM buku");
                                             $sql2 = mysqli_query($koneksi, "SELECT * FROM peminjaman");
-                                            $data1 = mysqli_fetch_array($sql);
                                             $data2 = mysqli_fetch_array($sql2);
                                             $tanggal_pengembalian = $data2['tanggal_pengembalian'];
                                             $now = date_create()->format('Y-m-d H:i:s');
-                                            $judul_buku1 = $data1['judul_buku'];
                                             $judul_buku2 = $data2['judul_buku'];
-                                            
+
                                             while ($data = mysqli_fetch_array($sql)) {
-                                                
-                                                ?>
-                                                    <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?>
-                                                    </option>
-                                                    <?php
-                                                }
+                                            ?>
+                                                <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?> </option>
+                                            <?php
+                                            }
                                             ?>
                                         </select>
                                     </div>
+
 
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
                                         <input type="text" class="form-control" name="tanggalPeminjaman"
                                             value="<?= date('d-m-Y'); ?>" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Kondisi Buku Saat Dipinjam</label>
-                                        <select class="form-control" name="kondisiBukuSaatDipinjam">
-                                            <option selected disabled>-- Silahkan pilih kondisi buku saat dipinjam --
-                                            </option>
-                                            <!-- -->
-                                            <option value="Baik">Baik</option>
-                                            <option value="Rusak">Rusak</option>
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">Kirim</button>
@@ -182,8 +168,8 @@
 
 <!-- Pesan Berhasil Edit -->
 <script>
-    < ? php
-    if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] < > '') {
+    <?php
+    if (isset($_SESSION['berhasil']) && $_SESSION['berhasil']) {
         echo "swal({
         icon: 'success',
             title: 'Berhasil',
@@ -191,13 +177,13 @@
     })
     ";
     }
-    $_SESSION['berhasil'] = ''; ?
-    >
+    $_SESSION['berhasil'] = ''; 
+    ?>
 </script>
 <!-- Pesan Gagal Edit -->
 <script>
-    < ? php
-    if (isset($_SESSION['gagal']) && $_SESSION['gagal'] < > '') {
+    <?php
+    if (isset($_SESSION['gagal']) && $_SESSION['gagal']) {
         echo "swal({
         icon: 'error',
             title: 'Gagal',
@@ -205,8 +191,8 @@
     })
     ";
     }
-    $_SESSION['gagal'] = ''; ?
-    >
+    $_SESSION['gagal'] = ''; 
+    ?>
 </script>
 <!-- Swal Hapus Data -->
 <script>

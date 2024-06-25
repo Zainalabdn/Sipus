@@ -21,7 +21,7 @@ if ($_GET['act'] == 'tambah') {
     if ($stmt === false) {
         die('Prepare failed: ' . htmlspecialchars($koneksi->error));
     }
-
+    
     $stmt->bind_param('ssssssissss', $judul, $categories, $description, $publisher, $author, $published_date, $isbn, $jumlah_buku, $average, $gambar, $language);
 
     if ($stmt->execute()) {

@@ -46,13 +46,14 @@
                                             <option selected disabled> -- Silahkan pilih buku yang akan di kembalikan -- </option>
                                             <?php
                                             include "../../config/koneksi.php";
-
                                             $fullname = $_SESSION['fullname'];
                                             $sql = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE nama_anggota = '$fullname' AND tanggal_pengembalian = ''");
                                             while ($data = mysqli_fetch_array($sql)) {
-                                            ?>
-                                                <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option>
-                                            <?php
+                                                if($data['tanggal_pengembalian'] == '' ) {
+                                                    ?>
+                                                        <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option>
+                                                    <?php
+                                                }
                                             }
                                             ?>
                                         </select>
