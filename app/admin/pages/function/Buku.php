@@ -2,54 +2,43 @@
 session_start();
 include "../../../../config/koneksi.php";
 
-if ($_GET['act'] == "tambah") {
-    // Fetching form data
-    $judul_buku = $_POST['judulBuku'];
-    $kategori_buku = $_POST['kategoriBuku'];
-    $penerbit_buku = $_POST['penerbitBuku'];
-    $pengarang = $_POST['pengarang'];
-    $tahun_terbit = $_POST['tahunTerbit'];
-    $isbn = $_POST['iSbn'];
-    $deskripsi = $_POST['deskripsi']; 
-    $j_buku_baik = $_POST['jumlahBukuBaik'];
-    $j_buku_rusak = $_POST['jumlahBukuRusak'];
-    $img = '';
-    
-    // Image upload handling
-    if ($_FILES['img']['name'] != '') {
-        $target_dir = "../../../../assets/img/";
-        $target_file = $target_dir . basename($_FILES["img"]["name"]);
-        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-            $img = $target_file;
-        } else {
-            $_SESSION['gagal'] = "Image upload failed!";
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        }
-    } elseif (!empty($_POST['img_link'])) {
-        // If no new file is uploaded, but a link is provided
-        $img = $_POST['img_link'];
+if ($_GET['act'] == 'tambah') {
+    // Retrieve form data
+    $judul = $_POST['bookTitle'];
+    $author = $_POST['bookAuthor'];
+    $isbn = $_POST['bookIsbn'];
+    $description = $_POST['bookDescription'];
+    $publisher = $_POST['bookPublisher'];
+    $published_date = $_POST['bookPublishedDate'];
+    $categories = $_POST['bookCategories'];
+    $gambar = $_POST['bookImage'];
+    $average =  $_POST['bookAverageRating'];
+    $language = $_POST['bookLanguage'];
+    $jumlah_buku = '1';
+
+    $stmt = $koneksi->prepare("INSERT INTO buku (judul_buku, kategori_buku, deskripsi, penerbit_buku, pengarang, tahun_terbit, isbn, jumlah_buku, averageRating, img, language)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($koneksi->error));
     }
 
     
-    // Prepare and bind parameters for insertion
-    $stmt = $koneksi->prepare("INSERT INTO buku (judul_buku, kategori_buku, penerbit_buku, pengarang, tahun_terbit, isbn, deskripsi, j_buku_baik, j_buku_rusak, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssss", $judul_buku, $kategori_buku, $penerbit_buku, $pengarang, $tahun_terbit, $isbn, $deskripsi, $j_buku_baik, $j_buku_rusak, $img);
 
-    // Execute the statement and check the result
+    $stmt->bind_param('ssssssissss', $judul, $categories, $description, $publisher, $author, $published_date, $isbn, $jumlah_buku, $average, $gambar, $language);
+
     if ($stmt->execute()) {
-        $_SESSION['berhasil'] = "Buku berhasil ditambahkan!";
+        $_SESSION['berhasil'] = "Data buku berhasil Ditambaken!";
     } else {
-        $_SESSION['gagal'] = "Buku gagal ditambahkan!";
+        $_SESSION['gagal'] = "Data buku gagal Ditambaken!";
     }
-    $stmt->close();
-    $koneksi->close();
 
-    // Redirect back to the previous page
+    $stmt->close();
+
+    $koneksi->close();
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
-
-} elseif($_GET['act'] == "edit") {
+}
+elseif($_GET['act'] == "edit") {
     $id_buku = $_POST['id_buku'];
     $judul_buku = $_POST['judulBuku'];
     $kategori_buku = $_POST['kategoriBuku'];
@@ -123,4 +112,10 @@ if ($_GET['act'] == "tambah") {
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
+
 ?>
+
+
+
+
+

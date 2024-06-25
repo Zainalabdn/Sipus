@@ -6,7 +6,9 @@
             Peminjaman Buku
             <small>
                 <script type='text/javascript'>
-                    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                        'September', 'Oktober', 'November', 'Desember'
+                    ];
                     var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
                     var date = new Date();
                     var day = date.getDate();
@@ -68,32 +70,47 @@
                                     ?>
                                     <div class="form-group">
                                         <label>Nama Anggota</label>
-                                        <input type="text" class="form-control" name="namaAnggota" value="<?= $row1['fullname']; ?>" readonly>
+                                        <input type="text" class="form-control" name="namaAnggota"
+                                            value="<?= $row1['fullname']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Judul Buku</label>
                                         <select class="form-control" name="judulBuku">
-                                            <option selected disabled> -- Silahkan pilih buku yang akan di pinjam -- </option>
+                                            <option selected disabled> -- Silahkan pilih buku yang akan dipinjam --
+                                            </option>
                                             <?php
                                             include "../../config/koneksi.php";
 
                                             $sql = mysqli_query($koneksi, "SELECT * FROM buku");
+                                            $sql2 = mysqli_query($koneksi, "SELECT * FROM peminjaman");
+                                            $data1 = mysqli_fetch_array($sql);
+                                            $data2 = mysqli_fetch_array($sql2);
+                                            $tanggal_pengembalian = $data2['tanggal_pengembalian'];
+                                            $now = date_create()->format('Y-m-d H:i:s');
+                                            $judul_buku1 = $data1['judul_buku'];
+                                            $judul_buku2 = $data2['judul_buku'];
+                                            
                                             while ($data = mysqli_fetch_array($sql)) {
-                                            ?>
-                                                <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option>
-                                            <?php
-                                            }
+                                                
+                                                ?>
+                                                    <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?>
+                                                    </option>
+                                                    <?php
+                                                }
                                             ?>
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" name="tanggalPeminjaman" value="<?= date('d-m-Y'); ?>" readonly>
+                                        <input type="text" class="form-control" name="tanggalPeminjaman"
+                                            value="<?= date('d-m-Y'); ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Kondisi Buku Saat Dipinjam</label>
                                         <select class="form-control" name="kondisiBukuSaatDipinjam">
-                                            <option selected disabled>-- Silahkan pilih kondisi buku saat dipinjam --</option>
+                                            <option selected disabled>-- Silahkan pilih kondisi buku saat dipinjam --
+                                            </option>
                                             <!-- -->
                                             <option value="Baik">Baik</option>
                                             <option value="Rusak">Rusak</option>
@@ -129,18 +146,18 @@
                                 $query = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE nama_anggota = '$fullname'");
                                 while ($row = mysqli_fetch_assoc($query)) {
                                 ?>
-                                    <tbody>
-                                        <tr>
-                                            <td><?= $no++; ?></td>
-                                            <td><?= $row['nama_anggota']; ?></td>
-                                            <td><?= $row['judul_buku']; ?></td>
-                                            <td><?= $row['tanggal_peminjaman']; ?></td>
-                                            <td><?= $row['tanggal_pengembalian']; ?></td>
-                                            <td><?= $row['kondisi_buku_saat_dipinjam']; ?></td>
-                                            <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
-                                            <td><?= $row['denda']; ?></td>
-                                        </tr>
-                                    </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $row['nama_anggota']; ?></td>
+                                        <td><?= $row['judul_buku']; ?></td>
+                                        <td><?= $row['tanggal_peminjaman']; ?></td>
+                                        <td><?= $row['tanggal_pengembalian']; ?></td>
+                                        <td><?= $row['kondisi_buku_saat_dipinjam']; ?></td>
+                                        <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
+                                        <td><?= $row['denda']; ?></td>
+                                    </tr>
+                                </tbody>
                                 <?php
                                 }
                                 ?>
@@ -161,35 +178,39 @@
 <!-- jQuery 3 -->
 <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../assets/dist/js/sweetalert.min.js"></script>
+
+
 <!-- Pesan Berhasil Edit -->
 <script>
-    <?php
-    if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] <> '') {
+    < ? php
+    if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] < > '') {
         echo "swal({
-            icon: 'success',
+        icon: 'success',
             title: 'Berhasil',
             text: '$_SESSION[berhasil]'
-        })";
+    })
+    ";
     }
-    $_SESSION['berhasil'] = '';
-    ?>
+    $_SESSION['berhasil'] = ''; ?
+    >
 </script>
 <!-- Pesan Gagal Edit -->
 <script>
-    <?php
-    if (isset($_SESSION['gagal']) && $_SESSION['gagal'] <> '') {
+    < ? php
+    if (isset($_SESSION['gagal']) && $_SESSION['gagal'] < > '') {
         echo "swal({
-                icon: 'error',
-                title: 'Gagal',
-                text: '$_SESSION[gagal]'
-              })";
+        icon: 'error',
+            title: 'Gagal',
+            text: '$_SESSION[gagal]'
+    })
+    ";
     }
-    $_SESSION['gagal'] = '';
-    ?>
+    $_SESSION['gagal'] = ''; ?
+    >
 </script>
 <!-- Swal Hapus Data -->
 <script>
-    $('.btn-del').on('click', function(e) {
+    $('.btn-del').on('click', function (e) {
         e.preventDefault();
         const href = $(this).attr('href')
 
