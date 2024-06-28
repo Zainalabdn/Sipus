@@ -95,12 +95,9 @@
                                             ?>
                                         </select>
                                     </div>
-
-
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" name="tanggalPeminjaman"
-                                            value="<?= date('d-m-Y'); ?>" readonly>
+                                        <input type="date" class="form-control" name="tanggalPeminjaman">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">Kirim</button>
@@ -158,6 +155,7 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+            
     </section>
     <!-- /.content -->
 </div>

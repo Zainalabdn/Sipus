@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Tanggal Pengembalian</label>
-                                        <input type="text" class="form-control" name="tanggalPengembalian" value="<?= date('d-m-Y'); ?>" readonly required>
+                                        <input type="date" class="form-control" name="tanggalPengembalian" >
                                     </div>
                                     <div class="form-group">
                                         <label>Kondisi Buku Saat Dikembalikan</label>

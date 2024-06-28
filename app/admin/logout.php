@@ -6,4 +6,4 @@ unset($_SESSION['username']);
 unset($_SESSION['status']);
 
 $_SESSION['berhasil_keluar'] = "Anda telah berhasil keluar !!";
-header("location: ../../home.php");
+header("location: ../../login.php");

@@ -18,7 +18,6 @@
         <a href="../../assets/#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
-
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
@@ -27,28 +26,23 @@
                         <i class="fa fa-envelope-o"></i>
                         <?php
                         include "../../config/koneksi.php";
-
                         $nama_saya = $_SESSION['fullname'];
                         $default = "Belum dibaca";
                         $query_pesan  = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
                         $jumlah_pesan = mysqli_num_rows($query_pesan);
                         ?>
-
                         <?php
                         include "../../config/koneksi.php";
-
                         $nama_saya = $_SESSION['fullname'];
                         $default = "Belum dibaca";
                         $query_pesan  = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
                         $row_pesan = mysqli_fetch_array($query_pesan);
-
                         if ($jumlah_pesan == null) {
                             // Hilangkan badge pesan
                             
                         } else {
                             echo "<span class='label label-danger'>" . $jumlah_pesan . "</span>";
                         }
-
                         ?>
                     </a>
                     <ul class="dropdown-menu" id="Pesan">
