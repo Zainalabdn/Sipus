@@ -123,21 +123,21 @@ mysqli_close($koneksi);
                     </div>
                 </div>
                 <div id="book-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <?php foreach ($books as $book): ?>
-                        <div
-                            class="bg-white rounded-md overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                            <div class="book-image-container">
-                                <img src="<?= $book['img']; ?>" alt="<?= $book['judul_buku']; ?>" class="book-image">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 p-2"><?= $book['judul_buku']; ?></h3>
-                            <p class="text-sm text-gray-600 p-2"><?= $book['pengarang']; ?></p>
-                            <a href="detail.php?id=<?= $book['id_buku']; ?>"
-                                class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                Detail
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+    <?php foreach ($books as $book): ?>
+        <div class="bg-white rounded-md overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out p-2">
+            <div class="book-image-container">
+                <img src="<?= $book['img']; ?>" alt="<?= $book['judul_buku']; ?>" class="book-image w-full h-48 object-cover">
+            </div>
+            <h3 class="text-md font-bold text-gray-800 mt-2"><?= $book['judul_buku']; ?></h3>
+            <p class="text-xs text-gray-600"><?= $book['pengarang']; ?></p>
+            <a href="detail.php?id=<?= $book['id_buku']; ?>"
+                class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2">
+                Detail
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+
             </main>
         
             <footer class="bg-white w-full shadow dark:bg-gray-900 mt-auto">
