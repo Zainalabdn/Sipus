@@ -52,7 +52,7 @@
             <div class="col-md-12">
 
                 <div class="btn-wrap align-right">
-                    <a href="semuabuku.php" class="btn-accent-arrow">View all products <i class="icon icon-ns-arrow-right"></i></a>
+                    <a href="semuabuku.php" class="btn-accent-arrow">Lihat Semua Buku<i class="icon icon-ns-arrow-right"></i></a>
                 </div>
 
             </div>
