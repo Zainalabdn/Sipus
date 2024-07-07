@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php @include('head.php');?>
+
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+
+<?php @include('navbar.php');?>
 <section id="download-app" class="leaf-pattern-overlay">
 		<div class="corner-pattern-overlay"></div>
 		<div class="container">
@@ -29,3 +37,16 @@
 			</div>
 		</div>
 	</section>
+
+    <?php @include('footer.php'); ?>
+    
+    <script src="../assets/home/js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="../assets/home/js/plugins.js"></script>
+    <script src="../assets/home/js/script.js"></script>
+
+</body>
+
+</html>
