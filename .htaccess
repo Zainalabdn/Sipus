@@ -2,13 +2,13 @@
 RewriteEngine on
 
 RewriteRule ^masuk$ login.php [L]
-RewriteRule ^home$ home.php [L]
+RewriteRule ^home$ home/home.php [L]
 RewriteRule ^pendaftaran$ register.php [L]
 RewriteRule ^lupa-password$ forgot_password.php [L]
 RewriteRule ^lupa-sandi-web$ password-web.php [L]
 
 #User
-RewriteRule ^user$ app/user [L]
+RewriteRule ^user$ app/user1 [L]
 
 #Admin
 RewriteRule ^admin$ app/admin [L]

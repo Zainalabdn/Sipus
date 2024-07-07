@@ -7,7 +7,6 @@
                 <img src="../../assets/dist/img/avatar02.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-
                 <p><?= $_SESSION['fullname']; ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
