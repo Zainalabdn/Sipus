@@ -6,7 +6,7 @@
 
 				<div class="col-md-2">
 					<div class="main-logo">
-						<a href="../index.html" class="btn btn-outline-dark">E-Library</a>
+						<a href="../index.html" class="outline-dark">E-Library</a>
 					</div>
 
 				</div>
