@@ -14,11 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_user = $_SESSION['id_user'];
 
         // Simpan data peminjaman ke dalam tabel peminjaman
-        $stmt = $koneksi->prepare("INSERT INTO peminjaman (id_buku, id_user, tanggal_pinjam, tanggal_kembali, status) VALUES (?, ?, ?, ?, 'Dipinjam')");
+        $stmt = $koneksi->prepare("INSERT INTO peminjaman (id_buku, id_user, tanggal_pinjam, tanggal_kembali, status) VALUES (?, ?, ?, ?, 'Diminta')");
         $stmt->bind_param("iiss", $id_buku, $id_user, $tanggal_pinjam, $tanggal_kembali);
 
         if ($stmt->execute()) {
-            $successMessage = "Buku berhasil dipinjam!";
+            $successMessage = "Permintaan Peminjaman Buku berhasil!";
             $_SESSION['pinjam_berhasil'] = $successMessage;
         } else {
             $_SESSION['pinjam_gagal'] = "Gagal melakukan peminjaman.";

@@ -9,6 +9,10 @@ if (isset($_GET['search'])) {
     $query = "SELECT * FROM buku WHERE judul_buku LIKE '%$search%' OR pengarang LIKE '%$search%'";
 }
 $result = $koneksi->query($query);
+
+// Fetch all genres from the kategori table
+$genreQuery = "SELECT * FROM kategori";
+$genreResult = $koneksi->query($genreQuery);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +37,9 @@ $result = $koneksi->query($query);
                     </div>
                     <ul class="tabs">
                         <li data-tab-target="#all-genre" class="active tab">All Genre</li>
-                        <li data-tab-target="#business" class="tab">Business</li>
-                        <li data-tab-target="#technology" class="tab">Technology</li>
-                        <li data-tab-target="#romantic" class="tab">Romantic</li>
-                        <li data-tab-target="#adventure" class="tab">Adventure</li>
-                        <li data-tab-target="#fictional" class="tab">Fictional</li>
+                        <?php while ($genre = $genreResult->fetch_assoc()) : ?>
+                            <li data-tab-target="#<?= strtolower($genre['nama_kategori']); ?>" class="tab"><?= $genre['nama_kategori']; ?></li>
+                        <?php endwhile; ?>
                     </ul>
 
                     <div class="tab-content">
@@ -62,13 +64,40 @@ $result = $koneksi->query($query);
                                             <figcaption>
                                                 <h3><?= $book['judul_buku']; ?></h3>
                                                 <span><?= $book['pengarang']; ?></span>
-
                                             </figcaption>
                                         </div>
                                     </div>
                                 <?php endwhile; ?>
                             </div>
                         </div>
+                        <?php 
+                        // Reset book result set
+                        $result->data_seek(0); 
+                        while ($genre = $genreResult->fetch_assoc()) : 
+                        ?>
+                        <div id="<?= strtolower($genre['nama_kategori']); ?>" data-tab-content>
+                            <div class="row">
+                                <?php
+                                $genreBooksQuery = "SELECT * FROM buku WHERE id_kategori = " . $genre['id_kategori'];
+                                $genreBooksResult = $koneksi->query($genreBooksQuery);
+                                while ($book = $genreBooksResult->fetch_assoc()) : ?>
+                                    <div class="col-md-3">
+                                        <div class="product-item">
+                                            <figure class="product-style">
+                                                <img src="<?= $book['img']; ?>" alt="Books" class="product-item">
+                                                <a href="detailbuku.php?id=<?= $book['id_buku']; ?>" class="add-to-cart" data-product-tile="add-to-cart">
+                                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Detail Buku</button></a>
+                                            </figure>
+                                            <figcaption>
+                                                <h3><?= $book['judul_buku']; ?></h3>
+                                                <span><?= $book['pengarang']; ?></span>
+                                            </figcaption>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
 
                     </div>
 

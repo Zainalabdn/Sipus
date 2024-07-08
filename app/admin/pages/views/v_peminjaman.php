@@ -16,7 +16,6 @@
                     var yy = date.getYear();
                     var year = (yy < 1000) ? yy + 1900 : yy;
                     document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-                    //
                 </script>
             </small>
         </h1>
@@ -30,52 +29,102 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">Data Peminjaman Buku</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Anggota</th>
-                                    <th>Judul Buku</th>
-                                    <th>Tanggal Peminjaman</th>
-                                    <th>Tanggal Pengembalian</th>
-                                    <th>Kondisi Buku Saat Dipinjam</th>
-                                    <th>Kondisi Buku Saat Dikembalikan</th>
-                                    <th>Denda</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                include "../../config/koneksi.php";
 
-                                $no = 1;
-                                $query = mysqli_query($koneksi, "SELECT * FROM peminjaman");
-                                while ($row = mysqli_fetch_assoc($query)) {
-                                ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $row['nama_anggota']; ?></td>
-                                        <td><?= $row['judul_buku']; ?></td>
-                                        <td><?= $row['tanggal_peminjaman']; ?></td>
-                                        <td><?= $row['tanggal_pengembalian']; ?></td>
-                                        <td><?= $row['kondisi_buku_saat_dipinjam']; ?></td>
-                                        <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
-                                        <td><?= $row['denda']; ?></td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#peminjaman" data-toggle="tab">Data Peminjaman Buku</a></li>
+                        <li><a href="#per-pengembalian" data-toggle="tab">Permintaan Peminjaman</a></li>
+                        <li><a href="#pengembalian" data-toggle="tab">Permintaan Pengembalian</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="peminjaman">
+                            <div class="box-body table-responsive">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Judul Buku</th>
+                                            <th>Nama Anggota</th>
+                                            <th>Tanggal Peminjaman</th>
+                                            <th>Tanggal Pengembalian</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include "../../config/koneksi.php";
 
-                        </table>
+                                        $no = 1;
+                                        $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname, user.username FROM peminjaman 
+                                                                          JOIN buku ON peminjaman.id_buku = buku.id_buku 
+                                                                          JOIN user ON peminjaman.id_user = user.id_user
+                                                                          WHERE peminjaman.status = 'Dipinjam'");
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><?= htmlspecialchars($row['judul_buku']); ?></td>
+                                                <td><?= htmlspecialchars($row['fullname']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_pinjam']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_kembali']); ?></td>
+                                                <td><?= htmlspecialchars($row['status']); ?></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Content for Permintaan Pengembalian -->
+                        <div class="tab-pane" id="per-pengembalian">
+                            <div class="box-body table-responsive">
+                                <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Judul Buku</th>
+                                            <th>Nama Anggota</th>
+                                            <th>Tanggal Peminjaman</th>
+                                            <th>Tanggal Pengembalian</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include "../../config/koneksi.php";
+                                        $no = 1;
+                                        $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname FROM peminjaman 
+                                                  JOIN buku ON peminjaman.id_buku = buku.id_buku 
+                                                  JOIN user ON peminjaman.id_user = user.id_user 
+                                                  WHERE peminjaman.status = 'Diminta'");
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><?= htmlspecialchars($row['judul_buku']); ?></td>
+                                                <td><?= htmlspecialchars($row['fullname']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_pinjam']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_kembali']); ?></td>
+                                                <td>
+                                                    <a href="pages/function/Peminjaman.php?act=konfirmasi&id=<?= $row['id_peminjaman']; ?>" class="btn btn-success btn-sm">Konfirmasi</a>
+                                                    <a href="pages/function/Peminjaman.php?act=tolak&id=<?= $row['id_peminjaman']; ?>" class="btn btn-danger btn-sm">Tolak</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="pengembalian">
+                            <!-- Content for Permintaan Pengembalian -->
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
+
                 <!-- /.box -->
             </div>
             <!-- /.col -->

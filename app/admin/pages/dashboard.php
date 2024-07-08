@@ -78,49 +78,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php
-                include "../../config/koneksi.php";
-                $query_peminjaman = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE tanggal_peminjaman > 0");
-                $row_peminjaman = mysqli_num_rows($query_peminjaman);
-                ?>
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3><?= $row_peminjaman; ?></h3>
-
-                        <p>Peminjaman</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-sign-out"></i>
-                    </div>
-                    <a href="data-peminjaman" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php
-                include "../../config/koneksi.php";
-                $query_pengembalian = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE tanggal_pengembalian > 0");
-                $row_pengembalian = mysqli_num_rows($query_pengembalian);
-                ?>
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3><?= $row_pengembalian; ?></h3>
-
-                        <p>Pengembalian</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-sign-in"></i>
-                    </div>
-                    <a href="data-peminjaman" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-        </div>
+            
         <!-- /.row -->
         <div class="row">
             <!-- -->
