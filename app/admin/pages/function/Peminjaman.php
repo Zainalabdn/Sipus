@@ -17,11 +17,33 @@ if ($act == "konfirmasipinjam" && isset($_GET['id'])) {
     $query = "UPDATE peminjaman SET status = 'Dipinjam' WHERE id_peminjaman = '$id_peminjaman'";
 
     if (mysqli_query($koneksi, $query)) {
-        // Update book quantity
-        $query_update_buku = "UPDATE buku SET jumlah_buku = jumlah_buku - 1 WHERE id_buku = (SELECT id_buku FROM peminjaman WHERE id_peminjaman = '$id_peminjaman')";
-        mysqli_query($koneksi, $query_update_buku);
+        // Retrieve the book ID
+        $query_buku_id = mysqli_query($koneksi, "SELECT id_buku FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'");
+        if ($query_buku_id && mysqli_num_rows($query_buku_id) > 0) {
+            $row_buku_id = mysqli_fetch_assoc($query_buku_id);
+            $id_buku = $row_buku_id['id_buku'];
 
-        $_SESSION['berhasil'] = "Peminjaman berhasil dikonfirmasi.";
+            // Check if the book quantity is greater than 0 before reducing it
+            $query_check_quantity = mysqli_query($koneksi, "SELECT jumlah_buku FROM buku WHERE id_buku = '$id_buku'");
+            if ($query_check_quantity && mysqli_num_rows($query_check_quantity) > 0) {
+                $row_quantity = mysqli_fetch_assoc($query_check_quantity);
+                if ($row_quantity['jumlah_buku'] > 0) {
+                    // Update book quantity
+                    $query_update_buku = "UPDATE buku SET jumlah_buku = jumlah_buku - 1 WHERE id_buku = '$id_buku'";
+                    if (mysqli_query($koneksi, $query_update_buku)) {
+                        $_SESSION['berhasil'] = "Peminjaman berhasil dikonfirmasi.";
+                    } else {
+                        $_SESSION['gagal'] = "Gagal memperbarui jumlah buku.";
+                    }
+                } else {
+                    $_SESSION['gagal'] = "Buku tidak tersedia untuk dipinjam.";
+                }
+            } else {
+                $_SESSION['gagal'] = "Gagal memeriksa jumlah buku.";
+            }
+        } else {
+            $_SESSION['gagal'] = "Gagal mengambil data buku.";
+        }
     } else {
         $_SESSION['gagal'] = "Peminjaman gagal dikonfirmasi.";
     }
@@ -74,5 +96,4 @@ if ($act == "konfirmasikembali" && isset($_GET['id'])) {
     }
     redirect_back();
 }
-
 ?>
