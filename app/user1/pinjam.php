@@ -14,9 +14,9 @@ $id_user = $_SESSION['id_user'];
 
 // Query untuk mengambil daftar buku yang dipinjam oleh pengguna
 $query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali
-          FROM peminjaman
-          INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
-          WHERE peminjaman.id_user = ?";
+        FROM peminjaman
+        INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
+        WHERE peminjaman.id_user = ?";
 $stmt = $koneksi->prepare($query);
 $stmt->bind_param("i", $id_user);
 $stmt->execute();
@@ -73,6 +73,7 @@ $koneksi->close();
                                             <p><strong>Tanggal pinjam:</strong> <?= $buku['tanggal_pinjam']; ?></p>
                                             <p><strong>Batas waktu:</strong> <?= $buku['tanggal_kembali']; ?></p>
                                         </div>
+                                        <button type="button" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Kembalikan</button>
                                     </figcaption>
                                 </div>
                             <?php endforeach; ?>

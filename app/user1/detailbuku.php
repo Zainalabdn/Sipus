@@ -2,6 +2,8 @@
 session_start();
 include "../../config/koneksi.php";
 
+    
+
 if (isset($_GET['id'])) {
     $id_buku = intval($_GET['id']);
     $stmt = $koneksi->prepare("SELECT * FROM buku WHERE id_buku = ?");
@@ -92,11 +94,11 @@ if (isset($_GET['id'])) {
                     <form id="formPinjam" action="function/peminjaman.php" method="POST">
                         <div class="mb-3">
                             <label for="tanggalPinjam" class="form-label">Tanggal Pinjam</label>
-                            <input type="date" class="form-control" id="tanggalPinjam" name="tanggal_pinjam" required>
+                            <input type="date" class="form-control" id="tanggalPinjam" name="tanggal_pinjam" value="" onchange="hitungTanggalKembali()" required>
                         </div>
                         <div class="mb-3">
                             <label for="tanggalKembali" class="form-label">Tanggal Kembali</label>
-                            <input type="date" class="form-control" id="tanggalKembali" name="tanggal_kembali" required>
+                            <input type="teks" class="form-control" id="tanggalKembali" name="tanggal_kembali" value="" required readonly>
                         </div>
                         <input type="hidden" id="idBuku" name="id_buku" value="<?= $book['id_buku']; ?>">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -105,6 +107,23 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        function hitungTanggalKembali() {
+            var tanggalPinjam = document.getElementById("tanggalPinjam").value;
+            if (tanggalPinjam) {
+                var tanggal = new Date(tanggalPinjam);
+                tanggal.setDate(tanggal.getDate() + 7);
+                var dd = String(tanggal.getDate()).padStart(2, '0');
+                var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = tanggal.getFullYear();
+                
+                var tanggalKembali = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("tanggalKembali").value = tanggalKembali;
+            }
+        }
+    </script>
+
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
