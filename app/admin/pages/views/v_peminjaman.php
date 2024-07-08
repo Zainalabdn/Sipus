@@ -99,7 +99,7 @@
                                         $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname FROM peminjaman 
                                                   JOIN buku ON peminjaman.id_buku = buku.id_buku 
                                                   JOIN user ON peminjaman.id_user = user.id_user 
-                                                  WHERE peminjaman.status = 'Diminta'");
+                                                  WHERE peminjaman.status = 'Minta Peminjaman'");
                                         while ($row = mysqli_fetch_assoc($query)) {
                                         ?>
                                             <tr>
