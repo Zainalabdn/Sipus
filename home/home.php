@@ -43,7 +43,6 @@ mysqli_close($koneksi);
 			</div>
 		</div>
 	</section>
-
 	<?php @include('buku.php');?>
 
 	<section id="quotation" class="align-center pb-5 mb-5">
