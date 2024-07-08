@@ -11,6 +11,9 @@ RewriteRule ^lupa-sandi-web$ password-web.php [L]
 RewriteRule ^user$ app/user1 [L]
 
 #Admin
+RewriteRule ^petugas$ app/petugas [L]
+
+#Admin
 RewriteRule ^admin$ app/admin [L]
 
 #Pemindai QR
