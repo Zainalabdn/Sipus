@@ -1,3 +1,6 @@
+<?php 
+include "../../config/koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +18,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <figure>
-                            <img src="../assets/home/images/1.jpg" alt="library" class="single-image" style="width: 100%; max-width: 1000px;">
-							<img src="../assets/home/images/2.jpg" alt="library" class="single-image" style="width: 100%; max-width: 1000px;">
+                            <img src="../../assets/home/images/1.jpg" alt="library" class="single-image" style="width: 100%; max-width: 1000px;">
+							<img src="../../assets/home/images/2.jpg" alt="library" class="single-image" style="width: 100%; max-width: 1000px;">
                         </figure>
                     </div>
 
