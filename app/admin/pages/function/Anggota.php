@@ -17,8 +17,7 @@ if ($_GET['aksi'] == "tambah") {
     $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $notelp = $_POST['notelp'];
-
-
+    
     $verif = "Tidak";
     $role = "Anggota";
     $join_date = date('Y-m-d');
