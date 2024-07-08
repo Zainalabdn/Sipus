@@ -1,5 +1,11 @@
 <head>
-	<title>Perpus</title>
+<?php
+    include "../config/koneksi.php";
+
+    $sql = mysqli_query($koneksi, "SELECT * FROM identitas");
+    $row1 = mysqli_fetch_assoc($sql);
+    ?>
+	<title>Home | <?= $row1['nama_app']; ?></title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

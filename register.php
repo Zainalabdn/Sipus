@@ -31,23 +31,13 @@ session_start();?>
     <link rel="stylesheet" href="assets/dist/css/custom.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="assets/dist/css/toastr.min.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="hold-transition login-page" style="font-family: 'Quicksand', sans-serif;">
-    <a href="home.php"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-4 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-8">
-        <svg class="rtl:rotate-180 w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M13 5H1m0 0L5 1M1 5l4 4" />
-        </svg>
-        <b class="mx-2">Back To Home</b>
-    </a>
     <div class="login-box">
         <div class="login-logo">
             <a href="masuk"><b>E-LIBRARY</b></a>
+            <a href="index.php" style="position: absolute; top: 10px; left: 10px;"><i class="fa fa-arrow-left"></i></a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body" style="border-radius: 10px;">
