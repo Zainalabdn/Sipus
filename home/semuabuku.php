@@ -1,24 +1,12 @@
 <?php
 include "../config/koneksi.php";
 
-// Fetch all books from the database
-$search = '';
-$query = "SELECT * FROM buku";
-if (isset($_GET['search'])) {
-    $search = $_GET['search'];
-    $query = "SELECT * FROM buku WHERE judul_buku LIKE '%$search%' OR pengarang LIKE '%$search%'";
-}
-$result = $koneksi->query($query);
-
 // Fetch all genres from the kategori table
 $genreQuery = "SELECT * FROM kategori";
 $genreResult = $koneksi->query($genreQuery);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<style>
-
-</style>
 <?php @include('head.php'); ?>
 
 <body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
@@ -42,6 +30,14 @@ $genreResult = $koneksi->query($genreQuery);
                     </ul>
 
                     <div class="tab-content">
+                        <div class="row height d-flex justify-content-center align-items-center">
+                            <div class="col-md-6">
+                                <div class="action-menu">
+                                    <input type="text" class="form-control form-input" placeholder="Search..." id="searchInput">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="searchResults"></div>
                         <div id="all-genre" data-tab-content class="active">
                             <div class="row" id="book-list">
                                 <?php
@@ -103,37 +99,42 @@ $genreResult = $koneksi->query($genreQuery);
     <script src="../assets/home/js/plugins.js"></script>
     <script src="../assets/home/js/script.js"></script>
     <script>
-        document.getElementById('search-input').addEventListener('input', function() {
-            var searchQuery = this.value;
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'search_books.php?search=' + searchQuery, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var books = JSON.parse(xhr.responseText);
-                    var bookList = document.getElementById('book-list');
-                    bookList.innerHTML = '';
-                    books.forEach(function(book) {
-                        var bookItem = '<div class="col-md-3">' +
-                            '<div class="product-item">' +
-                            '<figure class="product-style">' +
-                            '<img src="' + book.img + '" alt="Books" class="product-item">' +
-                            '<a href="detailbuku.php?id=' + book.id_buku + '" class="add-to-cart" data-product-tile="add-to-cart">' +
-                            '<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Detail Buku</button></a>' +
-                            '</figure>' +
-                            '<figcaption>' +
-                            '<h3>' + book.judul_buku + '</h3>' +
-                            '<span>' + book.pengarang + '</span>' +
-                            '</figcaption>' +
-                            '</div>' +
-                            '</div>';
-                        bookList.insertAdjacentHTML('beforeend', bookItem);
+        $(document).ready(function() {
+            $('#searchInput').on('input', function() {
+                var query = $(this).val();
+                if (query.length > 0) {
+                    $.ajax({
+                        url: 'search_books.php',
+                        method: 'GET',
+                        data: { search: query },
+                        success: function(data) {
+                            var books = JSON.parse(data);
+                            var bookList = $('#book-list');
+                            bookList.empty();
+                            books.forEach(function(book) {
+                                var bookItem = '<div class="col-md-3">' +
+                                    '<div class="product-item">' +
+                                    '<figure class="product-style">' +
+                                    '<img src="' + book.img + '" alt="Books" class="product-item">' +
+                                    '<a href="detailbuku.php?id=' + book.id_buku + '" class="add-to-cart" data-product-tile="add-to-cart">' +
+                                    '<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Detail Buku</button></a>' +
+                                    '</figure>' +
+                                    '<figcaption>' +
+                                    '<h3>' + book.judul_buku + '</h3>' +
+                                    '<span>' + book.pengarang + '</span>' +
+                                    '</figcaption>' +
+                                    '</div>' +
+                                    '</div>';
+                                bookList.append(bookItem);
+                            });
+                        }
                     });
+                } else {
+                    $('#searchResults').html('');
                 }
-            };
-            xhr.send();
+            });
         });
     </script>
 
 </body>
-
 </html>
