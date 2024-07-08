@@ -2,6 +2,6 @@
     <div class="pull-right hidden-xs">
 
     </div>
-    <strong>E-Library &copy; <?= date('Y'); ?>. </strong>
+    <strong>E-Library &copy; <?= date('Y'); ?>.</strong>
 
 </footer>
