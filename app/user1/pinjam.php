@@ -13,7 +13,7 @@ include "../../config/koneksi.php";
 $id_user = $_SESSION['id_user'];
 
 // Query to get the list of books borrowed and returned by the user
-$query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali, peminjaman.status
+$query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali, peminjaman.status, denda
           FROM peminjaman
           INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
           WHERE peminjaman.id_user = ?";
@@ -129,6 +129,7 @@ $koneksi->close();
                                                 <span>Status: <?= htmlspecialchars($book['status']); ?></span>
                                                 <span>Tanggal Pinjam: <?= htmlspecialchars($book['tanggal_pinjam']); ?></span>
                                                 <p><span>Dikembalikan Pada <?= htmlspecialchars($book['tanggal_kembali']); ?></span></p>
+                                                <p><span>Denda: <?= htmlspecialchars($book['denda']); ?></span></p>
                                             </figcaption>
                                         </div>
                                     </div>
