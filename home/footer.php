@@ -6,7 +6,7 @@
 
 				<div class="footer-item">
 					<div class="company-brand">
-						<img src="images/main-logo.png" alt="logo" class="footer-logo">
+						<img src="../assets/img/R.png" alt="logo" class="footer-logo">
 						<p>.</p>
 					</div>
 				</div>
@@ -19,19 +19,19 @@
 					<h5>About Us</h5>
 					<ul class="menu-list">
 						<li class="menu-item">
-							<a href="#">vision</a>
+							<a href="../login.php">vision</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">articles </a>
+							<a href="../login.php">articles </a>
 						</li>
 						<li class="menu-item">
-							<a href="#">careers</a>
+							<a href="../login.php">careers</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">service terms</a>
+							<a href="../login.php">service terms</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">donate</a>
+							<a href="../login.php">donate</a>
 						</li>
 					</ul>
 				</div>
@@ -43,19 +43,19 @@
 					<h5>Discover</h5>
 					<ul class="menu-list">
 						<li class="menu-item">
-							<a href="#">Home</a>
+							<a href="../login.php">Home</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Books</a>
+							<a href="../login.php">Books</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Authors</a>
+							<a href="../login.php">Authors</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Subjects</a>
+							<a href="../login.php">Subjects</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Advanced Search</a>
+							<a href="../login.php">Advanced Search</a>
 						</li>
 					</ul>
 				</div>
@@ -67,16 +67,16 @@
 					<h5>My account</h5>
 					<ul class="menu-list">
 						<li class="menu-item">
-							<a href="#">Sign In</a>
+							<a href="../login.php">Sign In</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">View Cart</a>
+							<a href="../login.php">View Cart</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">My Wishtlist</a>
+							<a href="../login.php">My Wishtlist</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Track My Order</a>
+							<a href="../login.php">Track My Order</a>
 						</li>
 					</ul>
 				</div>
@@ -88,16 +88,16 @@
 					<h5>Help</h5>
 					<ul class="menu-list">
 						<li class="menu-item">
-							<a href="#">Help center</a>
+							<a href="../login.php">Help center</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Report a problem</a>
+							<a href="../login.php">Report a problem</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Suggestisdiasjddits</a>
+							<a href="../login.php">Suggest edits</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Contact us</a>
+							<a href="../login.php">Contact us</a>
 						</li>
 					</ul>
 				</div>

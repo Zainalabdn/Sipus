@@ -8,9 +8,8 @@
 					<div class="footer-item">
 						<div class="company-brand">
 							<img src="images/main-logo.png" alt="logo" class="footer-logo">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis sed ptibus liberolectus
-								nonet psryroin. Amet sed lorem posuere sit iaculis amet, ac urna. Adipiscing fames
-								semper erat ac in suspendisse iaculis.</p>
+							<p>Perpustakaan digital yang menyimpan data baik itu buku dalam bentuk elektronik 
+							dan mendistribusikannya dengan menggunakan protokol elektronik melalui jaringan komputer.</p>
 						</div>
 					</div>
 
@@ -121,8 +120,7 @@
 						<div class="row">
 
 							<div class="col-md-6">
-								<p>© 2022 All rights reserved. Free HTML Template by <a
-										href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a></p>
+								<p>© 2022 All rights reserved.</a></p>
 							</div>
 
 							<div class="col-md-6">
