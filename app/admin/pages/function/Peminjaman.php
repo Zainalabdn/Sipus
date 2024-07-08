@@ -6,7 +6,8 @@ include "../../../../config/koneksi.php";
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 
 // Function to redirect with referrer
-function redirect_back() {
+function redirect_back()
+{
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
@@ -82,7 +83,7 @@ if ($act == "konfirmasikembali" && isset($_GET['id'])) {
                 $query_update_buku = "UPDATE buku SET jumlah_buku = jumlah_buku + 1 WHERE id_buku = '$buku_id'";
                 mysqli_query($koneksi, $query_update_buku);
 
-                $_SESSION['berhasil'] = $denda > 0 
+                $_SESSION['berhasil'] = $denda > 0
                     ? "Pengembalian berhasil dikonfirmasi. Dikenakan denda sebesar Rp. " . number_format($denda, 0, ',', '.')
                     : "Pengembalian berhasil dikonfirmasi.";
             } else {
@@ -96,4 +97,30 @@ if ($act == "konfirmasikembali" && isset($_GET['id'])) {
     }
     redirect_back();
 }
+if ($act == "tolakpinjam" && isset($_GET['id'])) {
+    $id_peminjaman = mysqli_real_escape_string($koneksi, $_GET['id']);
+
+    // Delete the borrowing record
+    $query_delete_peminjaman = "DELETE FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'";
+    if (mysqli_query($koneksi, $query_delete_peminjaman)) {
+        $_SESSION['berhasil'] = "Peminjaman berhasil ditolak.";
+    } else {
+        $_SESSION['gagal'] = "Gagal menolak peminjaman.";
+    }
+    redirect_back();
+}
+// Rejection of return
+if ($act == "tolakkembali" && isset($_GET['id'])) {
+    $id_peminjaman = mysqli_real_escape_string($koneksi, $_GET['id']);
+
+    // Update peminjaman status to 'Dipinjam'
+    $query_update_peminjaman = "UPDATE peminjaman SET status = 'Dipinjam' WHERE id_peminjaman = '$id_peminjaman'";
+    if (mysqli_query($koneksi, $query_update_peminjaman)) {
+        $_SESSION['berhasil'] = "Penolakan pengembalian berhasil. Status peminjaman dikembalikan ke 'Dipinjam'.";
+    } else {
+        $_SESSION['gagal'] = "Penolakan pengembalian gagal.";
+    }
+    redirect_back();
+}
+
 ?>
