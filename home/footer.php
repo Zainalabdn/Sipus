@@ -94,7 +94,7 @@
 							<a href="#">Report a problem</a>
 						</li>
 						<li class="menu-item">
-							<a href="#">Suggesting edits</a>
+							<a href="#">Suggestisdiasjddits</a>
 						</li>
 						<li class="menu-item">
 							<a href="#">Contact us</a>
