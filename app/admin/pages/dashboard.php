@@ -46,7 +46,7 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3><?= $row_anggota; ?></h3>
-                        <p>Anggota</p>
+                        <p>Data Anggota</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-users"></i>
@@ -65,7 +65,7 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $row_buku; ?></h3>
-                        <p>Buku</p>
+                        <p>Data Buku</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-book"></i>
@@ -73,6 +73,7 @@
                     <a href="data-buku" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
@@ -81,15 +82,91 @@
                 $query_buku = mysqli_query($koneksi, "SELECT * FROM buku");
                 $row_buku = mysqli_num_rows($query_buku);
                 ?>
-                <div class="small-box bg-green">
+                <div class="small-box bg-red">
                     <div class="inner">
                         <h3><?= $row_buku; ?></h3>
-                        <p>Buku</p>
+                        <p>Data Peminjaman</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <a href="data-buku" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="data-peminjaman" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                include "../../config/koneksi.php";
+                $query_buku = mysqli_query($koneksi, "SELECT * FROM penerbit");
+                $row_buku = mysqli_num_rows($query_buku);
+                ?>
+                <div class="small-box bg-orange">
+                    <div class="inner">
+                        <h3><?= $row_buku; ?></h3>
+                        <p>Data Penerbit</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="penerbit" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                include "../../config/koneksi.php";
+                $query_buku = mysqli_query($koneksi, "SELECT * FROM user WHERE role IN ('Admin', 'Petugas')");
+                $row_buku = mysqli_num_rows($query_buku);
+                ?>
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3><?= $row_buku; ?></h3>
+                        <p>Data Administrator</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="administrator" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                include "../../config/koneksi.php";
+                $query_buku = mysqli_query($koneksi, "SELECT * FROM pengunjung");
+                $row_buku = mysqli_num_rows($query_buku);
+                ?>
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3><?= $row_buku; ?></h3>
+                        <p>Data Pengunjung</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="data-pengunjung" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                include "../../config/koneksi.php";
+                $query_buku = mysqli_query($koneksi, "SELECT * FROM kategori");
+                $row_buku = mysqli_num_rows($query_buku);
+                ?>
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?= $row_buku; ?></h3>
+                        <p>Data Katalog</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="kategori-buku" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
