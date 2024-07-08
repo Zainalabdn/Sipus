@@ -76,7 +76,7 @@ include "../../config/koneksi.php";
                             <span><?= $_SESSION['fullname']; ?></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="#">Profile</a>
+                            <a href="profile.php">Profile</a>
                             <a href="logout.php">Logout</a>
                         </div>
                     </div><!--top-right-->
