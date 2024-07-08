@@ -14,7 +14,6 @@ if (isset($_GET['id'])) {
         echo "Book not found.";
         exit();
     }
-
     $stmt->close();
     $koneksi->close();
 } else {
@@ -65,10 +64,8 @@ if (isset($_GET['id'])) {
                                         <a href="#" class="btn-accent-arrow">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <!-- / row -->
 

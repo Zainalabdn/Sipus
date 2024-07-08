@@ -12,20 +12,24 @@ include "../../config/koneksi.php";
 // Ambil ID pengguna dari sesi
 $id_user = $_SESSION['id_user'];
 
-// Query untuk mengambil data buku yang sudah dipinjam 
-$queryDipinjam = "SELECT b.id_buku, b.judul_buku, b.pengarang, b.img, p.tanggal_pinjam, p.tanggal_kembali, p.status
-                  FROM buku b
-                  INNER JOIN peminjaman p ON b.id_buku = p.id_buku
-                  WHERE p.id_user = $id_user AND p.status = 'Dipinjam'";
-$resultDipinjam = $koneksi->query($queryDipinjam);
+// Query untuk mengambil daftar buku yang dipinjam oleh pengguna
+$query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali
+          FROM peminjaman
+          INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
+          WHERE peminjaman.id_user = ?";
+$stmt = $koneksi->prepare($query);
+$stmt->bind_param("i", $id_user);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// Query untuk mengambil data buku yang sudah dikembalikan
-$queryDikembalikan = "SELECT b.id_buku, b.judul_buku, b.pengarang, b.img, p.tanggal_pinjam, p.tanggal_kembali, p.status, p.denda
-                      FROM buku b
-                      INNER JOIN peminjaman p ON b.id_buku = p.id_buku
-                      WHERE p.id_user = $id_user AND p.status = 'Dikembalikan'";
-$resultDikembalikan = $koneksi->query($queryDikembalikan);
+// Inisialisasi array untuk menyimpan buku yang dipinjam
+$buku_dipinjam = [];
 
+while ($row = $result->fetch_assoc()) {
+    $buku_dipinjam[] = $row;
+}
+
+$stmt->close();
 $koneksi->close();
 
 ?>
@@ -102,64 +106,17 @@ $koneksi->close();
                                                 </div>
                                             </figcaption>
                                         </div>
-                                    </div>
-                                <?php endwhile; ?>
-                            </div>
-                        </div>
+                                    </figcaption>
+                                </div>
+                            <?php endforeach; ?>
+                        </div><!-- grid -->
+                    </div><!-- product-list -->
+                </div><!-- inner-content -->
+            </div><!-- row -->
+        </div><!-- container -->
+    </section><!-- borrowed-books -->
 
-                        <div id="Dikembalikan" data-tab-content>
-                            <div class="row" id="book-list">
-                                <?php while ($book = $resultDikembalikan->fetch_assoc()) : ?>
-                                    <div class="col-md-3">
-                                        <div class="product-item">
-                                            <figure class="product-style">
-                                                <img src="<?= $book['img']; ?>" alt="Books" class="product-item">
-                                                <a href="detailbuku.php?id=<?= $book['id_buku']; ?>" class="add-to-cart" data-product-tile="add-to-cart">
-                                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Detail Buku</button></a>
-                                            </figure>
-                                            <figcaption>
-                                                <h3><?= $book['judul_buku']; ?></h3>
-                                                <span>Status: <?= $book['status']; ?></span>
-                                                <p><span>Tanggal Pinjam: <?= $book['tanggal_pinjam']; ?></span></p>
-                                                <p><span>Tanggal Kembali: <?= $book['tanggal_kembali']; ?></span></p>
-                                                <p><span>Denda : <?= $book['denda']; ?></span></p>
-                                            </figcaption>
-                                        </div>
-                                    </div>
-                                <?php endwhile; ?>
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!--inner-tabs-->
-
-            </div>
-        </div>
-    </section>
-
-    <?php @include('footer.php'); ?>
-
-    <script src="../../assets/home/js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script src="../../assets/home/js/plugins.js"></script>
-    <script src="../../assets/home/js/script.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Mengatur fungsi tab
-            $('.tabs li').click(function() {
-                var tab_id = $(this).attr('data-tab-target');
-
-                // Menghapus kelas active dari semua tab
-                $('.tabs li').removeClass('active');
-                $('.tab-content').removeClass('active');
-
-                // Menambahkan kelas active ke tab yang dipilih
-                $(this).addClass('active');
-                $(tab_id).addClass('active');
-            });
-        });
-    </script>
-
+    <?php include 'footer.php'; ?> <!-- Pastikan path include file footer.php sudah benar -->
 </body>
 
 </html>
