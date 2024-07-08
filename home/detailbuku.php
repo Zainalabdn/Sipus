@@ -58,7 +58,8 @@ if (isset($_GET['id'])) {
                                 <div class="products-content">
                                     <div class="author-name"><?= $book['pengarang']; ?></div>
                                     <h3 class="item-title"><?= $book['tahun_terbit']; ?></h3>
-                                    <p><?= $book['deskripsi']; ?></p>
+                                    <p><?= substr($book['deskripsi'], 0, 200); ?><?= strlen($book['deskripsi']) > 200 ? "..." : ""; ?></p>
+
                                     <div class="item-price">Tersedia: <?= $book['jumlah_buku']; ?></div>
                                     <div class="btn-wrap">
                                         <a href="#" class="btn-accent-arrow">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
