@@ -175,6 +175,7 @@ if ($_SESSION['level'] != "Admin") {
     $(document).ready(function() {
         $('#example1').DataTable();
         $('#example2').DataTable();
+        $('#example3').DataTable();
     });
     </script>
     <script type="text/javascript">

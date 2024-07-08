@@ -64,10 +64,7 @@ if (isset($_GET['id'])) {
                                     <p><?= $book['deskripsi']; ?></p>
                                     <div class="item-price">Tersedia: <?= $book['jumlah_buku']; ?></div>
                                     <div class="btn-wrap">
-                                        <a href="#" class="btn-accent-arrow pinjam-btn" data-bs-toggle="modal"
-                                            data-bs-target="#modalPinjam"
-                                            data-book-id="<?= $book['id_buku']; ?>">Pinjam<i
-                                                class="icon icon-ns-arrow-right"></i></a>
+                                        <a href="#" class="btn-accent-arrow pinjam-btn" data-bs-toggle="modal" data-bs-target="#modalPinjam" data-book-id="<?= $book['id_buku']; ?>">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -136,9 +133,7 @@ if (isset($_GET['id'])) {
     </script>
 
     <script src="../../assets/home/js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="../../assets/home/js/plugins.js"></script>
     <script src="../../assets/home/js/script.js"></script>
 </body>

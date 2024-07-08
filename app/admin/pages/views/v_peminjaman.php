@@ -48,6 +48,7 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
                                             <th>Status</th>
+                                            <th>Denda</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,7 +59,7 @@
                                         $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname, user.username FROM peminjaman 
                                                                           JOIN buku ON peminjaman.id_buku = buku.id_buku 
                                                                           JOIN user ON peminjaman.id_user = user.id_user
-                                                                          WHERE peminjaman.status = 'Dipinjam'");
+                                                                         WHERE peminjaman.status IN ('Dipinjam', 'Dikembalikan')");
                                         while ($row = mysqli_fetch_assoc($query)) {
                                         ?>
                                             <tr>
@@ -68,6 +69,7 @@
                                                 <td><?= htmlspecialchars($row['tanggal_pinjam']); ?></td>
                                                 <td><?= htmlspecialchars($row['tanggal_kembali']); ?></td>
                                                 <td><?= htmlspecialchars($row['status']); ?></td>
+                                                <td><?= htmlspecialchars($row['denda']); ?></td>
                                             </tr>
                                         <?php
                                         }
@@ -97,7 +99,7 @@
                                         $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname FROM peminjaman 
                                                   JOIN buku ON peminjaman.id_buku = buku.id_buku 
                                                   JOIN user ON peminjaman.id_user = user.id_user 
-                                                  WHERE peminjaman.status = 'Diminta'");
+                                                  WHERE peminjaman.status = 'Minta Peminjaman'");
                                         while ($row = mysqli_fetch_assoc($query)) {
                                         ?>
                                             <tr>
@@ -107,8 +109,8 @@
                                                 <td><?= htmlspecialchars($row['tanggal_pinjam']); ?></td>
                                                 <td><?= htmlspecialchars($row['tanggal_kembali']); ?></td>
                                                 <td>
-                                                    <a href="pages/function/Peminjaman.php?act=konfirmasi&id=<?= $row['id_peminjaman']; ?>" class="btn btn-success btn-sm">Konfirmasi</a>
-                                                    <a href="pages/function/Peminjaman.php?act=tolak&id=<?= $row['id_peminjaman']; ?>" class="btn btn-danger btn-sm">Tolak</a>
+                                                    <a href="pages/function/Peminjaman.php?act=konfirmasipinjam&id=<?= $row['id_peminjaman']; ?>" class="btn btn-success btn-sm">Konfirmasi</a>
+                                                    <a href="pages/function/Peminjaman.php?act=tolakpinjam&id=<?= $row['id_peminjaman']; ?>" class="btn btn-danger btn-sm">Tolak</a>
                                                 </td>
                                             </tr>
                                         <?php
@@ -120,7 +122,47 @@
                         </div>
                         <div class="tab-pane" id="pengembalian">
                             <!-- Content for Permintaan Pengembalian -->
+                            <div class="box-body table-responsive">
+                                <table id="example3" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Judul Buku</th>
+                                            <th>Nama Anggota</th>
+                                            <th>Tanggal Peminjaman</th>
+                                            <th>Tanggal Pengembalian</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include "../../config/koneksi.php";
+                                        $no = 1;
+                                        $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname FROM peminjaman 
+                                                  JOIN buku ON peminjaman.id_buku = buku.id_buku 
+                                                  JOIN user ON peminjaman.id_user = user.id_user 
+                                                  WHERE peminjaman.status = 'Minta Pengembalian'");
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><?= htmlspecialchars($row['judul_buku']); ?></td>
+                                                <td><?= htmlspecialchars($row['fullname']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_pinjam']); ?></td>
+                                                <td><?= htmlspecialchars($row['tanggal_kembali']); ?></td>
+                                                <td>
+                                                    <a href="pages/function/Peminjaman.php?act=konfirmasikembali&id=<?= $row['id_peminjaman']; ?>" class="btn btn-success btn-sm">Konfirmasi</a>
+                                                    <a href="pages/function/Peminjaman.php?act=tolakkembali&id=<?= $row['id_peminjaman']; ?>" class="btn btn-danger btn-sm">Tolak</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
                     <!-- /.box-body -->
                 </div>

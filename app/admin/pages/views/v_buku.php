@@ -61,179 +61,167 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-include "../../config/koneksi.php";
+                                <?php
+                                include "../../config/koneksi.php";
 
-function displayStars($rating) {
-    $stars = '';
-    $maxStars = 5;
-    $fullStar = '<i class="fa-solid fa-star text-yellow-400"></i>';
-    $halfStar = '<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>';
+                                function displayStars($rating)
+                                {
+                                    $stars = '';
+                                    $maxStars = 5;
+                                    $fullStar = '<i class="fa-solid fa-star text-yellow-400"></i>';
+                                    $halfStar = '<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>';
 
-    // Calculate the number of full stars
-    $fullStars = floor($rating);
-    // Check if there's a half star
-    $hasHalfStar = ($rating - $fullStars) >= 0.5;
+                                    // Calculate the number of full stars
+                                    $fullStars = floor($rating);
+                                    // Check if there's a half star
+                                    $hasHalfStar = ($rating - $fullStars) >= 0.5;
 
-    // Add full stars
-    for ($i = 0; $i < $fullStars; $i++) {
-        $stars .= $fullStar;
-    }
+                                    // Add full stars
+                                    for ($i = 0; $i < $fullStars; $i++) {
+                                        $stars .= $fullStar;
+                                    }
 
-    // Add half star if needed
-    if ($hasHalfStar) {
-        $stars .= $halfStar;
-        $fullStars++; // Adjust for the half star
-    }
+                                    // Add half star if needed
+                                    if ($hasHalfStar) {
+                                        $stars .= $halfStar;
+                                        $fullStars++; // Adjust for the half star
+                                    }
 
-    return $stars;
-}
+                                    return $stars;
+                                }
 
-$no = 1;
-$query = mysqli_query($koneksi, "SELECT * FROM buku");
-while ($row = mysqli_fetch_assoc($query)) {
-?>
-<tr>
-    <td><?= $no++; ?></td>
-    <td><?= $row['judul_buku']; ?></td>
-    <td><?= $row['isbn']; ?></td>
-    <td><?= $row['pengarang']; ?></td>
-    <td><?= $row['penerbit_buku']; ?></td>
-    <td><?= $row['deskripsi']; ?></td>
-    <td><?= $row['jumlah_buku']; ?></td>
-    <td><?= $row['averageRating'];  ?>&nbsp;<?=displayStars($row['averageRating']); ?></td>
-    <td><?= $row['language']; ?></td>
-    <td><img src="<?= $row['img']; ?>" alt="Gambar Buku" width="100"></td>
-    <td>
-        <a href="#" data-target="#modalEditBuku<?= $row['id_buku']; ?>" data-toggle="modal" class="btn btn-info btn-sm">
-            <i class="fa fa-edit"></i>
-        </a>
-        <a href="pages/function/Buku.php?act=hapus&id=<?= $row['id_buku']; ?>" class="btn btn-danger btn-sm btn-del">
-            <i class="fa fa-trash"></i>
-        </a>
-    </td>
-</tr>
+                                $no = 1;
+                                $query = mysqli_query($koneksi, "SELECT * FROM buku");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $row['judul_buku']; ?></td>
+                                        <td><?= $row['isbn']; ?></td>
+                                        <td><?= $row['pengarang']; ?></td>
+                                        <td><?= $row['penerbit_buku']; ?></td>
+                                        <td><?= $row['deskripsi']; ?></td>
+                                        <td><?= $row['jumlah_buku']; ?></td>
+                                        <td><?= $row['averageRating'];  ?>&nbsp;<?= displayStars($row['averageRating']); ?></td>
+                                        <td><?= $row['language']; ?></td>
+                                        <td><img src="<?= $row['img']; ?>" alt="Gambar Buku" width="100"></td>
+                                        <td>
+                                            <a href="#" data-target="#modalEditBuku<?= $row['id_buku']; ?>" data-toggle="modal" class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="pages/function/Buku.php?act=hapus&id=<?= $row['id_buku']; ?>" class="btn btn-danger btn-sm btn-del">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
 
-                                <!-- Modal Edit -->
-                                <div class="modal fade" id="modalEditBuku<?= $row['id_buku']; ?>">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content" style="border-radius: 5px;">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title"
-                                                    style="font-family: 'Quicksand', sans-serif; font-weight: bold;">
-                                                    Edit Buku ( <?= $row['judul_buku']; ?> - <?= $row['pengarang']; ?> )
-                                                </h4>
-                                            </div>
-                                            <form action="pages/function/Buku.php?act=edit"
-                                                enctype="multipart/form-data" method="POST">
-                                                <div class="modal-body">
-                                                    <input type="hidden" name="id_buku" value="<?= $row['id_buku']; ?>">
-                                                    <div class="form-group">
-                                                        <label>Judul Buku <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <input type="text" class="form-control"
-                                                            value="<?= $row['judul_buku']; ?>" name="judulBuku">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Kategori Buku <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <select class="form-control" name="kategoriBuku">
-                                                            <option selected value="<?= $row['kategori_buku']; ?>">
-                                                                <?= $row['kategori_buku']; ?> ( Dipilih Sebelumnya )
-                                                            </option>
-                                                            <?php
+                                    <!-- Modal Edit -->
+                                    <div class="modal fade" id="modalEditBuku<?= $row['id_buku']; ?>">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="border-radius: 5px;">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">
+                                                        Edit Buku ( <?= $row['judul_buku']; ?> - <?= $row['pengarang']; ?> )
+                                                    </h4>
+                                                </div>
+                                                <form action="pages/function/Buku.php?act=edit" enctype="multipart/form-data" method="POST">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_buku" value="<?= $row['id_buku']; ?>">
+                                                        <div class="form-group">
+                                                            <label>Judul Buku <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <input type="text" class="form-control" value="<?= $row['judul_buku']; ?>" name="judulBuku">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Kategori Buku <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <select class="form-control" name="kategoriBuku">
+                                                                <option selected value="<?= $row['kategori_buku']; ?>">
+                                                                    <?= $row['kategori_buku']; ?> ( Dipilih Sebelumnya )
+                                                                </option>
+                                                                <?php
                                                                 include "../../config/koneksi.php";
 
                                                                 $sql = mysqli_query($koneksi, "SELECT * FROM kategori");
                                                                 while ($data = mysqli_fetch_array($sql)) {
                                                                 ?>
-                                                            <option value="<?= $data['nama_kategori']; ?>">
-                                                                <?= $data['nama_kategori']; ?></option>
-                                                            <?php
+                                                                    <option value="<?= $data['nama_kategori']; ?>">
+                                                                        <?= $data['nama_kategori']; ?></option>
+                                                                <?php
                                                                 }
                                                                 ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Penerbit Buku <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <select class="form-control select2" name="penerbitBuku">
-                                                            <option selected value="<?= $row['penerbit_buku']; ?>">
-                                                                <?= $row['penerbit_buku']; ?> ( Dipilih Sebelumnya )
-                                                            </option>
-                                                            <?php
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Penerbit Buku <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <select class="form-control select2" name="penerbitBuku">
+                                                                <option selected value="<?= $row['penerbit_buku']; ?>">
+                                                                    <?= $row['penerbit_buku']; ?> ( Dipilih Sebelumnya )
+                                                                </option>
+                                                                <?php
                                                                 include "../../config/koneksi.php";
 
                                                                 $sql = mysqli_query($koneksi, "SELECT * FROM penerbit");
                                                                 while ($data = mysqli_fetch_array($sql)) {
                                                                 ?>
-                                                            <option value="<?= $data['nama_penerbit']; ?>">
-                                                                <?= $data['nama_penerbit']; ?> (
-                                                                <?= $data['verif_penerbit']; ?> )</option>
-                                                            <?php
+                                                                    <option value="<?= $data['nama_penerbit']; ?>">
+                                                                        <?= $data['nama_penerbit']; ?> (
+                                                                        <?= $data['verif_penerbit']; ?> )</option>
+                                                                <?php
                                                                 }
                                                                 ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Pengarang <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <input type="text" class="form-control"
-                                                            value="<?= $row['pengarang']; ?>" name="pengarang" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tahun Terbit <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <input type="number" min="2000" max="2100" class="form-control"
-                                                            value="<?= $row['tahun_terbit']; ?>" name="tahunTerbit"
-                                                            required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>ISBN <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <input type="number" class="form-control"
-                                                            value="<?= $row['isbn']; ?>" name="iSbn" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Deskripsi</label>
-                                                        <textarea class="form-control" name="deskripsi"
-                                                            rows="3"><?= $row['deskripsi']; ?></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jumlah Buku <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <input type="number" class="form-control"
-                                                            value="<?= $row['jumlah_buku']; ?>" name="jumlahBuku"
-                                                            required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Gambar Buku <small style="color: red;">* Wajib
-                                                                diisi</small></label>
-                                                        <!-- Current image display -->
-                                                        <img src="<?= $row['img']; ?>" alt="Gambar Buku" width="100">
-                                                        <br><br>
-                                                        <br>
-                                                        <!-- Input for image link -->
-                                                        <label for="imgLink">Atau Masukkan Link Gambar:</label>
-                                                        <input type="text" class="form-control" id="imgLink"
-                                                            name="img" placeholder="Link gambar(opsional)" value="<?= $row['img']; ?>">
-                                                    </div>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Pengarang <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <input type="text" class="form-control" value="<?= $row['pengarang']; ?>" name="pengarang" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Tahun Terbit <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <input type="number" min="2000" max="2100" class="form-control" value="<?= $row['tahun_terbit']; ?>" name="tahunTerbit" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ISBN <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <input type="number" class="form-control" value="<?= $row['isbn']; ?>" name="iSbn" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Deskripsi</label>
+                                                            <textarea class="form-control" name="deskripsi" rows="3"><?= $row['deskripsi']; ?></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Jumlah Buku <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <input type="number" class="form-control" value="<?= $row['jumlah_buku']; ?>" name="jumlahBuku" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Gambar Buku <small style="color: red;">* Wajib
+                                                                    diisi</small></label>
+                                                            <!-- Current image display -->
+                                                            <img src="<?= $row['img']; ?>" alt="Gambar Buku" width="100">
+                                                            <br><br>
+                                                            <br>
+                                                            <!-- Input for image link -->
+                                                            <label for="imgLink">Atau Masukkan Link Gambar:</label>
+                                                            <input type="text" class="form-control" id="imgLink" name="img" placeholder="Link gambar(opsional)" value="<?= $row['img']; ?>">
+                                                        </div>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit"
-                                                        class="btn btn-primary btn-block">Simpan</button>
-                                                </div>
-                                            </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
                                         </div>
-                                        <!-- /.modal-content -->
+                                        <!-- /.modal-dialog -->
                                     </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
-                                <!-- /. Modal Edit -->
+                                    <!-- /. Modal Edit -->
                                 <?php
                                 }
                                 ?>
@@ -266,11 +254,8 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <div class="flex flex-col items-center justify-center">
                             <label for="search-input" class="text-lg font-semibold">Cari Buku:</label>
                             <div class="flex flex-row">
-                                <input type="text" id="search-input"
-                                    class="block w-[30vw] min-w-[300px] bg-white border border-gray-300 rounded-md py-2 px-3 mr-2"
-                                    placeholder="Masukkan kata kunci">
-                                <button id="search-button" type="button"
-                                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Cari</button>
+                                <input type="text" id="search-input" class="block w-[30vw] min-w-[300px] bg-white border border-gray-300 rounded-md py-2 px-3 mr-2" placeholder="Masukkan kata kunci">
+                                <button id="search-button" type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Cari</button>
                             </div>
                         </div>
                     </div>
@@ -278,8 +263,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                 <div class="w-full px-5 flex justify-center items">
                     <div class="w-[30vw] min-w-[300px]">
                         <label for="book-select" class="text-sm font-semibold">Pilih Judul Buku:</label>
-                        <select id="book-select"
-                            class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mt-1 mb-4">
+                        <select id="book-select" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mt-1 mb-4">
                             <!-- Options will be dynamically added here -->
                         </select>
                     </div>
@@ -287,55 +271,36 @@ while ($row = mysqli_fetch_assoc($query)) {
                 <div class="w-full md:w-1/2 xl:w-1/3 p-4">
                     <img src="" name="book-image" alt="" class="w-full h-full object-cover rounded-md" id="book-image">
                     <input type="text" id="book-image-url" name="bookImage" hidden>
-                    
+
 
                 </div>
                 <div class="w-full md:w-1/2 xl:w-2/3 p-4" id="book-details">
                     <!-- Book details will be dynamically filled here -->
                     <input type="hidden" id="book-id" name="bookId">
-                    <input type="text" id="book-title" name="bookTitle"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
-                        placeholder="Judul Buku">
-                    <input type="text" id="book-author" name="bookAuthor"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
-                        placeholder="Penulis">
-                    <input type="text" id="book-isbn" name="bookIsbn"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
-                        placeholder="ISBN">
+                    <input type="text" id="book-title" name="bookTitle" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" placeholder="Judul Buku">
+                    <input type="text" id="book-author" name="bookAuthor" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" placeholder="Penulis">
+                    <input type="text" id="book-isbn" name="bookIsbn" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" placeholder="ISBN">
 
-                    <textarea id="book-description" name="bookDescription"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" rows="4"
-                        placeholder="Deskripsi"></textarea>
-                    <input type="text" id="book-publisher" name="bookPublisher"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
-                        placeholder="Penerbit">
-                    <input type="text" id="book-published-date" name="bookPublishedDate"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2"
-                        placeholder="Tahun Terbit">
-                    <select type="text" id="book-categories" name="bookCategories"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
-                        placeholder="Kategori">
+                    <textarea id="book-description" name="bookDescription" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" rows="4" placeholder="Deskripsi"></textarea>
+                    <input type="text" id="book-publisher" name="bookPublisher" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" placeholder="Penerbit">
+                    <input type="text" id="book-published-date" name="bookPublishedDate" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-2" placeholder="Tahun Terbit">
+                    <select type="text" id="book-categories" name="bookCategories" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4" placeholder="Kategori">
                         <?php
-                            include "../../config/koneksi.php";
+                        include "../../config/koneksi.php";
 
-                            $sql = mysqli_query($koneksi, "SELECT * FROM kategori");
-                            while ($data = mysqli_fetch_array($sql)) {
-                            ?>
-                        <option value="<?= $data['nama_kategori']; ?>">
-                            <?= $data['nama_kategori']; ?> (
-                            <?= $data['nama_kategori']; ?> )</option>
+                        $sql = mysqli_query($koneksi, "SELECT * FROM kategori");
+                        while ($data = mysqli_fetch_array($sql)) {
+                        ?>
+                            <option value="<?= $data['nama_kategori']; ?>">
+                                <?= $data['nama_kategori']; ?> (
+                                <?= $data['nama_kategori']; ?> )</option>
                         <?php
-                            }
-                            ?>
-                        </select>
-                    <input type="text" id="book-averageRating" name="bookAverageRating"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
-                        placeholder="Rating">
-                    <input type="text" id="book-language" name="bookLanguage"
-                        class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4"
-                        placeholder="Bahasa">
-                    <button type="submit" name="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Simpan</button>
+                        }
+                        ?>
+                    </select>
+                    <input type="text" id="book-averageRating" name="bookAverageRating" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4" placeholder="Rating">
+                    <input type="text" id="book-language" name="bookLanguage" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 mb-4" placeholder="Bahasa">
+                    <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Simpan</button>
                 </div>
             </form>
         </div>
@@ -347,23 +312,23 @@ while ($row = mysqli_fetch_assoc($query)) {
 <!-- /.modal -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-            // Fetch categories from Google API
-            fetch('https://www.googleapis.com/books/v1/volumes?q=subject')
-                .then(response => response.json())
-                .then(data => {
-                    const categories = data.items.map(item => item.volumeInfo.categories).flat();
-                    const uniqueCategories = [...new Set(categories)]; // Remove duplicates
-                    const selectElement = document.getElementById('book-categories');
+        // Fetch categories from Google API
+        fetch('https://www.googleapis.com/books/v1/volumes?q=subject')
+            .then(response => response.json())
+            .then(data => {
+                const categories = data.items.map(item => item.volumeInfo.categories).flat();
+                const uniqueCategories = [...new Set(categories)]; // Remove duplicates
+                const selectElement = document.getElementById('book-categories');
 
-                    uniqueCategories.forEach(category => {
-                        const option = document.createElement('option');
-                        option.value = category;
-                        option.textContent = `${category} (${category})`;
-                        selectElement.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching categories:', error));
-        });
+                uniqueCategories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = `${category} (${category})`;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    });
     // Function to populate form fields with book data
     function populateFormFields(book) {
         document.getElementById('book-id').value = book.id;
@@ -413,13 +378,13 @@ while ($row = mysqli_fetch_assoc($query)) {
     }
 
     // Event listener for when a book is selected
-    document.getElementById('book-select').addEventListener('change', function () {
+    document.getElementById('book-select').addEventListener('change', function() {
         const selectedBookId = this.value;
         displayBookDetails(selectedBookId);
     });
 
     // Function to handle search button click
-    document.getElementById('search-button').addEventListener('click', function () {
+    document.getElementById('search-button').addEventListener('click', function() {
         const searchQuery = document.getElementById('search-input').value.trim();
         if (searchQuery !== '') {
             const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchQuery)}&key=AIzaSyBlMHZTsYUnzlxgpG8faz3_Db8iMN6eZKA`;
@@ -454,7 +419,7 @@ while ($row = mysqli_fetch_assoc($query)) {
             text: '$_SESSION[berhasil]'
     })";
     }
-    $_SESSION['berhasil'] = ''; 
+    $_SESSION['berhasil'] = '';
     ?>
 </script>
 <!-- Notif Gagal -->
@@ -467,12 +432,12 @@ while ($row = mysqli_fetch_assoc($query)) {
             text: '$_SESSION[gagal]'
     })";
     }
-    $_SESSION['gagal'] = ''; 
+    $_SESSION['gagal'] = '';
     ?>
 </script>
 <!-- Swal Hapus Data -->
 <script>
-    $('.btn-del').on('click', function (e) {
+    $('.btn-del').on('click', function(e) {
         e.preventDefault();
         const href = $(this).attr('href')
 
