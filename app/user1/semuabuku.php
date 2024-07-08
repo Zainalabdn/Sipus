@@ -1,6 +1,6 @@
 <?php
 include "../../config/koneksi.php";
-
+session_start();
 // Fetch all genres from the kategori table
 $genreQuery = "SELECT * FROM kategori";
 $genreResult = $koneksi->query($genreQuery);
