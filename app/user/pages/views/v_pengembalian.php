@@ -78,9 +78,8 @@
                                 </form>
                             </section>
                         </div>
-
                         <!-- Tanggal Pengembalian -->
-                        <div class="tab-pane" id="tgl-pengembalian">
+                        <div class="tab-panel" id="tgl-pengembalian">
                             <table class="table table-bordered" id="example1">
                                 <thead>
                                     <tr>

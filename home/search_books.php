@@ -15,6 +15,5 @@ $books = [];
 while ($book = $result->fetch_assoc()) {
     $books[] = $book;
 }
-
 echo json_encode($books);
 ?>
