@@ -12,8 +12,8 @@ include "../../config/koneksi.php";
 // Get the user ID from the session
 $id_user = $_SESSION['id_user'];
 
-// Query to get the list of books borrowed by the user
-$query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali
+// Query to get the list of books borrowed and returned by the user
+$query = "SELECT buku.*, peminjaman.tanggal_pinjam, peminjaman.tanggal_kembali, peminjaman.status
           FROM peminjaman
           INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
           WHERE peminjaman.id_user = ?";
@@ -22,16 +22,22 @@ $stmt->bind_param("i", $id_user);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Initialize array to store borrowed books
+// Initialize arrays to store borrowed and returned books
 $buku_dipinjam = [];
+$buku_dikembalikan = [];
 
 while ($row = $result->fetch_assoc()) {
-    $buku_dipinjam[] = $row;
+    if ($row['status'] == 'Dipinjam') {
+        $buku_dipinjam[] = $row;
+    } else if ($row['status'] == 'Dikembalikan') {
+        $buku_dikembalikan[] = $row;
+    }
 }
 
 $stmt->close();
 $koneksi->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +116,28 @@ $koneksi->close();
                                 <?php endforeach; ?>
                             </div><!-- grid -->
                         </div><!-- product-list -->
-                    </div><!-- inner-content -->
-                </div><!-- row -->
-            </div><!-- container -->
+                        <div id="Dikembalikan" data-tab-content>
+                            <div class="row" id="returned-book-list">
+                                <?php foreach ($buku_dikembalikan as $book) : ?>
+                                    <div class="col-md-3">
+                                        <div class="product-item">
+                                            <figure class="product-style">
+                                                <img src="<?= htmlspecialchars($book['img']); ?>" alt="Books" class="book-image">
+                                            </figure>
+                                            <figcaption>
+                                                <h3><?= htmlspecialchars($book['judul_buku']); ?></h3>
+                                                <span>Status: <?= htmlspecialchars($book['status']); ?></span>
+                                                <span>Tanggal Pinjam: <?= htmlspecialchars($book['tanggal_pinjam']); ?></span>
+                                                <p><span>Dikembalikan Pada <?= htmlspecialchars($book['tanggal_kembali']); ?></span></p>
+                                            </figcaption>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div><!-- grid -->
+                        </div><!-- returned-product-list -->
+                    </div><!-- tab-content -->
+                </div><!-- col-md-12 -->
+            </div><!-- row -->
         </div><!-- container -->
     </section><!-- borrowed-books -->
 
