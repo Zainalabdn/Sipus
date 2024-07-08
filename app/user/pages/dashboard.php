@@ -58,10 +58,7 @@
             </marquee>
         </div>
         <!-- -->
-        
-    </section>
-    <!-- /.content -->
-    <?php
+        <?php
         include "../../config/koneksi.php";
         $query = mysqli_query($koneksi, "SELECT * FROM identitas");
         $row = mysqli_fetch_assoc($query);
@@ -74,4 +71,6 @@
             <h2 class="text-center" style="font-family: Quicksand, sans-serif;">E-Library</h2>
             <p class="text-center">Alamat : Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman,
                 Daerah Istimewa Yogyakarta 55281</p>
+    </section>
+    <!-- /.content -->
 </div>
