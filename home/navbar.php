@@ -6,7 +6,7 @@
 
 				<div class="col-md-2">
 					<div class="main-logo">
-						<a href="index.html"><img src="../assets/home/images/main-logo.png" alt="logo"></a>
+						<a href="../index.html"><img src="../assets/images/R.png" alt="logo"></a>
 					</div>
 
 				</div>
