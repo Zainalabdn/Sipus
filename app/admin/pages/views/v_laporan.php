@@ -34,16 +34,15 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tgl-peminjaman" data-toggle="tab">Tanggal Peminjaman</a></li>
                         <li><a href="#tgl-pengembalian" data-toggle="tab">Tanggal Pengembalian</a></li>
-                        <li><a href="#nama-anggota" data-toggle="tab">Nama Anggota ( Siswa )</a></li>
                     </ul>
                     <div class="tab-content">
                         <!-- Tanggal Pinjam -->
                         <div class="tab-pane active" id="tgl-peminjaman">
                             <section id="new">
-                                <form action="pages/function/Laporan.php?aksi=tgl_pinjam" method="POST" target="_blank">
+                                <form action="pages/function/Laporan.php?aksi=tanggal_pinjam" method="POST" target="_blank">
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" name="tgl_pinjam" id="datepicker" placeholder="Silahkan masukan tanggal pinjam" required>
+                                        <input type="text" class="form-control" name="tanggal_pinjam" id="datepicker" placeholder="Silahkan masukan tanggal pinjam" required>
                                     </div>
                                     <div class=" form-group">
                                         <button type="submit" target="_blank" class="btn btn-primary btn-block">Tampilkan Data</button>
@@ -58,7 +57,7 @@
                             <form action="pages/function/Laporan.php?aksi=tgl_pengembalian" method="POST" target="_blank">
                                 <div class="form-group">
                                     <label>Tanggal Pengembalian</label>
-                                    <input type="text" class="form-control" name="tgl_pengembalian" id="datepicker1" placeholder="Silahkan masukan tanggal pengembalian" required>
+                                    <input type="text" class="form-control" name="tanggal_kembali" id="datepicker1" placeholder="Silahkan masukan tanggal pengembalian" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Tampilkan Data</button>
@@ -67,18 +66,7 @@
                         </div>
                         <!-- /#tgl-pengembalian] -->
 
-                        <!-- Nama Anggota -->
-                        <div class="tab-pane" id="nama-anggota">
-                            <form action="pages/function/Laporan.php?aksi=nama_anggota" method="POST" target="_blank">
-                                <div class="form-group">
-                                    <label>Nama Anggota</label>
-                                    <input type="text" class="form-control" name="nama_anggota" placeholder="Masukan Nama Anggota / Siswa" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Tampilkan Data</button>
-                                </div>
-                            </form>
-                        </div>
+                       
                         <!-- /#nama-anggota] -->
                         <!-- /.tab-content -->
                     </div>
