@@ -21,6 +21,6 @@
 	<link rel="stylesheet" type="text/css" href="../../assets/home/icomoon/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="../../assets/home/css/vendor.css">
 	<link rel="stylesheet" type="text/css" href="../../assets/home/style.css">
-	<!-- Include Font Awesome CSS -->
+	<link rel="icon" type="icon" href="../../assets/dist/img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>

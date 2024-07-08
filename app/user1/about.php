@@ -1,5 +1,6 @@
 <?php 
 include "../../config/koneksi.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

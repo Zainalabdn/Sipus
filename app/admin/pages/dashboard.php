@@ -1,26 +1,25 @@
+@@ -0,0 +1,104 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-
         <h1 style="font-family: 'Quicksand', sans-serif; font-weight: bold;">
             Dashboard
             <small>
                 <!-- function hari, tanggal, bulan, tahun -->
                 <script type='text/javascript'>
-                var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
-                    'Oktober', 'November', 'Desember'
-                ];
-                var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-                var date = new Date();
-                var day = date.getDate();
-                var month = date.getMonth();
-                var thisDay = date.getDay(),
-                    thisDay = myDays[thisDay];
-                var yy = date.getYear();
-                var year = (yy < 1000) ? yy + 1900 : yy;
-                document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-                //
+                    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+                        'Oktober', 'November', 'Desember'
+                    ];
+                    var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+                    var date = new Date();
+                    var day = date.getDate();
+                    var month = date.getMonth();
+                    var thisDay = date.getDay(),
+                        thisDay = myDays[thisDay];
+                    var yy = date.getYear();
+                    var year = (yy < 1000) ? yy + 1900 : yy;
+                    document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
                 </script>
             </small>
         </h1>
@@ -48,7 +47,6 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3><?= $row_anggota; ?></h3>
-
                         <p>Anggota</p>
                     </div>
                     <div class="icon">
@@ -68,7 +66,6 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $row_buku; ?></h3>
-
                         <p>Buku</p>
                     </div>
                     <div class="icon">
@@ -78,23 +75,31 @@
                 </div>
             </div>
             <!-- ./col -->
-            
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                include "../../config/koneksi.php";
+                $query_buku = mysqli_query($koneksi, "SELECT * FROM buku");
+                $row_buku = mysqli_num_rows($query_buku);
+                ?>
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?= $row_buku; ?></h3>
+                        <p>Buku</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="data-buku" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
         <!-- /.row -->
-        
     </section>
     <!-- /.content -->
-    <div class="row">
-            <!-- -->
-            <?php
-            include "../../config/koneksi.php";
-            $query = mysqli_query($koneksi, "SELECT * FROM identitas");
-            $row = mysqli_fetch_assoc($query);
 
-            ?>
-
-            <img src="../../assets/dist/img/logo.png" width="120px" height="120px"
-                style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; margin-bottom: -20px;">
-                <br> <br>
-            <h2 class="text-center" style="font-family: Quicksand, sans-serif;">E-Library</h2>
-            <p class="text-center">Alamat : Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman,Daerah Istimewa Yogyakarta 55281</p>
+    <!-- Footer -->
+   
 </div>
+<!-- /.content-wrapper -->

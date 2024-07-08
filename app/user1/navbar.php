@@ -1,15 +1,16 @@
 <?php
 include "../../config/koneksi.php";
+
 ?>
 <style>
-    /* Style for the user account link */
+    /* Style untuk link akun pengguna */
     .user-account {
         position: relative;
         display: inline-block;
         cursor: pointer;
     }
 
-    /* Style for the dropdown menu */
+    /* Style untuk menu dropdown */
     .dropdown-menu {
         display: none;
         position: absolute;
@@ -20,7 +21,7 @@ include "../../config/koneksi.php";
         z-index: 9999;
     }
 
-    /* Style for dropdown items */
+    /* Style untuk item dropdown */
     .dropdown-menu a {
         color: black;
         padding: 12px 16px;
@@ -76,7 +77,6 @@ include "../../config/koneksi.php";
                         </a>
                         <div class="dropdown-menu">
                             <a href="#">Profile</a>
-                            <a href="#">Settings</a>
                             <a href="logout.php">Logout</a>
                         </div>
                     </div><!--top-right-->

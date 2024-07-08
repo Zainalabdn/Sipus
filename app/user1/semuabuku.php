@@ -1,5 +1,7 @@
 <?php
-include "../config/koneksi.php";
+include "../../config/koneksi.php";
+
+session_start();
 
 // Fetch all books from the database
 $search = '';

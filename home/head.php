@@ -22,4 +22,5 @@
 	<link rel="stylesheet" type="text/css" href="../assets/home/icomoon/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="../assets/home/css/vendor.css">
 	<link rel="stylesheet" type="text/css" href="../assets/home/style.css">
+	<link rel="icon" type="icon" href="../assets/dist/img/logo.png">
 </head>
