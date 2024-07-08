@@ -32,11 +32,11 @@ mysqli_close($koneksi);
 				<div class="inner-content">
 					<div class="logo-wrap">
 						<div class="grid">
-							<a href="#"><img src="../assets/home/images/client-image1.png" alt="client"></a>
-							<a href="#"><img src="../assets/home/images/client-image2.png" alt="client"></a>
-							<a href="#"><img src="../assets/home/images/client-image3.png" alt="client"></a>
-							<a href="#"><img src="../assets/home/images/client-image4.png" alt="client"></a>
-							<a href="#"><img src="../assets/home/images/client-image5.png" alt="client"></a>
+							<a><img src="../assets/home/images/client-image1.png" alt="client"></a>
+							<a><img src="../assets/home/images/client-image2.png" alt="client"></a>
+							<a><img src="../assets/home/images/client-image3.png" alt="client"></a>
+							<a><img src="../assets/home/images/client-image4.png" alt="client"></a>
+							<a><img src="../assets/home/images/client-image5.png" alt="client"></a>
 						</div>
 					</div><!--image-holder-->
 				</div>
