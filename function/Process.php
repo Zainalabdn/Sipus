@@ -91,13 +91,16 @@ if ($_GET['aksi'] == "masuk") {
         header("location: ../masuk");
     }
 } elseif ($_GET['aksi'] == "daftar") {
-    $fullname = $_POST['funame'];
-    $username = addslashes(strtolower($_POST['uname']));
+    include "../config/koneksi.php";
+
+    $fullname = $_POST['fullname'];
+    $username = addslashes(strtolower($_POST['username']));
     $username1 = str_replace(' ', '', $username);
-    $password = $_POST['passw'];
-    $kls = $_POST['kelas'];
-    $jrs = $_POST['jurusan'];
-    $kelas = $kls . $jrs;
+    $nis = $_POST['nis'];
+    $notelp = $_POST['notelp'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $kelas = $_POST['kelas'];
     $alamat = $_POST['alamat'];
     $verif = "Tidak";
     $role = "Anggota";
@@ -107,29 +110,26 @@ if ($_GET['aksi'] == "masuk") {
     $data = mysqli_fetch_array($query);
     $kodeTerakhir = $data['kodeTerakhir'];
 
-    // mengambil angka dari kode barang terbesar, menggunakan fungsi substr
-    // dan diubah ke integer dengan (int)
-    $urutan = (int) substr($kodeTerakhir, 3, 3);
+    // Taking the last 3 digits of the max kode_user and converting to an integer
+    $urutan = (int) substr($kodeTerakhir, 2, 3);
 
-    // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
+    // Incrementing the integer value to get the next user code
     $urutan++;
 
-    // membentuk kode barang baru
-    // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
-    // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
-    // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
+    // Forming the new user code
     $huruf = "AP";
     $Anggota = $huruf . sprintf("%03s", $urutan);
 
-    $sql = "INSERT INTO user(kode_user,nis,fullname,username,password,kelas,alamat,verif,role,join_date)
-            VALUES('" . $Anggota . "','" . $nis . "','" . $fullname . "','" . $username1 . "','" . $password . "','" . $kelas . "','" . $alamat . "','" . $verif . "','" . $role . "','" . $join_date . "')";
-    $sql .= mysqli_query($koneksi, $sql);
+    $sql = "INSERT INTO user(kode_user, nis, fullname, username, notelp, email, password, kelas, alamat, verif, role, join_date)
+            VALUES('$Anggota', '$nis', '$fullname', '$username1', '$notelp', '$email', '$password', '$kelas', '$alamat', '$verif', '$role', '$join_date')";
+    
+    $result = mysqli_query($koneksi, $sql);
 
-    if ($sql) {
-        $_SESSION['berhasil'] = "Pendaftaran Berhasil !";
+    if ($result) {
+        $_SESSION['berhasil'] = "Pendaftaran Berhasil!";
         header("location: ../masuk");
     } else {
-        $_SESSION['gagal'] = "Pendaftaran Gagal !";
-        header("location: ../masuk");
+        $_SESSION['gagal'] = "Pendaftaran Gagal!";
+        header("location: ../daftar");
     }
 }

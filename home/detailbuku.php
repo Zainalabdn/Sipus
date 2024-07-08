@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
 
                                     <div class="item-price">Tersedia: <?= $book['jumlah_buku']; ?></div>
                                     <div class="btn-wrap">
-                                        <a href="#" class="btn-accent-arrow">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
+                                        <a href="../login.php" class="btn-accent-arrow">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>

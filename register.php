@@ -1,17 +1,16 @@
 <?php
-session_start();?>
+session_start();
+include "config/koneksi.php";
+
+$sql = mysqli_query($koneksi, "SELECT * FROM identitas");
+$row1 = mysqli_fetch_assoc($sql);
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <?php
-    include "config/koneksi.php";
-
-    $sql = mysqli_query($koneksi, "SELECT * FROM identitas");
-    $row1 = mysqli_fetch_assoc($sql);
-    ?>
     <title>Pendaftaran | <?= $row1['nama_app']; ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -47,15 +46,67 @@ session_start();?>
             <form name="formLogin" action="function/Process.php?aksi=daftar" method="POST" enctype="multipart/form-data"
                 onsubmit="return validateForm()">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" name="funame" placeholder="Nama Lengkap" id="funame">
+                    <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap" id="fullname">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" name="uname" placeholder="Nama Pengguna" id="uname">
+                    <input type="text" class="form-control" name="username" placeholder="Nama Pengguna" id="username">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" name="passw" placeholder="Kata Sandi" id="passw">
+                    <input type="text" class="form-control" name="nis" placeholder="NIS" id="nis">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="notelp" placeholder="No Telepon" id="notelp">
+                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <select class="form-control" name="kelas" id="kelas">
+                        <option selected disabled>Silahkan pilih kelas</option>
+                        <!-- X -->
+                        <option value="X - Administrasi Perkantoran">X - Administrasi Perkantoran</option>
+                        <option value="X - Farmasi">X - Farmasi</option>
+                        <option value="X - Perbankan">X - Perbankan</option>
+                        <option value="X - Rekayasa Perangkat Lunak">X - Rekayasa Perangkat Lunak</option>
+                        <option value="X - Tata Boga">X - Tata Boga</option>
+                        <option value="X - Teknik Kendaraan Ringan">X - Teknik Kendaraan Ringan</option>
+                        <option value="X - Teknik Komputer dan Jaringan">X - Teknik Komputer dan Jaringan</option>
+                        <option value="X - Teknik Sepeda Motor">X - Teknik Sepeda Motor</option>
+                        <!-- XI -->
+                        <option disabled>------------------------------------------</option>
+                        <option value="XI - Administrasi Perkantoran">XI - Administrasi Perkantoran</option>
+                        <option value="XI - Farmasi">XI - Farmasi</option>
+                        <option value="XI - Perbankan">XI - Perbankan</option>
+                        <option value="XI - Rekayasa Perangkat Lunak">XI - Rekayasa Perangkat Lunak</option>
+                        <option value="XI - Tata Boga">XI - Tata Boga</option>
+                        <option value="XI - Teknik Kendaraan Ringan">XI - Teknik Kendaraan Ringan</option>
+                        <option value="XI - Teknik Komputer dan Jaringan">XI - Teknik Komputer dan Jaringan</option>
+                        <option value="XI - Teknik Sepeda Motor">XI - Teknik Sepeda Motor</option>
+                        <!-- XII -->
+                        <option disabled>------------------------------------------</option>
+                        <option value="XII - Administrasi Perkantoran">XII - Administrasi Perkantoran</option>
+                        <option value="XII - Farmasi">XII - Farmasi</option>
+                        <option value="XII - Perbankan">XII - Perbankan</option>
+                        <option value="XII - Rekayasa Perangkat Lunak">XII - Rekayasa Perangkat Lunak</option>
+                        <option value="XII - Tata Boga">XII - Tata Boga</option>
+                        <option value="XII - Teknik Kendaraan Ringan">XII - Teknik Kendaraan Ringan</option>
+                        <option value="XII - Teknik Komputer dan Jaringan">XII - Teknik Komputer dan Jaringan</option>
+                        <option value="XII - Teknik Sepeda Motor">XII - Teknik Sepeda Motor</option>
+                        
+                    </select>
+                    <span class="glyphicon glyphicon-education form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="alamat" placeholder="Alamat" id="alamat">
+                    <span class="glyphicon glyphicon-home form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" name="password" placeholder="Kata Sandi" id="password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
@@ -76,8 +127,6 @@ session_start();?>
                     </div>
                 </div>
             </div>
-
-
         </div>
         <!-- /.login-box-body -->
     </div>
@@ -118,20 +167,13 @@ session_start();?>
     <!-- -->
     <script>
         function validateForm() {
-            if (document.forms["formLogin"]["funame"].value == "") {
-                toastr.error("Nama Lengkap harus diisi !!");
-                document.forms["formLogin"]["funame"].focus()
-                return false;
-            }
-            if (document.forms["formLogin"]["uname"].value == "") {
-                toastr.error("Nama Pengguna harus diisi !!");
-                document.forms["formLogin"]["uname"].focus();
-                return false;
-            }
-            if (document.forms["formLogin"]["passw"].value == "") {
-                toastr.error("Kata Sandi harus diisi !!");
-                document.forms["formLogin"]["passw"].focus();
-                return false;
+            var fields = ['fullname', 'username', 'nis', 'notelp', 'email', 'kelas', 'alamat', 'password'];
+            for (var i = 0; i < fields.length; i++) {
+                if (document.forms["formLogin"][fields[i]].value == "") {
+                    toastr.error(fields[i] + " harus diisi !!");
+                    document.forms["formLogin"][fields[i]].focus();
+                    return false;
+                }
             }
         }
     </script>
