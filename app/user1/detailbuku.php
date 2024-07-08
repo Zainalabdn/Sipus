@@ -2,8 +2,6 @@
 session_start();
 include "../../config/koneksi.php";
 
-    
-
 if (isset($_GET['id'])) {
     $id_buku = intval($_GET['id']);
     $stmt = $koneksi->prepare("SELECT * FROM buku WHERE id_buku = ?");
@@ -25,7 +23,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= isset($book['language']) && $book['language'] == 'id' ? 'id' : 'en'; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -57,13 +55,47 @@ if (isset($_GET['id'])) {
                             </figure>
                         </div>
                         <div class="col-md-6">
-                            <div class="product-entry">
+                            <div class="product-entry m-0">
                                 <div class="author-name"><?= $book['kategori_buku']; ?></div>
                                 <h2 class="item-title"><?= $book['judul_buku']; ?></h2>
                                 <div class="products-content">
                                     <div class="author-name"><?= $book['pengarang']; ?></div>
                                     <h3 class="item-title"><?= $book['tahun_terbit']; ?></h3>
                                     <p><?= $book['deskripsi']; ?></p>
+                                    <?php if ($book['language'] == 'id') : ?>
+                                        <p>Indonesia</p>
+                                    <?php else : ?>
+                                        <p>Language: <?= $book['language']; ?></p>
+                                    <?php endif; ?>
+
+                                    <?php 
+                                    function displayStars($rating)
+                                    {
+                                        $stars = '';
+                                        $maxStars = 5;
+                                        $fullStar = '<i class="fa-solid fa-star text-yellow-400"></i>';
+                                        $halfStar = '<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>';
+
+                                        // Calculate the number of full stars
+                                        $fullStars = floor($rating);
+                                        // Check if there's a half star
+                                        $hasHalfStar = ($rating - $fullStars) >= 0.5;
+
+                                        // Add full stars
+                                        for ($i = 0; $i < $fullStars; $i++) {
+                                            $stars .= $fullStar;
+                                        }
+
+                                        // Add half star if needed
+                                        if ($hasHalfStar) {
+                                            $stars .= $halfStar;
+                                            $fullStars++; // Adjust for the half star
+                                        }
+
+                                        return $stars;
+                                    }
+                                    ?>
+                                    <p><?=$book['averageRating']; ?>&nbsp;<?= displayStars($book['averageRating']); ?></p>
                                     <div class="item-price">Tersedia: <?= $book['jumlah_buku']; ?></div>
                                     <div class="btn-wrap">
                                         <a href="#" class="btn-accent-arrow pinjam-btn" data-bs-toggle="modal" data-bs-target="#modalPinjam" data-book-id="<?= $book['id_buku']; ?>">Pinjam<i class="icon icon-ns-arrow-right"></i></a>
