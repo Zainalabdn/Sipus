@@ -7,7 +7,7 @@
 
 					<div class="footer-item">
 						<div class="company-brand">
-							<img src="images/main-logo.png" alt="logo" class="footer-logo">
+							<img src="../assets/img/R.png" alt="logo" class="footer-logo">
 							<p>Perpustakaan digital yang menyimpan data baik itu buku dalam bentuk elektronik 
 							dan mendistribusikannya dengan menggunakan protokol elektronik melalui jaringan komputer.</p>
 						</div>

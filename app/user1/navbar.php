@@ -99,7 +99,7 @@ include "../../config/koneksi.php";
             <div class="row">
                 <div class="col-md-2">
                     <div class="main-logo">
-                        <a href="index.html"><img src="../../assets/home/images/main-logo.png" alt="logo"></a>
+                    <h3 href="../index.html" class="outline-dark">E-Library</h3>
                     </div>
                 </div>
                 <div class="col-md-10">
