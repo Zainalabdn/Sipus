@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
                                 <div class="products-content">
                                     <div class="author-name"><?= $book['pengarang']; ?></div>
                                     <h3 class="item-title"><?= $book['tahun_terbit']; ?></h3>
-                                    <p><?= $book['deskripsi']; ?></p>
+                                    <p><?= substr($book['deskripsi'], 0, 200); ?><?= strlen($book['deskripsi']) > 300 ? "..." : ""; ?></p>
                                     <?php if ($book['language'] == 'id') : ?>
                                         <p>Indonesia</p>
                                     <?php else : ?>

@@ -29,7 +29,7 @@ $koneksi->close();
 						<div class="slider-item">
 							<div class="banner-content">
 								<h2 class="banner-title"><?= $book['judul_buku']; ?></h2>
-								<p><?= $book['deskripsi']; ?></p>
+								<p><?= substr($book['deskripsi'], 0, 75); ?><?= strlen($book['deskripsi']) > 300 ? "..." : ""; ?></p>
 								<div class="btn-wrap">
 									<a href="detailbuku.php?id=<?= $book['id_buku']; ?>" class="btn btn-outline-accent btn-accent-arrow">Read More<i class="icon icon-ns-arrow-right"></i></a>
 								</div>
