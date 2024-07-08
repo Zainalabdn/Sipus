@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jul 2024 pada 01.47
+-- Waktu pembuatan: 08 Jul 2024 pada 14.47
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -124,21 +124,20 @@ CREATE TABLE `peminjaman` (
   `id_peminjaman` int(11) NOT NULL,
   `id_buku` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali` date DEFAULT NULL,
-  `status` varchar(50) NOT NULL
+  `status` varchar(50) NOT NULL,
+  `denda` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjaman`, `id_buku`, `id_user`, `username`, `tanggal_pinjam`, `tanggal_kembali`, `status`) VALUES
-(3, 34, 1, '', '2024-07-06', '2024-07-07', 'Dipinjam'),
-(4, 34, 1, '', '2024-07-06', '2024-07-20', 'Dipinjam'),
-(5, 31, 3, '', '2024-07-07', '2024-07-08', 'Dipinjam'),
-(6, 34, 3, '', '2024-07-07', '2024-07-17', 'Dipinjam');
+INSERT INTO `peminjaman` (`id_peminjaman`, `id_buku`, `id_user`, `tanggal_pinjam`, `tanggal_kembali`, `status`, `denda`) VALUES
+(5, 31, 3, '2024-07-07', '2024-07-08', 'Dikembalikan', 0),
+(6, 34, 3, '2024-07-07', '2024-07-17', 'Dikembalikan', 0),
+(7, 31, 3, '2024-07-08', '2024-07-16', 'Dikembalikan', 0);
 
 -- --------------------------------------------------------
 
@@ -163,19 +162,6 @@ INSERT INTO `penerbit` (`id_penerbit`, `kode_penerbit`, `nama_penerbit`, `verif_
 (3, 'P003', 'Bentang Pustaka', 'Terverifikasi'),
 (4, 'P004', 'Erlangga', 'Terverifikasi'),
 (5, 'P005', 'Republika', 'Terverifikasi');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pengembalian`
---
-
-CREATE TABLE `pengembalian` (
-  `id_pengembalian` int(11) NOT NULL,
-  `id_peminjaman` int(11) NOT NULL,
-  `tanggal_kembali` date NOT NULL,
-  `denda` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -255,10 +241,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `kode_user`, `nis`, `fullname`, `username`, `notelp`, `email`, `password`, `kelas`, `alamat`, `verif`, `role`, `join_date`, `terakhir_login`) VALUES
-(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '08-07-2024 ( 06:35:26 )'),
+(1, '-', '-', 'Administrator', 'admin', 0, '', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '08-07-2024 ( 18:57:04 )'),
 (2, '-', '-', 'Petugas', 'petugas', 0, '', 'petugas', '-', '-', 'Iya', 'Petugas', '18-06-2024', '23-06-2024 ( 13:14:45 )'),
-(3, 'AP001', '100011', 'Reza  Saputra', 'reza', 831232132, 'reza@gmail.com', 'Reza', 'Lulus', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '08-07-2024 ( 06:32:48 )'),
-(4, 'AP002', '54353', 'Fauzan Aditya Putra', 'zan', 85321341, 'user@example.com', 'secret', 'Lulus', 'klaten', 'Tidak', 'Anggota', '2024-06-19', ''),
+(3, 'AP001', '100011', 'Reza  Saputra', 'reza', 831232132, 'reza@gmail.com', 'Reza', 'Lulus', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '08-07-2024 ( 19:00:25 )'),
+(4, 'AP002', '54353', 'Fauzan Aditya Putra', 'zan', 85321341, 'user@example.com', 'secret', 'Lulus', 'klaten', 'Tidak', 'Anggota', '2024-06-19', '08-07-2024 ( 16:14:34 )'),
 (5, 'AP003', '200022', 'Dewi Lestari', 'dewi', 812345678, 'dewi@example.com', 'dewi123', 'Lulus', 'Jl. Mawar No. 10, Bandung', 'Tidak', 'Anggota', '2023-03-15', ''),
 (6, 'AP004', '300033', 'Ahmad Syahid', 'ahmad', 856789012, 'ahmad@example.com', 'rahasia', 'Lulus', 'Surabaya', 'Tidak', 'Anggota', '2022-11-20', '2024-06-17 09:30:21'),
 (7, 'AP005', '400044', 'Siti Nurjanah', 'siti', 899001122, 'siti@example.com', 'siti123', 'Lulus', 'Yogyakarta', 'Tidak', 'Anggota', '2023-01-10', ''),
@@ -320,13 +306,6 @@ ALTER TABLE `penerbit`
   ADD PRIMARY KEY (`id_penerbit`);
 
 --
--- Indeks untuk tabel `pengembalian`
---
-ALTER TABLE `pengembalian`
-  ADD PRIMARY KEY (`id_pengembalian`),
-  ADD KEY `id_peminjaman` (`id_peminjaman`);
-
---
 -- Indeks untuk tabel `pengunjung`
 --
 ALTER TABLE `pengunjung`
@@ -376,19 +355,13 @@ ALTER TABLE `pemberitahuan`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `penerbit`
 --
 ALTER TABLE `penerbit`
   MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT untuk tabel `pengembalian`
---
-ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `pesan`
@@ -412,12 +385,6 @@ ALTER TABLE `user`
 ALTER TABLE `peminjaman`
   ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`),
   ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `pengembalian`
---
-ALTER TABLE `pengembalian`
-  ADD CONSTRAINT `pengembalian_ibfk_1` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`);
 
 --
 -- Ketidakleluasaan untuk tabel `pengunjung`

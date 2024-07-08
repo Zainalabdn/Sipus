@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_user = $_SESSION['id_user'];
 
         // Simpan data peminjaman ke dalam tabel peminjaman
-        $stmt = $koneksi->prepare("INSERT INTO peminjaman (id_buku, id_user, tanggal_pinjam, tanggal_kembali, status) VALUES (?, ?, ?, ?, 'Diminta')");
+        $stmt = $koneksi->prepare("INSERT INTO peminjaman (id_buku, id_user, tanggal_pinjam, tanggal_kembali, status) VALUES (?, ?, ?, ?, 'Minta Peminjaman')");
         $stmt->bind_param("iiss", $id_buku, $id_user, $tanggal_pinjam, $tanggal_kembali);
 
         if ($stmt->execute()) {
