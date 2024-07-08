@@ -46,7 +46,7 @@ if ($_GET['act'] == 'tambah') {
     $deskripsi = $_POST['deskripsi']; 
     $jumlah_buku = $_POST['jumlahBuku'];
     $img = $_POST['img_lama']; 
-
+    
     // Check if a new image file is uploaded
     if ($_FILES['img']['name'] != '') {
         $target_dir = "../../../../assets/img/";
