@@ -38,7 +38,15 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="peminjaman">
+                            <div class="box-header">
+                                <h3 class="box-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">Data
+                                    Peminjaman</h3>
+                                <div class="form-group m-b-2 text-right" style="margin-top: -20px; margin-bottom: -5px;">
+                                    <button type="button" class="btn btn-info" onclick="tampilkanModalTambah()"><i class="fa fa-plus"></i>Tambah Peminjaman</button>
+                                </div>
+                            </div>
                             <div class="box-body table-responsive">
+
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -175,6 +183,72 @@
     </section>
     <!-- /.content -->
 </div>
+<!-- Modal tambah peminjaman -->
+<div id="modalTambahPeminjaman" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Peminjaman Buku</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Form tambah peminjaman -->
+                <form action="pages/function/Tambah_peminjaman.php" method="post">
+                    <div class="form-group">
+                        <label>Judul Buku:</label>
+                        <select class="form-control" name="judul_buku" required>
+                            <option value="">Pilih Judul Buku</option>
+                            <?php
+                            include "../../config/koneksi.php";
+
+                            $sql = mysqli_query($koneksi, "SELECT * FROM buku");
+                            while ($data = mysqli_fetch_array($sql)) {
+                                echo '<option value="' . $data['id_buku'] . '">' . $data['judul_buku'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Anggota:</label>
+                        <select class="form-control select2" name="id_user" required>
+                            <option selected disabled>-- Harap Pilih Anggota --</option>
+                            <?php
+                            include "../../config/koneksi.php";
+
+                            $sql = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'Anggota';");
+                            while ($data = mysqli_fetch_array($sql)) {
+                            ?>
+                                <option value="<?= $data['id_user']; ?>"><?= $data['fullname']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Peminjaman:</label>
+                        <input type="date" class="form-control" name="tanggal_pinjam" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Pengembalian:</label>
+                        <input type="date" class="form-control" name="tanggal_kembali" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script untuk menampilkan modal -->
+<script>
+    function tampilkanModalTambah() {
+        $('#modalTambahPeminjaman').modal('show');
+    }
+</script>
+
+
+
 <!-- jQuery 3 -->
 <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../assets/dist/js/sweetalert.min.js"></script>
