@@ -218,8 +218,7 @@ mysqli_close($koneksi);
 						<div class="row">
 
 							<div class="col-md-6">
-								<p>© 2022 All rights reserved. Free HTML Template by <a
-										href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a></p>
+								<p>© 2024 All rights reserved.</p>
 							</div>
 
 							<div class="col-md-6">
