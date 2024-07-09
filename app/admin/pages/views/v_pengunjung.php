@@ -67,8 +67,8 @@
                                         <td><?= $row['keperluan']; ?></td>
                                         <td>
                                             <a href="#" data-target="#modalEditPengunjung<?= $row['id_user']; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                            <a href="pages/function/Pengunjung.php?act=hapus&id=<?= $row['id_user']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
-                                        </td>
+                                            <a href="pages/function/Pengunjung.php?act=hapus&id_user=<?= $row['id_user']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
+                                            </td>
                                     </tr>
                                     <!-- Modal Edit -->
                                     <div class="modal fade" id="modalEditPengunjung<?= $row['id_user']; ?>">
@@ -88,7 +88,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Tanggal Kunjungan <small style="color: red;">* Wajib diisi</small></label>
-                                                            <input type="datetime-local" class="form-control" value="<?= $row['tanggal_kunjungan']; ?>" name="tanggalKunjungan" required>
+                                                            <input type="date" class="form-control" value="<?= $row['tanggal_kunjungan']; ?>" name="tanggalKunjungan" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Waktu Masuk <small style="color: red;">* Wajib diisi</small></label>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tanggal Kunjungan <small style="color: red;">* Wajib diisi</small></label>
-                        <input type="datetime-local" class="form-control" name="tanggalKunjungan" required>
+                        <input type="date" class="form-control" name="tanggalKunjungan" required>
                     </div>
                     <div class="form-group">
                         <label>Waktu Masuk <small style="color: red;">* Wajib diisi</small></label>

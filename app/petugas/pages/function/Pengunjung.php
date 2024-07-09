@@ -12,9 +12,6 @@ if ($act == "tambah") {
     $waktuKeluar = $_POST['waktuKeluar'];
     $keperluan = $_POST['keperluan'];
 
-    // Ensure tanggalKunjungan is properly formatted as YYYY-MM-DD
-    $tanggalKunjungan = date('Y-m-d', strtotime($tanggalKunjungan));
-
     $query = "INSERT INTO pengunjung (id_user, tanggal_kunjungan, waktu_masuk, waktu_keluar, keperluan) VALUES ('$id_user', '$tanggalKunjungan', '$waktuMasuk', '$waktuKeluar', '$keperluan')";
     $result = mysqli_query($koneksi, $query);
 
@@ -34,8 +31,6 @@ if ($act == 'edit') {
     $waktuKeluar = $_POST['waktuKeluar'];
     $keperluan = $_POST['keperluan'];
 
-    // Ensure tanggalKunjungan is properly formatted as YYYY-MM-DD
-    $tanggalKunjungan = date('Y-m-d', strtotime($tanggalKunjungan));
 
     $query = "UPDATE pengunjung SET tanggal_kunjungan='$tanggalKunjungan', waktu_masuk='$waktuMasuk', waktu_keluar='$waktuKeluar', keperluan='$keperluan' WHERE id_user='$id_user'";
     $result = mysqli_query($koneksi, $query);
@@ -50,9 +45,9 @@ if ($act == 'edit') {
 }
 
 if ($act == 'hapus') {
-    $id_pengunjung = $_GET['id'];
+    $id_user = $_GET['id_user'];
 
-    $query = "DELETE FROM pengunjung WHERE id_pengunjung='$id_pengunjung'";
+    $query = "DELETE FROM pengunjung WHERE id_user='$id_user'";
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
@@ -63,4 +58,5 @@ if ($act == 'hapus') {
     header("location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
+
 ?>

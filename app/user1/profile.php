@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 // Ensure the user is logged in before accessing this page
@@ -23,6 +23,7 @@ $row = $result->fetch_assoc();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         .card {
@@ -34,60 +35,79 @@ $row = $result->fetch_assoc();
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
+
         .card-header {
             font-family: 'Quicksand', sans-serif;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
         }
+
         .card-body {
             text-align: left;
         }
     </style>
-    <?php @include('head.php');?>
+    <?php @include('head.php'); ?>
 </head>
-<body>
-<div class="content-wrapper text-center">
-    <section class="content-header my-5">
-        <div class="card">
-            <div class="card-header">
-                <h1>
-                    Identitas Profile
-                </h1>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="fullname">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-sm" id="fullname" value="<?= htmlspecialchars($row['fullname']); ?>" name="fullname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nis">NIS</label>
-                        <input type="text" class="form-control form-control-sm" id="nis" value="<?= htmlspecialchars($row['username']); ?>" name="nis" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat Lengkap</label>
-                        <textarea class="form-control form-control-sm" style="height: 80px; resize: none;" id="alamat" name="alamat" required><?= htmlspecialchars($row['alamat']); ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control form-control-sm" id="email" value="<?= htmlspecialchars($row['email']); ?>" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="notelp">Nomor Telepon</label>
-                        <input type="text" class="form-control form-control-sm" id="notelp" value="<?= htmlspecialchars($row['notelp']); ?>" name="notelp" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-</div>
 
-<script src="path/to/plugins.js"></script>
-<script src="path/to/script.js"></script>
+<body>
+<a href="home.php" class="btn btn-outline-primary" style="position: absolute; top: 20px; left: 20px;">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+    <div class="content-wrapper text-center">
+        <section class="content-header my-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1>
+                        Identitas Profile
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <form action="function/profile.php" method="post">
+                        <div class="form-group">
+                            <label for="kode_user">Kode User</label>
+                            <input type="text" class="form-control form-control-sm" id="kode_user" value="<?= htmlspecialchars($row['kode_user']); ?>" name="kode_user" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="nis">NIS</label>
+                            <input type="text" class="form-control form-control-sm" id="nis" value="<?= htmlspecialchars($row['nis']); ?>" name="nis" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullname">Nama Lengkap</label>
+                            <input type="text" class="form-control form-control-sm" id="fullname" value="<?= htmlspecialchars($row['fullname']); ?>" name="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control form-control-sm" id="username" value="<?= htmlspecialchars($row['username']); ?>" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kelas">Kelas</label>
+                            <input type="text" class="form-control form-control-sm" id="kelas" value="<?= htmlspecialchars($row['kelas']); ?>" name="kelas" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat Lengkap</label>
+                            <textarea class="form-control form-control-sm" style="height: 80px; resize: none;" id="alamat" name="alamat" required><?= htmlspecialchars($row['alamat']); ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control form-control-sm" id="email" value="<?= htmlspecialchars($row['email']); ?>" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notelp">Nomor Telepon</label>
+                            <input type="text" class="form-control form-control-sm" id="notelp" value="<?= htmlspecialchars($row['notelp']); ?>" name="notelp" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="path/to/plugins.js"></script>
+    <script src="path/to/script.js"></script>
 
 </body>
+
 </html>
