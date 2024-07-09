@@ -42,7 +42,7 @@
                                 <form action="pages/function/Laporan.php?aksi=tanggal_pinjam" method="POST" target="_blank">
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" name="tanggal_pinjam" id="datepicker" placeholder="Silahkan masukan tanggal pinjam" required>
+                                        <input type="date" class="form-control" name="tanggal_pinjam" id="tanggal_pinjam" placeholder="Silahkan masukan tanggal pinjam" required>
                                     </div>
                                     <div class=" form-group">
                                         <button type="submit" target="_blank" class="btn btn-primary btn-block">Tampilkan Data</button>
@@ -54,10 +54,10 @@
 
                         <!-- Tanggal Pengembalian -->
                         <div class="tab-pane" id="tgl-pengembalian">
-                            <form action="pages/function/Laporan.php?aksi=tgl_pengembalian" method="POST" target="_blank">
+                            <form action="pages/function/Laporan.php?aksi=tanggal_kembali" method="POST" target="_blank">
                                 <div class="form-group">
                                     <label>Tanggal Pengembalian</label>
-                                    <input type="text" class="form-control" name="tanggal_kembali" id="datepicker1" placeholder="Silahkan masukan tanggal pengembalian" required>
+                                    <input type="date" class="form-control" name="tanggal_kembali" id="tanggal_kembali" placeholder="Silahkan masukan tanggal pengembalian" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Tampilkan Data</button>
