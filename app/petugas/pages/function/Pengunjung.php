@@ -45,9 +45,9 @@ if ($act == 'edit') {
 }
 
 if ($act == 'hapus') {
-    $id_pengunjung = $_GET['id'];
+    $id_user = $_GET['id_user'];
 
-    $query = "DELETE FROM pengunjung WHERE id_pengunjung='$id_pengunjung'";
+    $query = "DELETE FROM pengunjung WHERE id_user='$id_user'";
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
@@ -58,4 +58,5 @@ if ($act == 'hapus') {
     header("location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
+
 ?>
