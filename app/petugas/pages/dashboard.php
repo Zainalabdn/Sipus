@@ -113,25 +113,6 @@
                 <!-- small box -->
                 <?php
                 include "../../config/koneksi.php";
-                $query_admin = mysqli_query($koneksi, "SELECT * FROM user WHERE role IN ('Admin', 'Petugas')");
-                $row_admin = mysqli_num_rows($query_admin);
-                ?>
-                <div class="small-box bg-purple">
-                    <div class="inner">
-                        <h3><?= $row_admin; ?></h3>
-                        <p>Data Administrator</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-user-shield"></i>
-                    </div>
-                    <a href="administrator" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php
-                include "../../config/koneksi.php";
                 $query_pengunjung = mysqli_query($koneksi, "SELECT * FROM pengunjung");
                 $row_pengunjung = mysqli_num_rows($query_pengunjung);
                 ?>
