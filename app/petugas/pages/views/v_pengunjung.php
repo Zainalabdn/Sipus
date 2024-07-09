@@ -88,7 +88,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Tanggal Kunjungan <small style="color: red;">* Wajib diisi</small></label>
-                                                            <input type="datetime-local" class="form-control" value="<?= $row['tanggal_kunjungan']; ?>" name="tanggalKunjungan" required>
+                                                            <input type="date" class="form-control" value="<?= $row['tanggal_kunjungan']; ?>" name="tanggalKunjungan" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Waktu Masuk <small style="color: red;">* Wajib diisi</small></label>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tanggal Kunjungan <small style="color: red;">* Wajib diisi</small></label>
-                        <input type="datetime-local" class="form-control" name="tanggalKunjungan" required>
+                        <input type="date" class="form-control" name="tanggalKunjungan" required>
                     </div>
                     <div class="form-group">
                         <label>Waktu Masuk <small style="color: red;">* Wajib diisi</small></label>
