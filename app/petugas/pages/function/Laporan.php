@@ -113,17 +113,21 @@ elseif($_GET['aksi'] == "tanggal_kembali") {
     echo "<th>Judul Buku</th>";
     echo "<th>Tanggal Peminjaman</th>";
     echo "<th>Tanggal Pengembalian</th>";
+    echo "<th>Status</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
 
     // Query untuk mendapatkan data pengembalian
-    $query = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE tanggal_kembali = '$tanggal_kembali'");
-    $no = 1;
+    $query = mysqli_query($koneksi, "SELECT peminjaman.*, buku.judul_buku, user.fullname, user.username FROM peminjaman
+                                    JOIN buku ON peminjaman.id_buku = buku.id_buku 
+                                    JOIN user ON peminjaman.id_user = user.id_user
+                                    WHERE tanggal_kembali = '$tanggal_kembali'");
+       $no = 1;
     while ($row = mysqli_fetch_assoc($query)) {
         echo "<tr>";
         echo "<td>" . $no++ . "</td>";
-        echo "<td>" . $row['nama_anggota'] . "</td>";
+        echo "<td>" . $row['fullname'] . "</td>";
         echo "<td>" . $row['judul_buku'] . "</td>";
         echo "<td>" . $row['tanggal_pinjam'] . "</td>";
         echo "<td>";
@@ -133,6 +137,7 @@ elseif($_GET['aksi'] == "tanggal_kembali") {
             echo $row['tanggal_kembali'];
         }
         echo "</td>";
+        echo "<td>" . $row['status'] . "</td>"; // Pastikan ada kolom 'status' di tabel peminjaman
         echo "</tr>";
     }
 
