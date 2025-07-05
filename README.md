@@ -6,9 +6,9 @@
 
 1. Jessica Alva Nandhita
 2. M Zainal Abidin
-3. 
-4. 
-5. 
+3. Muhammad Thoriq H.S
+4. Andreas Setyo Nugroho
+5. Joe Fauzsanno Rettob
    
 ## 👦Akun Administrator
 Username : admin
@@ -21,7 +21,7 @@ Password : admin
 
 ## ⚙Instalasi
 
-1. Clone repositori dari GitHub ke htdocs dengan cmd : git clone https://github.com/aziziega/E-Library.git
+1. Clone repositori dari GitHub ke htdocs dengan cmd : git clone  https://github.com/Zainalabdn/Sipus.git
 2. Jalankan Xampp Apache dan Mysql
 3. Buka Mysql admin dan buat database baru dengan nama db_perpustakaan lalu import dari folder database
 4. Akses Web di browser dengan menjalankan Apache admin lalu arahkan ke folder yg dituju
