@@ -25,9 +25,9 @@ if ($_GET['act'] == 'tambah') {
     $stmt->bind_param('ssssssissss', $judul, $categories, $description, $publisher, $author, $published_date, $isbn, $jumlah_buku, $average, $gambar, $language);
 
     if ($stmt->execute()) {
-        $_SESSION['berhasil'] = "Data buku berhasil Ditambaken!";
+        $_SESSION['berhasil'] = "Data buku berhasil Ditambakan!";
     } else {
-        $_SESSION['gagal'] = "Data buku gagal Ditambaken!";
+        $_SESSION['gagal'] = "Data buku gagal Ditambakan!";
     }
 
     $stmt->close();

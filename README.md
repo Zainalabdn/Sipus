@@ -4,11 +4,11 @@
 
 ## 👷‍♂️Anggota Kelompok
 
-1. Azizi Egatri Mu’thi
-2. Beny Sigit Nugraha
-3. Yusma Zainal Lathiif
-4. Fauzan Aditya Putra
-5. Andreas Setyo Nugroho
+1. Jessica Alva Nandhita
+2. M Zainal Abidin
+3. 
+4. 
+5. 
    
 ## 👦Akun Administrator
 Username : admin

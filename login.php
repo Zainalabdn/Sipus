@@ -41,7 +41,7 @@ session_start();
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="masuk"><b>E - LIBRARY</b></a>
+        <a href="masuk"><b>Sipus</b></a>
         <a href="index.php" style="position: absolute; top: 10px; left: 10px;"><i class="fa fa-arrow-left"></i></a>
     </div>
     <!-- /.login-logo -->

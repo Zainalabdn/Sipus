@@ -1,105 +1,55 @@
-
-<footer id="footer">
+	<footer id="footer">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-md-4">
-
 					<div class="footer-item">
 						<div class="company-brand">
-							<img src="../../assets/img/R.png" alt="logo" class="footer-logo">
-							<p>Perpustakaan digital yang menyimpan data baik itu buku dalam bentuk elektronik 
-							dan mendistribusikannya dengan menggunakan protokol elektronik melalui jaringan komputer.</p>
+							<img src="../../assets/img/Sipus.png" alt="logo" class="footer-logo" style="width:60%">
+							<p></p>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="col-md-2">
-
 					<div class="footer-menu">
 						<h5>About Us</h5>
 						<ul class="menu-list">
 							<li class="menu-item">
-								<a href="#">vision</a>
+								<a href="#">About us</a>
 							</li>
-							<li class="menu-item">
-								<a href="#">articles </a>
-							</li>
-							<li class="menu-item">
-								<a href="#">careers</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">service terms</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">donate</a>
-							</li>
-						</ul>
 					</div>
-
 				</div>
-				<div class="col-md-2">
 
+				<div class="col-md-2">
 					<div class="footer-menu">
 						<h5>Discover</h5>
 						<ul class="menu-list">
 							<li class="menu-item">
-								<a href="#">Home</a>
+								<a href="home.php">Home</a>
 							</li>
 							<li class="menu-item">
-								<a href="#">Books</a>
+								<a href="semuabuku.php">Books</a>
 							</li>
-							<li class="menu-item">
-								<a href="#">Authors</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Subjects</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Advanced Search</a>
-							</li>
-						</ul>
 					</div>
 
 				</div>
 				<div class="col-md-2">
-
 					<div class="footer-menu">
 						<h5>My account</h5>
 						<ul class="menu-list">
 							<li class="menu-item">
-								<a href="#">Sign In</a>
+								<a href="profile.php">Profile</a>
 							</li>
-							<li class="menu-item">
-								<a href="#">View Cart</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">My Wishtlist</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Track My Order</a>
-							</li>
-						</ul>
 					</div>
-
 				</div>
+
 				<div class="col-md-2">
 
 					<div class="footer-menu">
 						<h5>Help</h5>
 						<ul class="menu-list">
 							<li class="menu-item">
-								<a href="#">Help center</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Report a problem</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Suggesting edits</a>
-							</li>
-							<li class="menu-item">
-								<a href="#">Contact us</a>
+								<a href="contact.php">Contact us</a>
 							</li>
 						</ul>
 					</div>

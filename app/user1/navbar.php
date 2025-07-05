@@ -90,7 +90,7 @@ include "../../config/koneksi.php";
             <div class="row">
                 <div class="col-md-2">
                     <div class="main-logo">
-                    <h3 href="../index.html" class="outline-dark">E-Library</h3>
+                    <h3 href="../index.html" class="outline-dark">Sipus</h3>
                     </div>
                 </div>
                 <div class="col-md-10">

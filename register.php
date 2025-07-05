@@ -35,7 +35,7 @@ $row1 = mysqli_fetch_assoc($sql);
 <body class="hold-transition login-page" style="font-family: 'Quicksand', sans-serif;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="masuk"><b>E-LIBRARY</b></a>
+            <a href="masuk"><b>Sipus</b></a>
             <a href="index.php" style="position: absolute; top: 10px; left: 10px;"><i class="fa fa-arrow-left"></i></a>
         </div>
         <!-- /.login-logo -->
