@@ -1,0 +1,26 @@
+name: CI - PHP Syntax Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  syntax-check:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2.12'
+        extensions: mbstring, dom
+
+    - name: Run PHP Lint
+      run: |
+        find . -type f -name "*.php" -print0 | xargs -0 -n1 php -l
